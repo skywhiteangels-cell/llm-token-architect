@@ -1,8 +1,10 @@
 # The Story of Rapid Evolution from Gemini 3.7–3.8 to Gemini 4.0 Core Architecture and Solving the Fundamental Quote Problem
 
+**[ 🇷🇺 Читать статью на русском языке ](ARTICLE_RU.md) | [ 🇬🇧 English article ](ARTICLE.md)**
+
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Read in Russian](https://img.shields.io/badge/Language-Russian-blue.svg)](ARTICLE_RU.md)
+[![Читать на русском](https://img.shields.io/badge/Перейти-Читать_на_русском-blue.svg)](ARTICLE_RU.md)
 [![Substack](https://img.shields.io/badge/Substack-SkyAngels-orange.svg)](https://skyangels.substack.com/p/the-story-of-rapid-evolution-from)
 
 ![Cover](habr_cover.jpg)

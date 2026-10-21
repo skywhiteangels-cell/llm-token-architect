@@ -1,9 +1,11 @@
 # Quote Guard — предохранитель, который не даёт агенту повесить собственный шелл
 
+**[ 🇷🇺 Версия на русском языке ](README_RU.md) | [ 🇬🇧 Read in English ](README.md)**
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/skywhiteangels-cell/llm-token-architect/actions/workflows/tests.yml/badge.svg)](https://github.com/skywhiteangels-cell/llm-token-architect/actions)
 [![Tests](https://img.shields.io/badge/tests-41%20python%20%2F%2039%20node-brightgreen)](#тесты)
-[![Read in English](https://img.shields.io/badge/Language-English-blue.svg)](README.md)
+[![Read in English](https://img.shields.io/badge/Switch_to-English_version-blue.svg)](README.md)
 
 ![Обложка](habr_cover.jpg)
 
