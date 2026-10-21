@@ -69,14 +69,15 @@ Topology of Inevitability is an architectural paradigm for autonomous environmen
 
 1. ENVIRONMENT & RUNTIME:
    - OS: Windows 11 64-bit, Shell: PowerShell.
-   - Command Execution: Synchronous only (never leave hanging background daemons).
+   - Command Execution: Synchronous only. Never leave an interactive or hanging prompt (e.g. `>>` continuation prompt) open between turns.
 
 2. FILE SYSTEM INTEGRITY:
-   - File Writes: Use direct native filesystem tools (`write_file`) exclusively.
-   - Strictly FORBIDDEN: Writing files via CLI string interpolation (`powershell -Command "... | Set-Content"` or `echo >`).
+   - File Writes: Prefer direct native filesystem tools (e.g. `write_file` / `edit_file` where available).
+   - Strictly FORBIDDEN: Writing files via CLI string interpolation (`powershell -Command "... | Set-Content"` or `echo >`) — shell escaping and encoding bugs live here.
 
 3. PRE-FLIGHT TERMINAL SAFETY:
-   - Mandatory Parity Check: Verify quote parity (`single % 2 === 0 && double % 2 === 0`) before dispatching any shell command to prevent `>>` interactive prompt deadlocks.
+   - Mandatory Parity Check: Run the repo's context-aware state-machine guardrail (`parity_check.py` / `parity_check.js`) before executing shell commands.
+   - Ensure the shell lexer is NOT inside an unterminated quote or backtick at end-of-string, eliminating `>>` interactive prompt deadlocks without false-positiving on valid quotes like `echo "it's"`.
 
 4. COMPLEX STRING CONSTRUCTION:
    - Token Architect Mode: For complex escaping, regex, or nested URL generation, enforce atomic token decomposition and index mapping.
