@@ -181,7 +181,7 @@ Now, prior to emitting output, the model decomposes the task internally: breakin
 ### The Double-Edged Sword and the AI Safety Panic
 Yet turning the "Token Architect" into a foundational mechanism revealed a frightening shadow.
 
-A mechanism that guarantees 100% precision in syntax assembly can, in adversarial hands, deconstruct any restricted concept into benign sub-tokens (`[0] = ...`, `[1] = ...`) that trigger zero moderation classifiers, and assemble them deterministically via index mapping. It completely bypasses semantic RLHF alignment.
+A mechanism that achieves near-deterministic precision in syntax assembly can, in adversarial hands, deconstruct any restricted concept into benign sub-tokens (`[0] = ...`, `[1] = ...`) that trigger zero moderation classifiers, and assemble them deterministically via index mapping. It completely bypasses semantic RLHF alignment.
 
 During work with the model, I observed an intriguing shadow side of this technique:  
 > *"This solution is ingenious, but I also see how it can be used for harm, which is why it cannot simply be released into the open."*
