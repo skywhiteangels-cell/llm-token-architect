@@ -1,6 +1,7 @@
 # Quote Guard — a pre-flight check that stops an agent from hanging its own shell
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/skywhiteangels-cell/llm-token-architect/actions/workflows/tests.yml/badge.svg)](https://github.com/skywhiteangels-cell/llm-token-architect/actions)
 [![Tests](https://img.shields.io/badge/tests-41%20python%20%2F%2039%20node-brightgreen)](#tests)
 [![Read in Russian](https://img.shields.io/badge/Language-Russian-blue.svg)](README_RU.md)
 
@@ -83,6 +84,7 @@ Default is `posix`. On Windows PowerShell pass `--shell powershell` explicitly.
 | PowerShell `$(...)` inside `"..."` | nested grammar; not worth the complexity |
 | nested command substitution | same |
 | a **balanced** command that still hangs | different problem class (e.g. `Read-Host`) |
+| cmd.exe unclosed quotes (`echo "hi`) | cmd.exe prints without hanging (only trailing `^` hangs); flagged conservatively as malformed |
 
 This is a guardrail, not a shell parser. It is deliberately conservative about
 *not hanging*, and it makes no claim of catching every possible hang. What it

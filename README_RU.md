@@ -1,6 +1,7 @@
 # Quote Guard — предохранитель, который не даёт агенту повесить собственный шелл
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/skywhiteangels-cell/llm-token-architect/actions/workflows/tests.yml/badge.svg)](https://github.com/skywhiteangels-cell/llm-token-architect/actions)
 [![Tests](https://img.shields.io/badge/tests-41%20python%20%2F%2039%20node-brightgreen)](#тесты)
 [![Read in English](https://img.shields.io/badge/Language-English-blue.svg)](README.md)
 
@@ -86,6 +87,7 @@ verifyQuoteParity('echo "hi', 'powershell');   // false
 | PowerShell `$(...)` внутри `"..."` | вложенная грамматика, сложность не оправдана |
 | вложенная подстановка команд | то же |
 | **сбалансированная** команда, которая всё равно повиснет | другой класс проблем (например, `Read-Host`) |
+| cmd.exe: незакрытая кавычка (`echo "hi`) | cmd.exe печатает её без зависания (вешает только висящий `^`); отсекается консервативно как синтаксический дефект |
 
 Это предохранитель, а не парсер шелла. Он сознательно консервативен в сторону
 «не повесить» и не заявляет, что ловит любой возможный зависон. Что он

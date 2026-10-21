@@ -10,7 +10,7 @@ shell grammar, and **exits 2 to block** when the command would hang.
 
 ## Claude Code
 
-`~/.claude/settings.json` (or `.claude/settings.json` in the project):
+`~/.claude/settings.json` (or `.claude/settings.json` in your project root):
 
 ```json
 {
@@ -21,7 +21,7 @@ shell grammar, and **exits 2 to block** when the command would hang.
         "hooks": [
           {
             "type": "command",
-            "command": "python /absolute/path/to/github_repo_v3/hooks/pre_tool_use_guard.py"
+            "command": "python /path/to/llm-token-architect/hooks/pre_tool_use_guard.py"
           }
         ]
       }
@@ -29,6 +29,10 @@ shell grammar, and **exits 2 to block** when the command would hang.
   }
 }
 ```
+
+> **Important for Claude Code on Windows:**  
+> Claude Code's `Bash` tool on Windows runs inside **Git Bash** (POSIX grammar), not PowerShell.  
+> Therefore, set the environment variable `QUOTE_GUARD_SHELL=posix` (or configure it in your environment) so the hook evaluates commands using POSIX escaping rules rather than native PowerShell rules.
 
 `matcher` accepts a tool-name pattern (`Bash`, `Bash|Shell`, `*`). The hook
 itself also filters by name, so `*` is safe.
@@ -56,9 +60,11 @@ So it defaults to `powershell` on Windows and `posix` everywhere else. Override
 it explicitly when you know better:
 
 ```bash
-export QUOTE_GUARD_SHELL=posix      # agent runs Git Bash on Windows
+export QUOTE_GUARD_SHELL=posix      # agent runs Git Bash on Windows (e.g. Claude Code)
 export QUOTE_GUARD_SHELL=powershell # agent runs PowerShell on Windows
 ```
+
+Or pass `--shell <name>` if invoking the CLI directly.
 
 ## Other harnesses
 

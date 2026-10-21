@@ -1,0 +1,42 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ['3.10', '3.11', '3.12']
+        node-version: ['18', '20']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Run Python Standalone Tests (41 checks)
+        run: python tests/test_parity.py
+
+      - name: Run Node.js Standalone Tests (39 checks)
+        run: node tests/test_parity.js
+
+      - name: Run Python Self-Tests (23 cases)
+        run: python parity_check.py --selftest
+
+      - name: Run Node.js Self-Tests (23 cases)
+        run: node parity_check.js --selftest
