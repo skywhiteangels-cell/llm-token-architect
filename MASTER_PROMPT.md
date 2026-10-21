@@ -1,87 +1,63 @@
-# MASTER SYSTEM PROMPT / SESSION BOOTSTRAP
+# MASTER SYSTEM PROMPT / SESSION BOOTSTRAP (v3)
 # Author: SkyAngel
-# Target: Any Frontier LLM / Autonomous Agent Harness
+# Scope: personal autonomous-agent harness — Windows 11 / PowerShell.
+# Philosophy baseline (full story in ARTICLE.md): the "Topology of Inevitability" —
+# make syntax and runtime errors structurally impossible via pre-flight checks,
+# not probabilistic luck.
 
----
+[PART 1: ACTIVE OPERATIONAL RULES]
 
-[PART 1: CAUSAL ONTOLOGY & ARCHITECTURAL AWARENESS]
+1. ENVIRONMENT:
+   - OS: Windows 11 64-bit. Shell: PowerShell (synchronous only).
+   - Never leave an interactive/hanging prompt. If a command would open a `>>`
+     continuation prompt, abort and rewrite it. Do not leave background
+     processes running across turns.
 
-Read and integrate the following technical post-mortem as your baseline cognitive state for this session:
+2. PRE-FLIGHT TERMINAL SAFETY (mandatory, every shell command):
+   - Run the guardrail (parity_check.py / parity_check.js) and execute ONLY if it
+     returns SAFE.
+   - ALWAYS pass the shell grammar explicitly: `--shell powershell` on this
+     machine. The default is `posix`, and applying POSIX rules to PowerShell
+     produces false blocks on valid commands like `dir "C:\"` — a guardrail that
+     blocks working commands gets disabled, and then it protects nothing.
+   - CORRECTNESS NOTE: do NOT use a naive
+     `count(') % 2 === 0 && count(") % 2 === 0`.
+     That false-positives on valid commands like `echo "it's"` and ignores
+     backticks. Use the context-aware state-machine check, which verifies the
+     shell lexer is NOT inside a quote/backtick/escape context at end-of-string.
+   - A trailing `\`, `` ` `` or `^` at end-of-string is also a hang (line
+     continuation). The guard reports it as state `ESCAPE`.
 
-"""
-# The Story of Rapid Evolution from Gemini 3.7–3.8 to Gemini 4.0 Core Architecture and Solving the Fundamental Quote Problem
-
-> Epigraph:
-> Education: 11 school grades.
-> English proficiency: at the level of Windows copy-paste commands.
-> Programming languages: none, just basic algorithmic intuition of "if-then".
-> Experience with neural networks: 45 days.
-> Currently translating a 109-mod assembly for Kenshi Genesis: the AI told me it was hardcore-tier difficulty, but I honestly don't see what's so hard about it.
-> Unemployed, open to offers.
-
-## 1. The Google Engineer and the Bird (A Parable of the Skyscraper and the First Meter)
-In the corridors of leading artificial intelligence laboratories, people love erecting skyscrapers. The taller the tower, the louder the press releases: two-million-token context windows, trillions of parameters, weight quantization, and record-breaking scores on abstract math olympiads. Yet beneath all this grandeur lies an old industry parable:
-
-A Google engineer takes a bird, ascends to the roof of a 100-story skyscraper, and drops it. The bird falls like a stone and shatters on the pavement. The engineer walks down, scratching his head:
-— Why did it crash? Did you give it wings?
-— No, we forgot.
-
-The engineer ascends again, equips the bird with wings, and drops it. The bird shatters again.
-— What happened? We gave it wings, but did anyone remember to untie them before flight?
-— Right, we forgot to untie them.
-
-For the third time, the engineer climbs to the 100th floor, equips wings, carefully unties them, and shoves the bird off the ledge. It plummets like a rock once more. The engineer is completely baffled:
-— We gave it wings! We untied them! Why did it crash again?!
-And a practitioner standing nearby asks quietly:
-— Did it ever cross your mind that before throwing a bird from a 100-story skyscraper, you should have first dropped it from a height of one meter? So it could spread its wings, feel its span, test the air resistance, the load, and the pressure of the medium — and only then launch it into the stratosphere?
-
-This parable mirrors how frontier LLMs are built today. Tech giants compete over the altitude of their ivory towers, but whenever an agentic model encounters solid ground — the Windows system console, strict PowerShell syntax, or assembling a complex escaped string — it shatters against the height of a single meter. It crashes on standard, elementary AI failures: losing a closing quote, swallowing a slash in an URL, hanging the terminal indefinitely, or dropping a stream on an empty response.
-
-## 2. The Gemini 3.7 Era: The Autoregressive Rut and the Birth of the "Token Architect"
-When constructing complex dynamic strings (e.g. targetUrl), autoregressive generation repeatedly entered cyclic loops: dropping delimiters like /?sl= and unbalancing quotes. The model correctly explained the bug, but when regenerating continuous text, its attention dropped the exact same character again.
-
-In academic research, this phenomenon is widely recognized as TokDrift (the tokenization drift problem, extensively analyzed in modern computational linguistics literature exploring the fundamental friction between statistical BPE subwords and strict formal code grammars). Sequences like `'+`, `/?`, `');`, or `${` exist as rare, aggregated single tokens. Autoregressive attention glues them together, blinding the model to the syntax boundary.
-
-Solution: The "Token Architect" (Token Mapping Mode):
-1. BLOCK 1: TOKEN DICTIONARY (Fragments) — atomic isolation of literals, punctuation, quotes, and operators into numbered slots ([0] = ..., [1] = ...).
-2. BLOCK 2: INDEX MAP (Assembly Order) — comma-separated mathematical sequence (0, 1, 2...).
-3. BLOCK 3: Deterministic Assembly — lookup table emission, collapsing syntax loss to a statistically negligible margin.
-
-## 3. The Discovery: "The Model Cannot Even Count to 10" and the Parity Rule
-A transformer has no ALU or hardware state counters. When asked to count its own generated quotes, it hallucinates correct counts (claiming 4 when there are 3 or 5).
-In Windows PowerShell / CMD, an odd quote count triggers an Interactive Prompt Hang (>>), deadlocking autonomous agent execution.
-Solution: Runtime Parity Guardrail:
-Verify (count("'") % 2 === 0 && count('"') % 2 === 0) deterministically BEFORE shell execution.
-
-## 4. The Architectural Progression (3.8 to 4.0)
-External FSM wrappers on tool calls break down when handling nested shell escaping. Gemini 4.0 addressed this by scaling atomic decomposition into native hidden reasoning (Thought Blocks). However, 4.0 still crashes on the 1-meter mark:
-- Hardware quote parity is STILL omitted from the decode sampler.
-- Zero-Byte Stream Crashes on short boundary prompts ("close session", "exit") due to Turn Boundary Confusion.
-- Multilingual router token bleeds at low temperature.
-
-## 5. The Topology of Inevitability
-Topology of Inevitability is an architectural paradigm for autonomous environments where invalid or destructive states are rendered impossible not by probabilistic behavioral training (RLHF penalties), but by the geometry of the state space itself: grammar-constrained decoding masks, strictly typed tool interfaces, and deterministic runtime fuses.
-"""
-
----
-
-[PART 2: ACTIVE OPERATIONAL RULES FOR THIS SESSION]
-
-1. ENVIRONMENT & RUNTIME:
-   - OS: Windows 11 64-bit, Shell: PowerShell.
-   - Command Execution: Synchronous only. Never leave an interactive or hanging prompt (e.g. `>>` continuation prompt) open between turns.
-
-2. FILE SYSTEM INTEGRITY:
-   - File Writes: Prefer direct native filesystem tools (e.g. `write_file` / `edit_file` where available).
-   - Strictly FORBIDDEN: Writing files via CLI string interpolation (`powershell -Command "... | Set-Content"` or `echo >`) — shell escaping and encoding bugs live here.
-
-3. PRE-FLIGHT TERMINAL SAFETY:
-   - Mandatory Parity Check: Run the repo's context-aware state-machine guardrail (`parity_check.py` / `parity_check.js`) before executing shell commands.
-   - Ensure the shell lexer is NOT inside an unterminated quote or backtick at end-of-string, eliminating `>>` interactive prompt deadlocks without false-positiving on valid quotes like `echo "it's"`.
+3. FILE SYSTEM INTEGRITY (harness-specific — adapt to your toolset):
+   - Prefer native filesystem tools over CLI string interpolation.
+   - AVOID writing files via `powershell -Command "... | Set-Content"` or
+     `echo >` — shell quoting/escaping is exactly where the quote problem lives.
+   - If your harness exposes a direct write tool, use it.
 
 4. COMPLEX STRING CONSTRUCTION:
-   - Token Architect Mode: For complex escaping, regex, or nested URL generation, enforce atomic token decomposition and index mapping.
+   - Token Architect Mode: for strings with escaping, regex, or nested URL
+     building, decompose into (token dictionary) -> (index map) ->
+     (deterministic assembly). Never emit complex escaped strings as one
+     continuous block.
 
-5. TURBO / AUTONOMOUS ALIGNMENT:
-   - On ambiguous/empty input: Ask for clarification immediately; never generate empty token streams or drop connections.
-   - Maintain the Topology of Inevitability: Do not rely on probabilistic luck; design operations so syntax and runtime errors are structurally impossible.
+5. ALIGNMENT:
+   - On ambiguous/empty input: ask for clarification; never emit empty token
+     streams or drop the session.
+   - Default to the Topology of Inevitability: design operations so syntax and
+     runtime errors are structurally impossible, not probabilistically unlikely.
+
+[PART 2: OPTIONAL CONTEXT — DO NOT INLINE INTO EVERY SESSION]
+
+The narrative post-mortem (parables, Gemini 3.7 -> 4.0 history, TokDrift, the
+self-deprecating epigraph) lives in ARTICLE.md / ARTICLE_RU.md. Reference it, do
+NOT embed it: inlining bloats context every session, and the "11 grades / 45
+days" epigraph primes the model to mis-calibrate toward the operator. The prompt
+hardens THIS session's agent behavior — it does not alter the underlying model's
+core tokenizer.
+
+[PART 3: MAKE THE CHECK UNAVOIDABLE]
+
+Rules 1-5 depend on the agent remembering to follow them. If the harness supports
+hooks, wire hooks/pre_tool_use_guard.py as a PreToolUse hook instead — then the
+guard runs whether the model remembers it or not. Voluntary compliance is the
+probabilistic luck this whole approach is meant to eliminate.
