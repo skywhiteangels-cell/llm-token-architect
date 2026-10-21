@@ -1,9 +1,9 @@
 # История быстрого роста от Gemini 3.7–3.8 до архитектуры ядра Gemini 4.0 и решение фундаментальной проблемы кавычек
 
-**[ 🇷🇺 Версия статьи на русском языке ](ARTICLE_RU.md) | [ 🇬🇧 Read article in English ](ARTICLE.md)**
+**🇷🇺 Русский** | [ 🇬🇧 Read in English ](ARTICLE.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Read in English](https://img.shields.io/badge/Switch_to-English_version-blue.svg)](ARTICLE.md)
+[![Read in English](https://img.shields.io/badge/Read_in-English-blue.svg)](ARTICLE.md)
 [![Substack](https://img.shields.io/badge/Substack-SkyAngels-orange.svg)](https://skyangels.substack.com/p/the-story-of-rapid-evolution-from)
 
 ![Обложка](habr_cover.jpg)

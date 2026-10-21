@@ -1,11 +1,11 @@
 # Quote Guard — a pre-flight check that stops an agent from hanging its own shell
 
-**[ 🇷🇺 Читать документацию на русском языке ](README_RU.md) | [ 🇬🇧 English version ](README.md)**
+**🇬🇧 English** | [ 🇷🇺 Читать на русском ](README_RU.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/skywhiteangels-cell/llm-token-architect/actions/workflows/tests.yml/badge.svg)](https://github.com/skywhiteangels-cell/llm-token-architect/actions)
 [![Tests](https://img.shields.io/badge/tests-41%20python%20%2F%2039%20node-brightgreen)](#tests)
-[![Читать на русском](https://img.shields.io/badge/Перейти-Читать_на_русском-blue.svg)](README_RU.md)
+[![Read in Russian](https://img.shields.io/badge/Read_in-Russian-blue.svg)](README_RU.md)
 
 ![Cover](habr_cover.jpg)
 
