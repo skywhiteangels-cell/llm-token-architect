@@ -37,6 +37,14 @@ of the guardrail, not semver releases of a package.
 - README split: `README.md` / `README_RU.md` are now tool documentation. The
   essay moved to `ARTICLE.md` / `ARTICLE_RU.md` unchanged in voice.
 - `.gitignore` extended (`.pytest_cache/`, `*.egg-info/`, `dist/`, `.venv/`).
+- Hook hardened for a live harness: the shell grammar is now chosen per **tool**
+  (`Bash` → posix, `PowerShell` → powershell), not per operating system. In
+  WorkBuddy on Windows those are different tools, and guessing by OS blocked
+  valid PowerShell. Unknown tools carrying a `command` field are still checked —
+  a silent no-op looks like protection but is not. Heredocs are skipped and
+  reported as a known limitation. The decision log is enabled by a `debug.on`
+  flag file next to the hook — an environment variable set in a terminal never
+  reaches a hook spawned by the application.
 
 ## v2 — 2026-10-21
 

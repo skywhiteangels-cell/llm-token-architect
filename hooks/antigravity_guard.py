@@ -23,6 +23,25 @@ except Exception as e:
     sys.stdout.write(json.dumps(out))
     sys.exit(0)
 
+def has_heredoc(command: str) -> bool:
+    """
+    True when the command feeds a heredoc (e.g. cat <<'EOF').
+    Heredoc body quotes cannot hang the shell.
+    """
+    i = command.find("<<")
+    while i != -1:
+        j = i + 2
+        if j < len(command) and command[j] == "-":
+            j += 1
+        while j < len(command) and command[j] in " \t":
+            j += 1
+        if j < len(command) and command[j] in ("'", '"'):
+            j += 1
+        if j < len(command) and (command[j].isalnum() or command[j] == "_"):
+            return True
+        i = command.find("<<", i + 2)
+    return False
+
 def main():
     try:
         raw = sys.stdin.read()
@@ -34,17 +53,20 @@ def main():
         
         # Antigravity format: toolCall.name & toolCall.args.CommandLine
         tool_call = payload.get("toolCall", {})
-        tool_name = tool_call.get("name", "")
         args = tool_call.get("args", {})
         
-        # Also support legacy / other harnesses
         command = args.get("CommandLine") or args.get("command") or payload.get("command")
         
         if not command or not isinstance(command, str):
             sys.stdout.write(json.dumps({"decision": "allow"}))
             return 0
 
-        # Shell on Windows is PowerShell
+        # Skip heredocs (known limitation, verbatim payload)
+        if has_heredoc(command):
+            sys.stdout.write(json.dumps({"decision": "allow"}))
+            return 0
+
+        # Shell on Windows in Antigravity is PowerShell
         shell = "powershell" if os.name == "nt" else "posix"
         result = analyze(command, shell=shell)
 
@@ -65,7 +87,6 @@ def main():
             sys.stdout.write(json.dumps(out))
             return 0
     except Exception as exc:
-        # In case of exception, report deny
         out = {
             "decision": "deny",
             "reason": f"Quote Parity Guard runtime error: {exc}"
