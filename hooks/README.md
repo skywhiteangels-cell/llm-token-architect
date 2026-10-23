@@ -37,7 +37,37 @@ shell grammar, and **exits 2 to block** when the command would hang.
 `matcher` accepts a tool-name pattern (`Bash`, `Bash|Shell`, `*`). The hook
 itself also filters by name, so `*` is safe.
 
-## Contract
+## Google Antigravity
+
+In your workspace root `.agents/hooks.json` (or globally in `~/.gemini/config/hooks.json`):
+
+```json
+{
+  "quote-parity-guard": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python /path/to/llm-token-architect/hooks/antigravity_guard.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Antigravity Contract
+Antigravity uses JSON on both stdin and stdout:
+- **Input (stdin):** `{"toolCall": {"name": "run_command", "args": {"CommandLine": "..."}}}`
+- **Output (stdout):** `{"decision": "allow"}` to proceed, or `{"decision": "deny", "reason": "..."}` to hard-block execution.
+
+`antigravity_guard.py` translates tool calls, invokes `parity_check.py` with the appropriate shell grammar (PowerShell on Windows, POSIX on Unix), and returns a structured decision.
+
+## Contract (Claude Code & Standard Harnesses)
 
 | Channel | Meaning |
 |---|---|
