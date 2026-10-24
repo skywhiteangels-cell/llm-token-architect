@@ -17,6 +17,16 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 HOOK = os.path.join(ROOT, "hooks", "pre_tool_use_guard.py")
 
+# Тесты печатают по-русски, а консоль windows-latest — cp1252: печать падала с
+# UnicodeEncodeError, и CI краснел на исправном коде. Кодировку не переключаем
+# (в cmd.exe это дало бы мусор), а разрешаем замену непечатаемых символов.
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, "reconfigure"):
+        try:
+            _stream.reconfigure(errors="replace")
+        except Exception:
+            pass
+
 # Имена шеллов собираем из частей: иначе установленный в системе хук может
 # заблокировать сам запуск тестов, увидев имя второго шелла в командной строке.
 PS = "power" + "shell"
@@ -67,9 +77,16 @@ def run(payload, env_extra):
     for key in ("QUOTE_GUARD_SHELL", "QUOTE_GUARD_MAP", "QUOTE_GUARD_TOOLS"):
         env.pop(key, None)
     env.update(env_extra)
+    # Родитель и дитя обязаны говорить в одной кодировке. Иначе унаследованный
+    # PYTHONIOENCODING заставляет дитя писать cp1252, а text=True декодирует
+    # utf-8: поток-читатель падает, p.stderr становится None, и тест валится с
+    # TypeError вместо результата. errors="replace" — чтобы диагностика падения
+    # не превращалась во второе падение.
+    env["PYTHONIOENCODING"] = "utf-8"
     p = subprocess.run([sys.executable, HOOK], input=payload,
-                       capture_output=True, text=True, timeout=30, env=env)
-    return p.returncode, p.stderr
+                       capture_output=True, text=True, encoding="utf-8",
+                       errors="replace", timeout=30, env=env)
+    return p.returncode, p.stderr or ""
 
 
 def main():
