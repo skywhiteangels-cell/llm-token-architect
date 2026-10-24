@@ -28,7 +28,13 @@ DESIGN NOTES THAT MATTER
 
 2. Any tool carrying a `command` string is treated as a shell call, even if its
    name is not in the table. A silent no-op because of an unexpected tool name
-   would look like protection while providing none.
+   would look like protection while providing none. But for an unknown name the
+   grammar is NOT guessed from the OS. The string is run through both POSIX and
+   PowerShell grammars: agree-safe → allow, agree-unsafe → block, disagree →
+   block and ask for `QUOTE_GUARD_MAP=<tool>=<grammar>`. The disagreement case
+   cannot be settled by inspection — `echo "a`"b"` and `dir "C:\"` produce the
+   same verdict pair (POSIX blocks both, PowerShell accepts both), and one of
+   them is a hang while the other is a working command.
 
 3. Heredocs are skipped. A heredoc body is read verbatim until the delimiter, so
    quotes inside it cannot hang the shell — but they *can* look unbalanced to a
@@ -48,6 +54,9 @@ CONFIGURATION
 -------------
   debug.on            create this file next to the hook to enable the log
   QUOTE_GUARD_SHELL   posix | powershell | cmd   (overrides the per-tool table)
+  QUOTE_GUARD_MAP     "tool=posix,other=powershell" — grammar for tools that are
+                      not in the table below; without it an unknown tool is
+                      checked against every grammar and blocked on disagreement
   QUOTE_GUARD_TOOLS   comma-separated extra tool names to treat as shell calls
   QUOTE_GUARD_DEBUG   set to 1 to append decisions to quote_guard.log
 """
@@ -77,8 +86,8 @@ except Exception as exc:  # pragma: no cover - misconfiguration is loud on purpo
     )
     sys.exit(2)
 
-# Tool name -> shell grammar. Explicit names win; unknown names fall back to the
-# platform default.
+# Tool name -> shell grammar. Explicit names win. Unknown names are NOT resolved
+# from the platform default any more — see check_unknown_tool().
 TOOL_SHELL = {
     "Bash": "posix",
     "Shell": "posix",
@@ -113,6 +122,35 @@ def platform_default_shell():
 def extra_tools():
     raw = os.environ.get("QUOTE_GUARD_TOOLS", "")
     return {name.strip() for name in raw.split(",") if name.strip()}
+
+
+# Грамматики, по которым проверяется строка от НЕИЗВЕСТНОГО инструмента.
+# cmd намеренно не входит: его экранирование (`^`) почти не встречается в
+# командах агентских инструментов, а третий голос только увеличивает число
+# ложных срабатываний.
+UNKNOWN_SHELLS = ("posix", "powershell")
+
+
+def declared_shell(tool_name):
+    """Грамматика, объявленная для инструмента через QUOTE_GUARD_MAP.
+
+    Формат: QUOTE_GUARD_MAP="mytool=posix,other=powershell".
+    Нужен потому, что по имени неизвестного инструмента грамматику угадать
+    нельзя, а угадывание по ОС — ровно та ошибка, из-за которой v2 блокировал
+    валидные команды PowerShell.
+    """
+    raw = os.environ.get("QUOTE_GUARD_MAP", "")
+    for item in raw.split(","):
+        if "=" not in item:
+            continue
+        name, shell = item.split("=", 1)
+        if name.strip() != tool_name:
+            continue
+        shell = shell.strip().lower()
+        if shell in ("posix", "powershell", "cmd"):
+            return shell
+    return None
+
 
 
 def pick_shell(tool_name):
@@ -161,6 +199,61 @@ def has_heredoc(command):
     return False
 
 
+def check_unknown_tool(tool_name, command):
+    """Строка от инструмента, грамматика которого неизвестна.
+
+    Угадывать нельзя: по имени грамматика не выводится, а по ОС — та самая
+    ошибка, из-за которой v2 блокировал валидные команды PowerShell. Поэтому
+    строка прогоняется по обеим основным грамматикам:
+
+      * все согласны, что безопасно — пропускаем;
+      * согласны, что небезопасно — блокируем;
+      * разошлись — блокируем и просим объявить грамматику.
+
+    Третий случай неизбежен и не лечится: `echo "a`"b"` и `dir "C:\\"` дают
+    одинаковую подпись (posix — блок, powershell — безопасно), различить их по
+    строке невозможно. Разрешается не угадыванием, а объявлением.
+    """
+    verdicts = {shell: analyze(command, shell=shell) for shell in UNKNOWN_SHELLS}
+    failed = [s for s in UNKNOWN_SHELLS if not verdicts[s]["safe"]]
+
+    if not failed:
+        debug("ok: unknown tool=%s, all grammars agree safe" % tool_name)
+        return 0
+
+    if len(failed) == len(UNKNOWN_SHELLS):
+        debug("blocked: unknown tool=%s, unsafe in every grammar" % tool_name)
+        sys.stderr.write(
+            "quote-guard BLOCKED a command that would hang the shell.\n"
+            "  tool:    %s (grammar unknown, but the string is unsafe in all: %s)\n"
+            "  state:   %s\n"
+            "  reason:  %s\n"
+            "  command: %s\n"
+            % (tool_name, ", ".join(UNKNOWN_SHELLS),
+               verdicts[failed[0]]["state"], verdicts[failed[0]]["reason"], command))
+        return 2
+
+    passed = [s for s in UNKNOWN_SHELLS if s not in failed]
+    debug("blocked: unknown tool=%s, grammars disagree" % tool_name)
+    sys.stderr.write(
+        "quote-guard BLOCKED an ambiguous command from an unknown tool.\n"
+        "  tool:      %s\n"
+        "  grammars:  %s\n"
+        "  reason:    the same string is valid in one shell and hangs in another,\n"
+        "             and this tool's grammar is not declared. Guessing would either\n"
+        "             block a working command or let a hanging one through — both\n"
+        "             make the guard something people switch off.\n"
+        "  fix:       declare it once, then this command is judged correctly:\n"
+        "               QUOTE_GUARD_MAP=%s=%s\n"
+        "             (or QUOTE_GUARD_SHELL for the whole harness)\n"
+        "  command:   %s\n"
+        % (tool_name,
+           ", ".join("%s=%s" % (s, "unsafe" if s in failed else "safe")
+                     for s in UNKNOWN_SHELLS),
+           tool_name, passed[0], command))
+    return 2
+
+
 def main():
     raw = sys.stdin.read()
     if not raw.strip():
@@ -183,19 +276,31 @@ def main():
         debug("skip: tool=%s no command field" % (tool_name or "?"))
         return 0
 
-    known = tool_name in TOOL_SHELL or tool_name in extra_tools()
-    if not known:
-        # Not a name we know, but it carries a command string — treat it as a
-        # shell call rather than silently doing nothing.
-        debug("note: unknown tool '%s' carries a command; checked anyway" % tool_name)
-
     if has_heredoc(command):
         debug("skip: heredoc in command (known limitation) tool=%s" % (tool_name or "?"))
         return 0
 
-    shell = pick_shell(tool_name)
-    result = analyze(command, shell=shell)
+    declared = declared_shell(tool_name)
+    known = tool_name in TOOL_SHELL or declared is not None
 
+    if not known and tool_name not in extra_tools():
+        # Ни имени в таблице, ни объявленной грамматики: не угадываем.
+        return check_unknown_tool(tool_name or "?", command)
+
+    if not known:
+        # Имя перечислено в QUOTE_GUARD_TOOLS, но грамматика не задана. Работаем
+        # по грамматике ОС, но молча — никогда: это ровно то угадывание, от
+        # которого проект отказался.
+        shell = platform_default_shell()
+        sys.stderr.write(
+            "quote-guard: tool '%s' is listed in QUOTE_GUARD_TOOLS, but its grammar\n"
+            "  is not declared, so it was guessed from the OS (%s). Add\n"
+            "  QUOTE_GUARD_MAP=%s=posix|powershell|cmd to remove the guess.\n"
+            % (tool_name, shell, tool_name))
+    else:
+        shell = declared or pick_shell(tool_name)
+
+    result = analyze(command, shell=shell)
     if result["safe"]:
         debug("ok: tool=%s shell=%s" % (tool_name or "?", shell))
         return 0

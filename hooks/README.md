@@ -119,9 +119,47 @@ So the hook maps tool → grammar:
 | `Bash`, `Shell`, `Terminal`, `run_command`, `execute_command` | `posix` |
 | `PowerShell`, `pwsh` | `powershell` |
 | `cmd`, `CMD` | `cmd` |
-| anything else carrying a `command` string | platform default, and logged |
+| anything else carrying a `command` string | **double-checked**, see below |
 
 Override everything with `QUOTE_GUARD_SHELL=posix|powershell|cmd`.
+
+Declare the grammar of a custom tool with:
+
+```
+QUOTE_GUARD_MAP="MyTool=posix,OtherTool=powershell"
+```
+
+## Unknown tools: double check, then ask
+
+A tool name that is not in the table carries no information about its grammar.
+Guessing from the operating system is exactly the mistake v2 made, so for an
+unknown tool the command is run through **both** POSIX and PowerShell grammars:
+
+| POSIX | PowerShell | Result |
+|---|---|---|
+| safe | safe | allow |
+| unsafe | unsafe | block — the string hangs in any shell |
+| safe | unsafe, or the reverse | **block, and ask you to declare the grammar** |
+
+The third row cannot be resolved by inspection, and that is not a bug in the
+checker. `echo "a`"b"` (a hang in POSIX, a balanced string in PowerShell) and
+`dir "C:\"` (a working command in PowerShell, a hang in POSIX) produce the
+**same** pair of verdicts. One string is the attack, the other is the command
+v3 exists to stop blocking. No rule over the string alone can tell them apart —
+only knowing which shell will execute it can.
+
+So the guard does not guess: it blocks the ambiguous case once and prints the
+exact line that resolves it, `QUOTE_GUARD_MAP=<tool>=<grammar>`. After that the
+command is judged by its real grammar and passes if it is valid there.
+
+The cost is deliberate and worth naming: a brand-new tool running a
+valid-in-one-shell command is blocked until declared. That is one line of
+configuration per tool, once, in exchange for never silently applying the wrong
+grammar.
+
+`QUOTE_GUARD_TOOLS=name1,name2` still exists for back-compatibility. It marks a
+name as known but does **not** declare a grammar, so the hook falls back to the
+OS default and says so on stderr — it never guesses silently.
 
 ## Two deliberate safety valves
 

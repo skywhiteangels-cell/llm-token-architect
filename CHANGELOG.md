@@ -3,6 +3,49 @@
 All notable changes to this repository. Versions here are the internal iterations
 of the guardrail, not semver releases of a package.
 
+## v3.1 — 2026-10-24
+
+### Fixed
+- **An unknown tool's grammar is no longer guessed from the operating system.**
+  v3 mapped grammar per tool, but only for names in the table; anything else fell
+  through to `platform_default_shell()`, which is the very OS-guessing v3 claims
+  to have removed. Now a command from an unknown tool is run through both POSIX
+  and PowerShell grammars: agree-safe → allow, agree-unsafe → block, disagree →
+  block with the exact `QUOTE_GUARD_MAP` line that resolves it.
+- The disagreement case cannot be settled by inspecting the string, and the
+  changelog should say so rather than imply the checker is smarter than it is:
+  `echo "a`"b"` and `dir "C:\"` yield the **same** verdict pair (POSIX blocks
+  both, PowerShell accepts both). One is a hang, the other is a working command
+  that v3 exists to stop blocking. Only the declared grammar separates them.
+
+### Added
+- `QUOTE_GUARD_MAP="tool=posix,other=powershell"` — declares the grammar of a
+  custom tool, so the ambiguous case has a way out that is not guessing.
+- `tests/test_hook.py` — 21 checks over stdin/exit-code behaviour: known tools,
+  unknown tools, declared grammars, `QUOTE_GUARD_SHELL` override, heredoc,
+  empty payload, unparsable JSON, and a check that the block message actually
+  contains the remedy. The hook was the load-bearing part of the project and had
+  no automated tests until now.
+- `QUOTE_GUARD_TOOLS` names now produce a stderr warning when their grammar is
+  undeclared, instead of silently using the OS default.
+
+### Changed
+- Cost stated openly: a new tool running a valid-in-one-shell command is blocked
+  until declared. One line of configuration, once, in exchange for never
+  applying the wrong grammar silently.
+
+### Documentation
+- The hook's own `CONFIGURATION` block now lists `QUOTE_GUARD_MAP`. The knob
+  existed in code and in the block message but was missing from the place a user
+  reads first — the same "document disagrees with code" defect this project keeps
+  finding, caught before release rather than after.
+- The comment above `TOOL_SHELL` no longer says unknown names "fall back to the
+  platform default"; that stopped being true in this version.
+- `WHY_RU.md` C3 rewritten: the cover in this repository is **already** 162 914 B
+  (compressed in `bd4dae5`), PSNR 34.94 dB. The q90 variant offered earlier is
+  265 700 B for +3.85 dB — a 63% weight increase for a difference invisible at
+  the size the image is displayed. The item is closed, not deferred.
+
 ## v3 — 2026-10-21
 
 ### Fixed

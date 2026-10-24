@@ -32,6 +32,9 @@ jobs:
       - name: Run Python Standalone Tests (41 checks)
         run: python tests/test_parity.py
 
+      - name: Run Hook Behaviour Tests (21 checks)
+        run: python tests/test_hook.py
+
       - name: Run Node.js Standalone Tests (39 checks)
         run: node tests/test_parity.js
 
