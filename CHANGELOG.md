@@ -3,6 +3,29 @@
 All notable changes to this repository. Versions here are the internal iterations
 of the guardrail, not semver releases of a package.
 
+## v3.1.1 — 2026-10-24
+
+### Fixed
+- **A duplicated paragraph in `WHY_RU.md` C3** — the cover section repeated the
+  "about the subject matter" paragraph twice. Introduced by the C3 rewrite: the
+  replaced range ended before that paragraph and the replacement re-added it, so
+  the old copy survived outside the edit. Both copies read fine on their own,
+  which is why it was not caught by reading; it was caught by `grep` looking for
+  something else.
+- Nothing else was affected — the detector below found no other repeats.
+
+### Added
+- `tools/check_duplicate_blocks.py` — finds paragraphs of 3+ lines that appear
+  more than once in any root or `hooks/` markdown file. Whitespace-insensitive.
+  Has its own `--selftest` (5 checks) because a detector that always reports
+  "clean" is indistinguishable from no detector: the self-test feeds it a
+  deliberately duplicated text that must be flagged, plus a clean one that must
+  not be.
+- CI now runs both the self-test and the scan. The failure mode this covers is
+  specifically an *edit* failure, not an authoring one — a human writing the same
+  paragraph twice is caught by proofreading, a `old_string`/`new_string` overlap
+  is not.
+
 ## v3.1 — 2026-10-24
 
 ### Fixed

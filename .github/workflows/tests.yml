@@ -48,6 +48,12 @@ jobs:
       - name: Run Node.js Standalone Tests (39 checks)
         run: node tests/test_parity.js
 
+      - name: Duplicate-Block Detector Self-Test (5 checks)
+        run: python tools/check_duplicate_blocks.py --selftest
+
+      - name: Duplicate-Block Scan of Documentation
+        run: python tools/check_duplicate_blocks.py
+
       - name: Run Python Self-Tests (23 cases)
         run: python parity_check.py --selftest
 
