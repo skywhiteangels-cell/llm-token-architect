@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/skywhiteangels-cell/llm-token-architect/actions/workflows/tests.yml/badge.svg)](https://github.com/skywhiteangels-cell/llm-token-architect/actions)
-[![Tests](https://img.shields.io/badge/tests-46%20python%20%2F%2046%20node-brightgreen)](#tests)
+[![Tests](https://img.shields.io/badge/tests-134%20passing-brightgreen)](#tests)
 [![Read in Russian](https://img.shields.io/badge/Read_in-Russian-blue.svg)](README_RU.md)
 
 ![Cover](habr_cover.jpg)
@@ -141,13 +141,15 @@ Exit 2 blocks the tool call and hands the reason back to the model. See
 python tests/test_parity.py                       # 46 checks across 31 grammar cases
 node   tests/test_parity.js                       # 46 checks across 31 grammar cases
 python tests/test_hook.py                         # 25 checks
+python tests/test_antigravity_hook.py             # 12 checks
 python tools/check_duplicate_blocks.py --selftest # 5 checks
 ```
 
 Both parity suites read the same fixture — [tests/fixtures/cases.jsonl](tests/fixtures/cases.jsonl) —
-so the two counters are equal by construction: 46 + 46 + 25 + 5 = **122**, and that
-is the number on the badge. There is no separate numbers file to trust: each runner
-prints its own count, and if a count stops matching, the runner is what changed.
+so the two counters are equal by construction: 46 + 46 + 25 + 12 + 5 = **134**,
+and that is the number on the badge. There is no separate numbers file to trust:
+each runner prints its own count, and if a count stops matching, the runner is
+what changed.
 
 The built-in `--selftest` (23 cases each) is not counted — it checks that the guard
 answers at all, not the grammar table.

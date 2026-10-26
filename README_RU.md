@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/skywhiteangels-cell/llm-token-architect/actions/workflows/tests.yml/badge.svg)](https://github.com/skywhiteangels-cell/llm-token-architect/actions)
-[![Tests](https://img.shields.io/badge/tests-46%20python%20%2F%2046%20node-brightgreen)](#тесты)
+[![Tests](https://img.shields.io/badge/tests-134%20passing-brightgreen)](#тесты)
 [![Read in English](https://img.shields.io/badge/Read_in-English-blue.svg)](README.md)
 
 ![Обложка](habr_cover.jpg)
@@ -138,12 +138,13 @@ CLI, который надо не забыть вызвать, — это та �
 python tests/test_parity.py                       # 46 проверок, 31 грамматический случай
 node   tests/test_parity.js                       # 46 проверок, 31 грамматический случай
 python tests/test_hook.py                         # 25 проверок
+python tests/test_antigravity_hook.py             # 12 проверок
 python tools/check_duplicate_blocks.py --selftest # 5 проверок
 ```
 
 Оба набора для лексера читают один и тот же фикстур —
 [tests/fixtures/cases.jsonl](tests/fixtures/cases.jsonl) — поэтому их счётчики
-равны по построению: 46 + 46 + 25 + 5 = **122**, это и есть число на бейдже.
+равны по построению: 46 + 46 + 25 + 12 + 5 = **134**, это и есть число на бейдже.
 Отдельного файла с числами, которому надо верить, нет: каждый раннер печатает
 свой счёт сам, и если счёт перестал совпадать — изменился раннер.
 

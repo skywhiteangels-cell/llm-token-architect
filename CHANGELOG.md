@@ -35,6 +35,9 @@ of the guardrail, not semver releases of a package.
   counts are the check itself.
 - `tests/test_hook.py`: 2 heredoc + 2 here-string cases added, 1 expectation
   changed from "skipped" to "blocked" — 25 checks.
+- `tests/test_antigravity_hook.py` — 12 checks; the second hook is now part of the
+  counted total, so the badge covers the whole repository rather than one guard.
+- Total: 46 + 46 + 25 + 12 + 5 = 134.
 - Heredoc cases run against `Bash` (known POSIX tool): for an unknown tool the
   string is genuinely ambiguous — POSIX accepts it, PowerShell has no heredoc —
   and the agreement rule blocks it, as designed.
