@@ -36,11 +36,12 @@ DESIGN NOTES THAT MATTER
    same verdict pair (POSIX blocks both, PowerShell accepts both), and one of
    them is a hang while the other is a working command.
 
-3. Heredocs are skipped. A heredoc body is read verbatim until the delimiter, so
-   quotes inside it cannot hang the shell — but they *can* look unbalanced to a
-   line-level lexer. Blocking those would be a false positive on a very common
-   pattern (`cat <<'EOF'`). The guard documents its own boundary in behaviour
-   instead of pretending to cover it.
+3. Heredocs are masked, not skipped. The shell reads a heredoc body verbatim, so
+   quotes inside it cannot hang anything — but they do look unbalanced to a
+   line-level lexer. The lexer therefore blanks the body and checks the rest.
+   Skipping the whole command (the old behaviour) was fail-open: an unbalanced
+   quote *after* the terminator went through unnoticed. An unterminated heredoc
+   is itself a hang — the shell waits for the delimiter — and is blocked.
 
 4. QUOTE_GUARD_DEBUG=1 writes a one-line log next to this file, so "is the hook
    actually firing?" is a question with an answer, not a matter of trust.
@@ -178,27 +179,6 @@ def extract_command(payload):
     return None
 
 
-def has_heredoc(command):
-    """
-    True when the command feeds a heredoc. Deliberately simple: `<<` or `<<-`
-    followed by an optional quote and a word. Good enough to avoid false
-    positives; not a parser.
-    """
-    i = command.find("<<")
-    while i != -1:
-        j = i + 2
-        if j < len(command) and command[j] == "-":
-            j += 1
-        while j < len(command) and command[j] in " \t":
-            j += 1
-        if j < len(command) and command[j] in ("'", '"'):
-            j += 1
-        if j < len(command) and (command[j].isalnum() or command[j] == "_"):
-            return True
-        i = command.find("<<", i + 2)
-    return False
-
-
 def check_unknown_tool(tool_name, command):
     """Строка от инструмента, грамматика которого неизвестна.
 
@@ -274,10 +254,6 @@ def main():
     command = extract_command(payload)
     if not command:
         debug("skip: tool=%s no command field" % (tool_name or "?"))
-        return 0
-
-    if has_heredoc(command):
-        debug("skip: heredoc in command (known limitation) tool=%s" % (tool_name or "?"))
         return 0
 
     declared = declared_shell(tool_name)

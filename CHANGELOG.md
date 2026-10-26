@@ -3,6 +3,42 @@
 All notable changes to this repository. Versions here are the internal iterations
 of the guardrail, not semver releases of a package.
 
+## v3.1.2 — 2026-10-26
+
+### Fixed
+- **Heredocs were a fail-open hole.** The hook skipped the whole command when it
+  saw `<<`, so an unbalanced quote *after* the heredoc terminator went through
+  unnoticed — `cat <<EOF ... EOF; echo "broken` was allowed and would hang the
+  shell. The lexer now masks the body (the shell reads it verbatim, so quotes
+  inside open nothing) and checks what actually executes. `parity_check.py`
+  gained `mask_heredocs()`; the hook no longer skips.
+- **An unterminated heredoc is now reported as a hang.** `cat <<EOF` with no
+  delimiter makes the shell wait for it; previously the command was skipped, now
+  it is blocked with `state=HEREDOC`.
+
+### Changed
+- **`parity_check.js` gained the same heredoc masking**, so the two
+  implementations stay byte-for-byte equivalent in behaviour. Without it Python
+  would allow a legitimate `cat <<EOF` script while Node blocked it — the exact
+  drift `tests/test_parity.js` exists to catch.
+- Here-strings (`<<<`) are explicitly not heredocs: no body, quotes stay ordinary
+  arguments. Covered by two cases so the masker cannot swallow them.
+- **Both runners now read one shared fixture** (`tests/fixtures/cases.jsonl`).
+  Two separate case tables let the implementations drift while both suites stayed
+  green: Python tested 31 grammar cases, Node 29, and the two Python-only cases
+  were never checked in Node. With one fixture the drift is impossible by
+  construction — and the two counters now match, which is itself the check.
+
+### Tests
+- `tests/test_parity.py` and `tests/test_parity.js`: both read the shared fixture
+  and report the same numbers — 46 checks across 31 grammar cases each. Identical
+  counts are the check itself.
+- `tests/test_hook.py`: 2 heredoc + 2 here-string cases added, 1 expectation
+  changed from "skipped" to "blocked" — 25 checks.
+- Heredoc cases run against `Bash` (known POSIX tool): for an unknown tool the
+  string is genuinely ambiguous — POSIX accepts it, PowerShell has no heredoc —
+  and the agreement rule blocks it, as designed.
+
 ## v3.1.1 — 2026-10-24
 
 ### Fixed

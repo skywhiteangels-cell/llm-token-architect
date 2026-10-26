@@ -40,10 +40,13 @@ characters are line continuations, so the shell waits for the next line.
 
 Limitations (deliberate — this is a guardrail, not a parser)
 ------------------------------------------------------------
-Not modelled: heredocs (`<<EOF`), POSIX `$'...'` ANSI-C quoting, PowerShell
-`$(...)` subexpressions inside double quotes, and nested command substitution.
-The tool is deliberately conservative about NOT hanging; it never claims to be
-a complete shell grammar. See README.md for the honest limits table.
+Heredocs are modelled for POSIX: the body is masked before lexing, because a
+shell reads it verbatim, and an unterminated heredoc is reported as a hang (the
+shell waits for the delimiter). Still not modelled: POSIX `$'...'` ANSI-C
+quoting, PowerShell `$(...)` subexpressions inside double quotes, and nested
+command substitution. The tool is deliberately conservative about NOT hanging;
+it never claims to be a complete shell grammar. See README.md for the honest
+limits table.
 """
 
 import argparse
@@ -55,7 +58,128 @@ POWERSHELL = "powershell"
 CMD = "cmd"
 SHELLS = (POSIX, POWERSHELL, CMD)
 
-__all__ = ["analyze", "verify_quote_parity", "SHELLS", "POSIX", "POWERSHELL", "CMD"]
+__all__ = ["analyze", "verify_quote_parity", "mask_heredocs", "SHELLS", "POSIX",
+           "POWERSHELL", "CMD"]
+
+
+def mask_heredocs(command):
+    """Заменить тела heredoc пробелами, сохранив длину и переводы строк.
+
+    Возвращает (masked, bad_offset). Если heredoc открыт, но его разделитель
+    так и не встретился до конца строки, bad_offset указывает на `<<`:
+    такой команды шелл тоже не дождётся — он будет ждать разделитель.
+
+    Зачем: тело heredoc читается шеллом дословно, поэтому кавычки в нём
+    ничего не открывают. Без маскировки лексер видит в теле непарную кавычку
+    и блокирует легитимный скрипт; с маскировкой — проверяет только то, что
+    реально исполняется.
+
+    Ограничения (осознанные): обрабатывается первый heredoc в строке; тело
+    ищется до строки, точно равной разделителю (для `<<-` допускаются ведущие
+    табы); внутри `$(...)` и подобных конструкций heredoc не распознаётся.
+    """
+    n = len(command)
+    out = list(command)
+    state = "NORMAL"
+    i = 0
+
+    def blank(start, end):
+        for x in range(start, end):
+            if command[x] != "\n":
+                out[x] = " "
+
+    while i < n:
+        c = command[i]
+
+        if state == "NORMAL":
+            if c == "\\":
+                i += 2
+                continue
+            if c == "'":
+                state = "SINGLE"
+                i += 1
+                continue
+            if c == '"':
+                state = "DOUBLE"
+                i += 1
+                continue
+            if c == "`":
+                state = "BACKTICK"
+                i += 1
+                continue
+            if command.startswith("<<", i):
+                j = i + 2
+                strip_tabs = False
+                if j < n and command[j] == "-":
+                    strip_tabs = True
+                    j += 1
+                while j < n and command[j] in " \t":
+                    j += 1
+                quote = None
+                if j < n and command[j] in ("'", '"'):
+                    quote = command[j]
+                    j += 1
+                k = j
+                while k < n and (command[k].isalnum() or command[k] in "_-"):
+                    k += 1
+                delim = command[j:k]
+                if quote and k < n and command[k] == quote:
+                    k += 1
+                if not delim:
+                    i += 2
+                    continue
+                eol = command.find("\n", k)
+                if eol == -1:
+                    return "".join(out), i
+                pos = eol + 1
+                found = -1
+                p = pos
+                while p <= n:
+                    le = command.find("\n", p)
+                    line_end = n if le == -1 else le
+                    line = command[p:line_end]
+                    cand = line.lstrip("\t") if strip_tabs else line
+                    if cand == delim:
+                        found = p
+                        break
+                    if le == -1:
+                        break
+                    p = le + 1
+                if found == -1:
+                    blank(pos, n)
+                    return "".join(out), i
+                blank(pos, found)
+                le = command.find("\n", found)
+                i = n if le == -1 else le + 1
+                continue
+            i += 1
+            continue
+
+        if state == "SINGLE":
+            if c == "'":
+                state = "NORMAL"
+            i += 1
+            continue
+
+        if state == "DOUBLE":
+            if c == "\\":
+                i += 2
+                continue
+            if c == '"':
+                state = "NORMAL"
+            i += 1
+            continue
+
+        if state == "BACKTICK":
+            if c == "\\":
+                i += 2
+                continue
+            if c == "`":
+                state = "NORMAL"
+            i += 1
+            continue
+
+    return "".join(out), None
 
 
 def analyze(command, shell=POSIX):
@@ -79,6 +203,20 @@ def analyze(command, shell=POSIX):
             "reason": "command is not a string",
             "offset": None,
         }
+
+    if shell == POSIX:
+        # Тело heredoc исполняется дословно: кавычки в нём ничего не открывают.
+        # Маскируем его, чтобы не блокировать легитимные скрипты, и отдельно
+        # ловим heredoc, у которого разделитель так и не встретился.
+        command, bad = mask_heredocs(command)
+        if bad is not None:
+            return {
+                "safe": False,
+                "state": "HEREDOC",
+                "shell": shell,
+                "reason": "heredoc opened at %d is never terminated (shell waits for the delimiter)" % bad,
+                "offset": bad,
+            }
 
     state = "NORMAL"
     opened_at = None

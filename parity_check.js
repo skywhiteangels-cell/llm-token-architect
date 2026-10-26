@@ -28,8 +28,10 @@
  * Also new: a dangling escape at end-of-string (trailing \, ` or ^) is reported.
  * Not a quote problem, but the same hang — those are line continuations.
  *
- * Limitations: no heredocs, no POSIX $'...', no PowerShell $(...) inside double
- * quotes. A guardrail, not a parser. See README.md.
+ * Limitations: heredoc bodies are masked for POSIX (an unterminated heredoc is
+ * reported as a hang); not modelled: POSIX $'...', PowerShell $(...) inside
+ * double quotes, and heredocs nested inside $(...). A guardrail, not a parser.
+ * See README.md.
  *
  * Usage:
  *   const { verifyQuoteParity, analyze } = require('./parity_check');
@@ -48,12 +50,118 @@ const SHELLS = ['posix', 'powershell', 'cmd'];
  * @param {'posix'|'powershell'|'cmd'} shell
  * @returns {{safe:boolean,state:string,shell:string,reason:string,offset:(number|null)}}
  */
+/**
+ * Blank heredoc bodies, keeping length and newlines (so offsets stay valid).
+ * Returns { masked, bad }: bad is the offset of an unterminated heredoc, or null.
+ *
+ * A heredoc body is read verbatim by the shell, so quotes inside it open
+ * nothing. Without masking, a legitimate `cat <<EOF` script is blocked by a
+ * line-level lexer; with it, only what actually executes is checked.
+ *
+ * Limits (deliberate): the first heredoc on a line is handled; the terminator
+ * must be a line exactly equal to the delimiter (leading tabs allowed for
+ * `<<-`); heredocs nested inside `$(...)` are not recognised.
+ */
+function maskHeredocs(command) {
+    const n = command.length;
+    const out = command.split('');
+    let state = 'NORMAL';
+    let i = 0;
+
+    const blank = (start, end) => {
+        for (let x = start; x < end; x++) if (command[x] !== '\n') out[x] = ' ';
+    };
+
+    while (i < n) {
+        const c = command[i];
+
+        if (state === 'NORMAL') {
+            if (c === '\\') { i += 2; continue; }
+            if (c === "'") { state = 'SINGLE'; i += 1; continue; }
+            if (c === '"') { state = 'DOUBLE'; i += 1; continue; }
+            if (c === '`') { state = 'BACKTICK'; i += 1; continue; }
+            if (command.startsWith('<<', i)) {
+                let j = i + 2;
+                let stripTabs = false;
+                if (command[j] === '-') { stripTabs = true; j += 1; }
+                while (j < n && (command[j] === ' ' || command[j] === '\t')) j += 1;
+                let quote = null;
+                if (command[j] === "'" || command[j] === '"') { quote = command[j]; j += 1; }
+                let k = j;
+                while (k < n && /[A-Za-z0-9_-]/.test(command[k])) k += 1;
+                const delim = command.slice(j, k);
+                if (quote && command[k] === quote) k += 1;
+                if (!delim) { i += 2; continue; }        // `<<<` here-string: no body
+                const eol = command.indexOf('\n', k);
+                if (eol === -1) return { masked: out.join(''), bad: i };
+                const pos = eol + 1;
+                let found = -1;
+                let p = pos;
+                while (p <= n) {
+                    const le = command.indexOf('\n', p);
+                    const lineEnd = le === -1 ? n : le;
+                    const line = command.slice(p, lineEnd);
+                    const cand = stripTabs ? line.replace(/^\t+/, '') : line;
+                    if (cand === delim) { found = p; break; }
+                    if (le === -1) break;
+                    p = le + 1;
+                }
+                if (found === -1) { blank(pos, n); return { masked: out.join(''), bad: i }; }
+                blank(pos, found);
+                const le = command.indexOf('\n', found);
+                i = le === -1 ? n : le + 1;
+                continue;
+            }
+            i += 1;
+            continue;
+        }
+
+        if (state === 'SINGLE') {
+            if (c === "'") state = 'NORMAL';
+            i += 1;
+            continue;
+        }
+
+        if (state === 'DOUBLE') {
+            if (c === '\\') { i += 2; continue; }
+            if (c === '"') state = 'NORMAL';
+            i += 1;
+            continue;
+        }
+
+        if (state === 'BACKTICK') {
+            if (c === '\\') { i += 2; continue; }
+            if (c === '`') state = 'NORMAL';
+            i += 1;
+            continue;
+        }
+    }
+
+    return { masked: out.join(''), bad: null };
+}
+
 function analyze(command, shell = 'posix') {
     if (!SHELLS.includes(shell)) {
         throw new Error(`unknown shell '${shell}'; expected one of ${SHELLS.join(', ')}`);
     }
     if (typeof command !== 'string') {
         return { safe: false, state: 'INVALID', shell, reason: 'command is not a string', offset: null };
+    }
+
+    if (shell === 'posix') {
+        // Heredoc bodies are read verbatim: mask them, and report an
+        // unterminated heredoc as the hang it is.
+        const m = maskHeredocs(command);
+        if (m.bad !== null) {
+            return {
+                safe: false,
+                state: 'HEREDOC',
+                shell,
+                reason: `heredoc opened at ${m.bad} is never terminated (shell waits for the delimiter)`,
+                offset: m.bad,
+            };
+        }
+        command = m.masked;
     }
 
     let state = 'NORMAL';

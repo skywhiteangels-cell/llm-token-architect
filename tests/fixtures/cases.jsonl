@@ -1,0 +1,31 @@
+{"shell": "posix", "cmd": "echo \"it's a test\"", "safe": true, "why": "single quote is literal inside double quotes"}
+{"shell": "posix", "cmd": "echo \"hi", "safe": false, "why": "unterminated double quote"}
+{"shell": "posix", "cmd": "echo 'hi", "safe": false, "why": "unterminated single quote"}
+{"shell": "posix", "cmd": "cat `unterminated", "safe": false, "why": "unterminated command substitution"}
+{"shell": "posix", "cmd": "echo \"a\\\"\"", "safe": true, "why": "escaped quote inside double quotes is literal"}
+{"shell": "posix", "cmd": "dir \"C:\\temp\"", "safe": true, "why": "backslash before a normal char is harmless"}
+{"shell": "posix", "cmd": "dir \"C:\\\"", "safe": false, "why": "backslash escapes the closing quote -> hangs"}
+{"shell": "posix", "cmd": "echo 'it'\\''s'", "safe": true, "why": "classic POSIX literal-quote idiom"}
+{"shell": "posix", "cmd": "echo foo\\", "safe": false, "why": "trailing backslash is a line continuation"}
+{"shell": "posix", "cmd": "echo \"a\" && echo \"b\"", "safe": true, "why": "two balanced pairs"}
+{"shell": "posix", "cmd": "echo \\\"hi\\\"", "safe": true, "why": "escaped quotes outside any context"}
+{"shell": "posix", "cmd": "cat <<EOF\nон сказал \"привет\nEOF", "safe": true, "why": "heredoc body is verbatim: one unbalanced quote inside is harmless"}
+{"shell": "posix", "cmd": "cat <<EOF\nbody\nEOF\necho \"broken", "safe": false, "why": "unbalanced quote AFTER the terminator still hangs the shell"}
+{"shell": "posix", "cmd": "cat <<EOF\nno terminator here", "safe": false, "why": "unterminated heredoc: shell waits for the delimiter"}
+{"shell": "posix", "cmd": "cat <<< \"text\"", "safe": true, "why": "here-string has no body: quotes stay ordinary arguments"}
+{"shell": "posix", "cmd": "cat <<< \"text", "safe": false, "why": "here-string with an unbalanced quote still hangs"}
+{"shell": "powershell", "cmd": "dir \"C:\\\"", "safe": true, "why": "backslash is LITERAL in PowerShell (v2 bug)"}
+{"shell": "powershell", "cmd": "dir \"C:\\temp\\\"", "safe": true, "why": "trailing backslash is literal"}
+{"shell": "powershell", "cmd": "echo \"a`\"b\"", "safe": true, "why": "backtick escapes the quote"}
+{"shell": "powershell", "cmd": "echo \"hi", "safe": false, "why": "unterminated double quote"}
+{"shell": "powershell", "cmd": "echo 'it''s'", "safe": true, "why": "'' is a literal quote in PS"}
+{"shell": "powershell", "cmd": "echo 'it's'", "safe": false, "why": "second ' opens a new unterminated string"}
+{"shell": "powershell", "cmd": "Write-Output \"unterminated", "safe": false, "why": "unterminated double quote"}
+{"shell": "powershell", "cmd": "echo `n", "safe": true, "why": "escape sequence, no quote context"}
+{"shell": "powershell", "cmd": "echo hi`", "safe": false, "why": "trailing backtick is a line continuation"}
+{"shell": "powershell", "cmd": "powershell -Command \"echo `\"hi`\"\"", "safe": true, "why": "nested backtick escapes"}
+{"shell": "powershell", "cmd": "Get-ChildItem -Path \"C:\\Program Files\\\"", "safe": true, "why": "real-world path with spaces"}
+{"shell": "cmd", "cmd": "echo \"hi", "safe": false, "why": "unterminated double quote"}
+{"shell": "cmd", "cmd": "echo \"a\\\"", "safe": true, "why": "backslash is literal in cmd"}
+{"shell": "cmd", "cmd": "echo ^\"hi", "safe": true, "why": "^ escapes the quote"}
+{"shell": "cmd", "cmd": "echo hi^", "safe": false, "why": "trailing caret is a line continuation"}

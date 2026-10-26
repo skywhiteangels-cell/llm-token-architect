@@ -9,6 +9,7 @@ a test suite can be wired into CI. Regression on a guardrail is silent otherwise
 the tool keeps "working" and just stops catching what it used to catch.
 """
 
+import json
 import os
 import sys
 
@@ -31,40 +32,20 @@ def check(label, got, expected):
 # 1. Grammar tables per shell
 #    (shell, command, expected_safe, why)
 # ---------------------------------------------------------------------------
-GRAMMAR_CASES = [
-    # --- POSIX (bash / sh / zsh / Git Bash) --------------------------------
-    ("posix", 'echo "it\'s a test"', True, "single quote is literal inside double quotes"),
-    ("posix", 'echo "hi', False, "unterminated double quote"),
-    ("posix", "echo 'hi", False, "unterminated single quote"),
-    ("posix", "cat `unterminated", False, "unterminated command substitution"),
-    ("posix", 'echo "a\\""', True, "escaped quote inside double quotes is literal"),
-    ("posix", 'dir "C:\\temp"', True, "backslash before a normal char is harmless"),
-    ("posix", 'dir "C:\\"', False, "backslash escapes the closing quote -> hangs"),
-    ("posix", "echo 'it'\\''s'", True, "classic POSIX literal-quote idiom"),
-    ("posix", "echo foo\\", False, "trailing backslash is a line continuation"),
-    ("posix", 'echo "a" && echo "b"', True, "two balanced pairs"),
-    ("posix", "echo \\\"hi\\\"", True, "escaped quotes outside any context"),
-    # --- PowerShell (5.1 / 7+) ---------------------------------------------
-    ("powershell", 'dir "C:\\"', True, "backslash is LITERAL in PowerShell (v2 bug)"),
-    ("powershell", 'dir "C:\\temp\\"', True, "trailing backslash is literal"),
-    ("powershell", 'echo "a`"b"', True, "backtick escapes the quote"),
-    ("powershell", 'echo "hi', False, "unterminated double quote"),
-    ("powershell", "echo 'it''s'", True, "'' is a literal quote in PS"),
-    ("powershell", "echo 'it's'", False, "second ' opens a new unterminated string"),
-    ("powershell", 'Write-Output "unterminated', False, "unterminated double quote"),
-    ("powershell", "echo `n", True, "escape sequence, no quote context"),
-    ("powershell", "echo hi`", False, "trailing backtick is a line continuation"),
-    ("powershell", 'powershell -Command "echo `"hi`""', True, "nested backtick escapes"),
-    ("powershell", 'Get-ChildItem -Path "C:\\Program Files\\"', True, "real-world path with spaces"),
-    # --- CMD (cmd.exe) -----------------------------------------------------
-    ("cmd", 'echo "hi', False, "unterminated double quote"),
-    ("cmd", 'echo "a\\"', True, "backslash is literal in cmd"),
-    ("cmd", 'echo ^"hi', True, "^ escapes the quote"),
-    ("cmd", "echo hi^", False, "trailing caret is a line continuation"),
-]
+# Cases come from a shared fixture so Python and Node test the SAME table.
+# Two separate tables is exactly how the implementations drift apart while both
+# suites stay green: 31 cases here vs 29 there was invisible until it wasn't.
+FIXTURE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures", "cases.jsonl")
+GRAMMAR_CASES = []
+with open(FIXTURE, encoding="utf-8") as _f:
+    for _line in _f:
+        _line = _line.strip()
+        if _line:
+            GRAMMAR_CASES.append(json.loads(_line))
 
-for shell, cmd, expected, why in GRAMMAR_CASES:
-    check("[%s] %s  (%s)" % (shell, cmd, why), verify_quote_parity(cmd, shell=shell), expected)
+for case in GRAMMAR_CASES:
+    check("[%s] %s  (%s)" % (case["shell"], case["cmd"], case["why"]),
+          verify_quote_parity(case["cmd"], shell=case["shell"]), case["safe"])
 
 
 # ---------------------------------------------------------------------------

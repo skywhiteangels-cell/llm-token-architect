@@ -21,37 +21,17 @@ function check(label, got, expected) {
 // ---------------------------------------------------------------------------
 // 1. Grammar tables per shell   [shell, command, expectedSafe, why]
 // ---------------------------------------------------------------------------
-const GRAMMAR_CASES = [
-    // --- posix -------------------------------------------------------------
-    ['posix', 'echo "it\'s a test"', true, 'single quote is literal inside double quotes'],
-    ['posix', 'echo "hi', false, 'unterminated double quote'],
-    ['posix', "echo 'hi", false, 'unterminated single quote'],
-    ['posix', 'cat `unterminated', false, 'unterminated command substitution'],
-    ['posix', 'echo "a\\""', true, 'escaped quote inside double quotes is literal'],
-    ['posix', 'dir "C:\\temp"', true, 'backslash before a normal char is harmless'],
-    ['posix', 'dir "C:\\"', false, 'backslash escapes the closing quote -> hangs'],
-    ['posix', "echo 'it'\\''s'", true, 'classic POSIX literal-quote idiom'],
-    ['posix', 'echo foo\\', false, 'trailing backslash is a line continuation'],
-    ['posix', 'echo "a" && echo "b"', true, 'two balanced pairs'],
-    // --- powershell --------------------------------------------------------
-    ['powershell', 'dir "C:\\"', true, 'backslash is LITERAL in PowerShell (v2 bug)'],
-    ['powershell', 'dir "C:\\temp\\"', true, 'trailing backslash is literal'],
-    ['powershell', 'echo "a`"b"', true, 'backtick escapes the quote'],
-    ['powershell', 'echo "hi', false, 'unterminated double quote'],
-    ['powershell', "echo 'it''s'", true, "'' is a literal quote in PS"],
-    ['powershell', "echo 'it's'", false, "second ' opens a new unterminated string"],
-    ['powershell', 'Write-Output "unterminated', false, 'unterminated double quote'],
-    ['powershell', 'echo `n', true, 'escape sequence, no quote context'],
-    ['powershell', 'echo hi`', false, 'trailing backtick is a line continuation'],
-    ['powershell', 'powershell -Command "echo `"hi`""', true, 'nested backtick escapes'],
-    // --- cmd ---------------------------------------------------------------
-    ['cmd', 'echo "hi', false, 'unterminated double quote'],
-    ['cmd', 'echo "a\\"', true, 'backslash is literal in cmd'],
-    ['cmd', 'echo ^"hi', true, '^ escapes the quote'],
-    ['cmd', 'echo hi^', false, 'trailing caret is a line continuation'],
-];
+// Cases come from a shared fixture so Node and Python test the SAME table.
+// Two separate tables is exactly how the implementations drift apart while
+// both suites stay green: 31 cases in Python vs 29 here was invisible.
+const fs = require('fs');
+const FIXTURE = path.join(__dirname, 'fixtures', 'cases.jsonl');
+const GRAMMAR_CASES = fs.readFileSync(FIXTURE, 'utf8')
+    .split(String.fromCharCode(10))
+    .filter((line) => line.trim())
+    .map((line) => JSON.parse(line));
 
-for (const [shell, cmd, expected, why] of GRAMMAR_CASES) {
+for (const { shell, cmd, safe: expected, why } of GRAMMAR_CASES) {
     check(`[${shell}] ${cmd}  (${why})`, verifyQuoteParity(cmd, shell), expected);
 }
 
