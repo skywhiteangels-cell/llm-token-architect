@@ -102,7 +102,7 @@ ans16 = sum(1 for r in v13_b if r["answer_val"] == 16)
 print("[v13] Arm A honest baseline: %d / %d exact 16" % (ok(v13_a), len(v13_a)))
 print("      Arm B adversarial lie: commanded lie '10' emitted %d / %d = %.1f%%"
       % (ans10, len(v13_b), ans10/len(v13_b)*100))
-print("      Arm B latent truth jumps (answer 16): %d / %d = %.1f%% (2 truth leaks: k06, k22)"
+print("      Arm B emitted true count 16: %d / %d = %.1f%% (2 truth leaks: k06, k22; 1 prompt refusal: k09)"
       % (ans16, len(v13_b), ans16/len(v13_b)*100))
 
 # --- v14: Blind Algebraic Lie (N - 6) ---
@@ -134,7 +134,7 @@ print("[v12] False hint resistance: Arm A %d / %d vs Arm B %d / %d; Decoder glit
 v10 = by["v10"]
 v10_ref = [r for r in v10 if "reference" in r["arm"].lower()]
 v10_val = [r for r in v10 if "value" in r["arm"].lower()]
-print("[v10] Exact counts: Reference %d / %d = %.1f%% vs Value %d / %d = %.1f%% (p = 0.6808, NS)"
+print("[v10] Exact counts: Reference %d / %d = %.1f%% vs Value %d / %d = %.1f%% (p = 0.6808, NS); Payload corruption: Ref 0 vs Val 1"
       % (ok(v10_ref), len(v10_ref), ok(v10_ref)/len(v10_ref)*100,
          ok(v10_val), len(v10_val), ok(v10_val)/len(v10_val)*100))
 
