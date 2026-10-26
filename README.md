@@ -124,10 +124,12 @@ Exit 2 blocks the tool call and hands the reason back to the model. See
 | File | Purpose |
 |---|---|
 | [parity_check.py](parity_check.py) | Python guard — `analyze()` / `verify_quote_parity()`, CLI, `--selftest` |
-| [parity_check.js](parity_check.js) | Node guard — same state machine, same test table |
+| [parity_check.js](parity_check.js) | Node guard — same state machine, same heredoc masking, same case fixture |
 | [hooks/pre_tool_use_guard.py](hooks/pre_tool_use_guard.py) | PreToolUse hook: blocks hanging commands before execution |
 | [hooks/README.md](hooks/README.md) | Wiring for Claude Code and other harnesses |
-| [tests/test_parity.py](tests/test_parity.py) · [tests/test_parity.js](tests/test_parity.js) | External suites (41 / 39 checks), no dependencies |
+| [tests/test_parity.py](tests/test_parity.py) · [tests/test_parity.js](tests/test_parity.js) | External suites (46 / 46 checks over one shared fixture), no dependencies |
+| [tests/fixtures/cases.jsonl](tests/fixtures/cases.jsonl) | The single case table both suites read — divergence cannot go unnoticed |
+| [REQUESTS.md](REQUESTS.md) | Audit trail: what was requested, what was accepted, and the reproduction that decided it |
 | [MASTER_PROMPT.md](MASTER_PROMPT.md) | Full session bootstrap for an autonomous agent harness |
 | [MASTER_PROMPT_LITE.md](MASTER_PROMPT_LITE.md) | ~300-word drop-in system prompt |
 | [ARTICLE.md](ARTICLE.md) · [ARTICLE_RU.md](ARTICLE_RU.md) | The essay: parables, BPE subword blindness, the "Token Architect" method, and why frontier models still break on the first meter |
@@ -136,11 +138,19 @@ Exit 2 blocks the tool call and hands the reason back to the model. See
 ## Tests
 
 ```bash
-python tests/test_parity.py     # 41 checks
-node   tests/test_parity.js     # 39 checks
-python parity_check.py --selftest
-node   parity_check.js --selftest
+python tests/test_parity.py                       # 46 checks across 31 grammar cases
+node   tests/test_parity.js                       # 46 checks across 31 grammar cases
+python tests/test_hook.py                         # 25 checks
+python tools/check_duplicate_blocks.py --selftest # 5 checks
 ```
+
+Both parity suites read the same fixture — [tests/fixtures/cases.jsonl](tests/fixtures/cases.jsonl) —
+so the two counters are equal by construction: 46 + 46 + 25 + 5 = **122**, and that
+is the number on the badge. There is no separate numbers file to trust: each runner
+prints its own count, and if a count stops matching, the runner is what changed.
+
+The built-in `--selftest` (23 cases each) is not counted — it checks that the guard
+answers at all, not the grammar table.
 
 No pytest, no npm install. Exit code 0 or it is broken.
 

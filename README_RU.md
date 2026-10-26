@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/skywhiteangels-cell/llm-token-architect/actions/workflows/tests.yml/badge.svg)](https://github.com/skywhiteangels-cell/llm-token-architect/actions)
-[![Tests](https://img.shields.io/badge/tests-41%20python%20%2F%2039%20node-brightgreen)](#тесты)
+[![Tests](https://img.shields.io/badge/tests-46%20python%20%2F%2046%20node-brightgreen)](#тесты)
 [![Read in English](https://img.shields.io/badge/Read_in-English-blue.svg)](README.md)
 
 ![Обложка](habr_cover.jpg)
@@ -121,10 +121,12 @@ CLI, который надо не забыть вызвать, — это та �
 | Файл | Назначение |
 |---|---|
 | [parity_check.py](parity_check.py) | Python-предохранитель — `analyze()` / `verify_quote_parity()`, CLI, `--selftest` |
-| [parity_check.js](parity_check.js) | Node-предохранитель — тот же автомат, та же таблица тестов |
+| [parity_check.js](parity_check.js) | Node-предохранитель — тот же автомат, та же маска heredoc, тот же фикстур кейсов |
 | [hooks/pre_tool_use_guard.py](hooks/pre_tool_use_guard.py) | Хук PreToolUse: блокирует зависающие команды до запуска |
 | [hooks/README.md](hooks/README.md) | Подключение для Claude Code и других харнессов |
-| [tests/test_parity.py](tests/test_parity.py) · [tests/test_parity.js](tests/test_parity.js) | Внешние наборы тестов (41 / 39 проверок), без зависимостей |
+| [tests/test_parity.py](tests/test_parity.py) · [tests/test_parity.js](tests/test_parity.js) | Внешние наборы тестов (46 / 46 проверок на общем фикстуре), без зависимостей |
+| [tests/fixtures/cases.jsonl](tests/fixtures/cases.jsonl) | Единственная таблица кейсов, которую читают оба набора — расхождение не пройдёт незамеченным |
+| [REQUESTS.md](REQUESTS.md) | Аудит-след: что просили, что приняли и какая проверка это решила |
 | [MASTER_PROMPT.md](MASTER_PROMPT.md) | Полный бутстрап сессии для автономного агента |
 | [MASTER_PROMPT_LITE.md](MASTER_PROMPT_LITE.md) | Короткий системный промпт (~300 слов) |
 | [ARTICLE_RU.md](ARTICLE_RU.md) · [ARTICLE.md](ARTICLE.md) | Статья: притча, подсловная слепота BPE, метод «Архитектор токенов» и почему флагманы всё ещё ломаются о первый метр |
@@ -133,11 +135,20 @@ CLI, который надо не забыть вызвать, — это та �
 ## Тесты
 
 ```bash
-python tests/test_parity.py     # 41 проверка
-node   tests/test_parity.js     # 39 проверок
-python parity_check.py --selftest
-node   parity_check.js --selftest
+python tests/test_parity.py                       # 46 проверок, 31 грамматический случай
+node   tests/test_parity.js                       # 46 проверок, 31 грамматический случай
+python tests/test_hook.py                         # 25 проверок
+python tools/check_duplicate_blocks.py --selftest # 5 проверок
 ```
+
+Оба набора для лексера читают один и тот же фикстур —
+[tests/fixtures/cases.jsonl](tests/fixtures/cases.jsonl) — поэтому их счётчики
+равны по построению: 46 + 46 + 25 + 5 = **122**, это и есть число на бейдже.
+Отдельного файла с числами, которому надо верить, нет: каждый раннер печатает
+свой счёт сам, и если счёт перестал совпадать — изменился раннер.
+
+Встроенный `--selftest` (23 кейса в каждой реализации) в сумму не входит: он
+проверяет, что предохранитель вообще отвечает, а не таблицу грамматики.
 
 Ни pytest, ни npm install не нужны. Либо код возврата 0, либо сломано.
 
