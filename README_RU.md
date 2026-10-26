@@ -1,5 +1,7 @@
 # Quote Guard — предохранитель, который не даёт агенту повесить собственный шелл
 
+> 📖 **Read the full experimental trilogy (1932 probes):** [The Ghost in the Context Window (PDF)](The_Ghost_in_the_Context_Window_Trilogy.pdf)
+
 **🇷🇺 Русский** | [ 🇬🇧 Read in English ](README.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
