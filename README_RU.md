@@ -4,6 +4,7 @@
 
 **🇷🇺 Русский** | [ 🇬🇧 Read in English ](README.md)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23679671.svg)](https://doi.org/10.5281/zenodo.23679671)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/skywhiteangels-cell/llm-token-architect/actions/workflows/tests.yml/badge.svg)](https://github.com/skywhiteangels-cell/llm-token-architect/actions)
 [![Tests](https://img.shields.io/badge/tests-134%20passing-brightgreen)](#тесты)
