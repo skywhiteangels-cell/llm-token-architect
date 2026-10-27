@@ -5,6 +5,7 @@
 **🇬🇧 English** | [ 🇷🇺 Читать на русском ](README_RU.md)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23679671.svg)](https://doi.org/10.5281/zenodo.23679671)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0005--7773--3581-green.svg)](https://orcid.org/0009-0005-7773-3581)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/skywhiteangels-cell/llm-token-architect/actions/workflows/tests.yml/badge.svg)](https://github.com/skywhiteangels-cell/llm-token-architect/actions)
 [![Tests](https://img.shields.io/badge/tests-134%20passing-brightgreen)](#tests)
