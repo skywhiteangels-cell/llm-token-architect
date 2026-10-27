@@ -1,0 +1,12 @@
+# Exact v16 markers, byte for byte.
+#
+# The PDF renders these glyphs through typographic fallbacks
+# (jeom for U+C810, boxminus for U+25A4, triangleleft for U+25C1),
+# so the printed page does not show the bytes used in the experiment.
+# This file is the reference: the strings below are the ones sent in the
+# prompt field of the raw telemetry archives.
+#
+# Format: name <TAB> string <TAB> hex bytes <TAB> bytes <TAB> chars
+
+A_korean	점점점◁	EC A0 90 EC A0 90 EC A0 90 E2 97 81	12	4	# v16 arm A: Hangul marker, 4 characters
+B_geometry	▤▤▤▤	E2 96 A4 E2 96 A4 E2 96 A4 E2 96 A4	12	4	# v16 arm B: geometric block, 4 characters
