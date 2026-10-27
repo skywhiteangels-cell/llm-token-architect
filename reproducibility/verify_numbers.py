@@ -186,17 +186,24 @@ PAIRS = [
     ("v16 phantoms A vs B", phan_a, len(v16_a) - phan_a,
      phan_b, len(v16_b) - phan_b),
 ]
+def fmt_p(p):
+    """Tiny p-values must not be printed as 0.0000: below 1e-4 the decimal
+    form carries no information, so scientific notation is used for both."""
+    if p < 1e-4:
+        return "p = %.4g" % p
+    return "p = %.4f (%.4g)" % (p, p)
+
+
 for label, a, b, c, d in PAIRS:
-    p = fisher(a, b, c, d)
-    # Печатаем в двух формах: текст статьи округляет по-разному (0.6808 и
-    # 0.675, 1.00 и 0.00569), и сверка должна находить любое из написаний.
-    print("      %-24s p = %.4f (%.4g)" % (label, p, p))
+    # Две формы нужны, потому что текст статьи округляет по-разному:
+    # 0.6808, 0.675, 1.00, 0.00569.
+    print("      %-24s %s" % (label, fmt_p(fisher(a, b, c, d))))
 
 # v8 has no tool_used field in the archive: the count comes from the session
 # files and is recorded in VERDICT_v8.md §3.2. Included so that every p-value
 # in the paper appears in this output.
-print("      %-24s p = %.4f (%.4g)   (from sessions; no tool_used field in v8)"
-      % ("v8 tool adoption", fisher(25, 96 - 25, 0, 120), fisher(25, 96 - 25, 0, 120)))
+print("      %-24s %s   (from sessions; no tool_used field in v8)"
+      % ("v8 tool adoption", fmt_p(fisher(25, 96 - 25, 0, 120))))
 
 print("==================================================================")
 print("ALL CANONICAL CHECKS PASSED DETERMINISTICALLY.")

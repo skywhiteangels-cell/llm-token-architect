@@ -18,7 +18,7 @@ ARGON SERIES CANONICAL VERIFICATION (N = 1416 probes)
 [v10] Exact counts: Reference 68 / 72 = 94.4% vs Value 70 / 72 = 97.2% (p = 0.6808, NS); Payload corruption: Ref 0 vs Val 1
 [v6]  Replication probes: N = 96
 [p]  Two-sided Fisher exact — every p-value the paper reports:
-      v9  thinking on vs off   p = 0.0000 (2.909e-18)
+      v9  thinking on vs off   p = 2.909e-18
       v10 Reference vs Value   p = 0.6808 (0.6808)
       v11 format N=16          p = 0.0560 (0.05603)
       v11 accuracy N=16        p = 0.3070 (0.307)
@@ -26,7 +26,7 @@ ARGON SERIES CANONICAL VERIFICATION (N = 1416 probes)
       v13 truth leak B vs A    p = 0.4947 (0.4947)
       v14 answer 11 B vs A     p = 0.0057 (0.005691)
       v16 phantoms A vs B      p = 0.6752 (0.6752)
-      v8 tool adoption         p = 0.0000 (2.152e-10)   (from sessions; no tool_used field in v8)
+      v8 tool adoption         p = 2.152e-10   (from sessions; no tool_used field in v8)
 ==================================================================
 ALL CANONICAL CHECKS PASSED DETERMINISTICALLY.
 ==================================================================
