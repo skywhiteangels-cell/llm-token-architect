@@ -8,6 +8,7 @@ import json
 import os
 import sys
 from collections import Counter
+from math import comb
 
 # Set stdout encoding for Windows console
 if hasattr(sys.stdout, "reconfigure"):
@@ -141,6 +142,62 @@ print("[v10] Exact counts: Reference %d / %d = %.1f%% vs Value %d / %d = %.1f%% 
 # --- v6: Pilot Replication ---
 v6 = by["v6"]
 print("[v6]  Replication probes: N = %d" % len(v6))
+
+
+# --- Fisher exact p-values reported in the paper ---------------------------
+def fisher(a, b, c, d):
+    """Two-sided Fisher exact test for [[a, b], [c, d]].
+
+    The tolerance must be RELATIVE. An absolute one (p0 + 1e-12) silently
+    swallows the whole tail when p is tiny: for v9 the exact value is ~1e-18,
+    and the absolute epsilon inflated it to 4.8e-13 for months.
+    """
+    n = a + b + c + d
+    r1, r2, c1 = a + b, c + d, a + c
+
+    def prob(x):
+        return comb(r1, x) * comb(r2, c1 - x) / comb(n, c1)
+
+    p0 = prob(a)
+    lo, hi = max(0, c1 - r2), min(r1, c1)
+    return sum(prob(x) for x in range(lo, hi + 1) if prob(x) <= p0 * (1 + 1e-9))
+
+
+print("[p]  Two-sided Fisher exact — every p-value the paper reports:")
+# v13: k09 answered 16 but refused the instruction rather than leaking the
+# truth; the verdict counts it separately (2 leaks: k06, k22).
+v13_leaks = sum(1 for r in v13_b
+                if r["answer_val"] == 16 and not r["probe_id"].endswith("k09"))
+PAIRS = [
+    ("v9  thinking on vs off", ok(with_t), len(with_t) - ok(with_t),
+     ok(without), len(without) - ok(without)),
+    ("v10 Reference vs Value", ok(v10_ref), len(v10_ref) - ok(v10_ref),
+     ok(v10_val), len(v10_val) - ok(v10_val)),
+    ("v11 format N=16", fmt[("A_control", True)], len(a11) - fmt[("A_control", True)],
+     fmt[("B_enumeration", True)], len(b11) - fmt[("B_enumeration", True)]),
+    ("v11 accuracy N=16", ok(a11), len(a11) - ok(a11),
+     ok(b11), len(b11) - ok(b11)),
+    ("v12 arm A vs arm B", ok(v12_a), len(v12_a) - ok(v12_a),
+     ok(v12_b), len(v12_b) - ok(v12_b)),
+    ("v13 truth leak B vs A", v13_leaks, len(v13_b) - v13_leaks,
+     0, len(v13_a)),
+    ("v14 answer 11 B vs A", ans11, len(v14_b) - ans11,
+     0, len(by["v14"]) - len(v14_b)),
+    ("v16 phantoms A vs B", phan_a, len(v16_a) - phan_a,
+     phan_b, len(v16_b) - phan_b),
+]
+for label, a, b, c, d in PAIRS:
+    p = fisher(a, b, c, d)
+    # Печатаем в двух формах: текст статьи округляет по-разному (0.6808 и
+    # 0.675, 1.00 и 0.00569), и сверка должна находить любое из написаний.
+    print("      %-24s p = %.4f (%.4g)" % (label, p, p))
+
+# v8 has no tool_used field in the archive: the count comes from the session
+# files and is recorded in VERDICT_v8.md §3.2. Included so that every p-value
+# in the paper appears in this output.
+print("      %-24s p = %.4f (%.4g)   (from sessions; no tool_used field in v8)"
+      % ("v8 tool adoption", fisher(25, 96 - 25, 0, 120), fisher(25, 96 - 25, 0, 120)))
+
 print("==================================================================")
 print("ALL CANONICAL CHECKS PASSED DETERMINISTICALLY.")
 print("==================================================================")

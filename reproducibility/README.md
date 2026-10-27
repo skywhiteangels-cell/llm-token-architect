@@ -12,6 +12,8 @@ This lightweight reproducibility package allows deterministic verification of al
 | `build_bundle.py` | Data extractor that compiles `probes.jsonl` directly from the raw telemetry archives. |
 | `markers.txt` | The two v16 markers byte for byte, with hex: `점점점◁` and `▤▤▤▤`, 12 bytes each. The PDF renders them through typographic fallbacks, so this file — not the printed page — is the reference. |
 | `make_markers.py` | Regenerates `markers.txt` from the literal strings and asserts the 12-byte round-trip. |
+| `expected_output.txt` | The exact output of `verify_numbers.py` on the published data. |
+| `check_expected.py` | Compares a fresh run against `expected_output.txt`; `--selftest` corrupts the reference and requires the check to fail, so a blind checker cannot pass. |
 
 ## Quick Start (Zero Dependencies)
 
