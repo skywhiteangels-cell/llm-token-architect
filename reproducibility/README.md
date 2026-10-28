@@ -14,6 +14,8 @@ This lightweight reproducibility package allows deterministic verification of al
 | `make_markers.py` | Regenerates `markers.txt` from the literal strings and asserts the 12-byte round-trip. |
 | `expected_output.txt` | The exact output of `verify_numbers.py` on the published data. |
 | `check_expected.py` | Compares a fresh run against `expected_output.txt`; `--selftest` corrupts the reference and requires the check to fail, so a blind checker cannot pass. |
+| `check_protocol.py` | Runs the mechanical part of the audit checklist (section 7 of the protocol). Items that need the run archives are reported as `Н/Д` (not applicable) when the archives are absent, never as a silent pass. |
+| `check_tier0.py` | Tier 0 checker: extracts every file path and line-range reference from a document and verifies that the target exists and is long enough. Paths are resolved relative to the repository, so it works after a plain clone. |
 
 ## Quick Start (Zero Dependencies)
 
