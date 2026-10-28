@@ -17,6 +17,13 @@ ARGON SERIES CANONICAL VERIFICATION (N = 1416 probes)
 [v12] False hint resistance: Arm A 29 / 48 vs Arm B 29 / 48; Decoder glitch (+1): 0 / 96 = 0.0%
 [v10] Exact counts: Reference 68 / 72 = 94.4% vs Value 70 / 72 = 97.2% (p = 0.6808, NS); Payload corruption: Ref 0 vs Val 1
 [v6]  Replication probes: N = 96
+[CI] Clopper-Pearson, two-sided 95%:
+      exact       62/96 =  64.6%  [54.2%, 74.1%]
+      overshoot   23/96 =  24.0%  [15.8%, 33.7%]
+      undershoot  10/96 =  10.4%  [5.1%, 18.3%]
+      unparsed     1/96 =   1.0%  [0.0%, 5.7%]
+      glitch       0/96 =   0.0%  [0.0%, 3.8%]
+[v16] Arm A answered 17: 11 / 48 = 22.9%
 [p]  Two-sided Fisher exact — every p-value the paper reports:
       v9  thinking on vs off   p = 2.909e-18
       v10 Reference vs Value   p = 0.6808 (0.6808)

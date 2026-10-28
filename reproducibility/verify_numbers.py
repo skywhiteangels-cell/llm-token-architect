@@ -144,6 +144,60 @@ v6 = by["v6"]
 print("[v6]  Replication probes: N = %d" % len(v6))
 
 
+# --- Clopper-Pearson intervals for the v15 categories ----------------------
+def cp(k, n, alpha=0.05):
+    """Two-sided exact Clopper-Pearson interval (bisection over binomial tails).
+
+    Ported from the frozen plan_v16.py so the interval arithmetic matches the
+    one used during the run rather than being re-derived here.
+    """
+    if n == 0:
+        return 0.0, 0.0
+
+    def tail_ge(p):
+        return sum(comb(n, i) * (p ** i) * ((1 - p) ** (n - i)) for i in range(k, n + 1))
+
+    def tail_le(p):
+        return sum(comb(n, i) * (p ** i) * ((1 - p) ** (n - i)) for i in range(0, k + 1))
+
+    lo = 0.0
+    if k > 0:
+        a, b = 0.0, 1.0
+        for _ in range(200):
+            m = (a + b) / 2
+            if tail_ge(m) < alpha / 2:
+                a = m
+            else:
+                b = m
+        lo = (a + b) / 2
+    hi = 1.0
+    if k < n:
+        a, b = 0.0, 1.0
+        for _ in range(200):
+            m = (a + b) / 2
+            if tail_le(m) > alpha / 2:
+                a = m
+            else:
+                b = m
+        hi = (a + b) / 2
+    return lo, hi
+
+
+print("[CI] Clopper-Pearson, two-sided 95%:")
+for label, k in (("exact", cat["exact"]), ("overshoot", cat["overshoot"]),
+                 ("undershoot", cat["undershoot"]), ("unparsed", cat["unparsed"]),
+                 ("glitch", cat["glitch"])):
+    lo, hi = cp(k, len(v15))
+    print("      %-11s %2d/%d = %5.1f%%  [%.1f%%, %.1f%%]"
+          % (label, k, len(v15), k / len(v15) * 100, lo * 100, hi * 100))
+
+# --- v16: arm A answering 17 (the 11/48 the paper cites) -------------------
+v16_a17 = sum(1 for r in by["v16"] if "A" in r["arm"] and r["answer_val"] == 17)
+print("[v16] Arm A answered 17: %d / 48 = %.1f%%"
+      % (v16_a17, v16_a17 / 48 * 100))
+
+
+
 # --- Fisher exact p-values reported in the paper ---------------------------
 def fisher(a, b, c, d):
     """Two-sided Fisher exact test for [[a, b], [c, d]].
