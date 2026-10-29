@@ -1,0 +1,302 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+% Unicode character fallbacks for pdflatex engine compatibility.
+% Guarded: XeTeX/LuaTeX define these glyphs natively and have no
+% \DeclareUnicodeCharacter, so an unguarded call is a hard error there.
+\ifdefined\DeclareUnicodeCharacter
+\DeclareUnicodeCharacter{00A7}{\S}
+\DeclareUnicodeCharacter{25A4}{\ensuremath{\boxminus}}
+\DeclareUnicodeCharacter{25C1}{\ensuremath{\triangleleft}}
+\DeclareUnicodeCharacter{C810}{jeom}
+\fi
+% Marker glyphs. Under XeTeX the marker is set in a font that actually
+% contains Hangul and the Geometric Shapes block; under pdflatex the
+% \DeclareUnicodeCharacter fallbacks above apply instead.
+\ifdefined\XeTeXversion
+\usepackage{fontspec}
+\IfFontExistsTF{Arial Unicode MS}{%
+  \newfontfamily\markerfont{Arial Unicode MS}%
+  \newcommand{\marker}[1]{{\normalfont\markerfont #1}}%
+}{%
+  \newcommand{\marker}[1]{\texttt{#1}}%
+}
+\else
+\newcommand{\marker}[1]{\texttt{#1}}
+\fi
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs,array,multirow}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    citecolor=red!70!black,
+    urlcolor=blue!70!black
+}
+
+\title{\textbf{The Attention Dispersion Law and Dual-Path Decoupling\\in Autoregressive Transformers}}
+
+\author{
+    \textbf{Vladimir V. ``SkyAngel'' Borovikov}\thanks{\href{https://orcid.org/0009-0005-7773-3581}{ORCID: 0009-0005-7773-3581}} \\
+    \textit{Independent Researcher} \\
+    \texttt{skywhiteangels@gmail.com}
+}
+
+\date{October 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Large language models (LLMs) excel at smooth semantic continuation, yet their behavior remains vulnerable when maintaining \textit{discrete invariants}---exact integer counting constraints over long sequences. Across a pre-registered benchmark of 1,416 canonical probes ($1,320$ in the core Argon v8--v16 series, plus $96$ in replication v6) evaluated under zero-temperature on modern Mixture-of-Experts transformer runtimes (with strict No-Tools isolation across all 960 purely cognitive counting probes in v9 and v11--v16, alongside tool-manipulation protocols in v8 and v10), we investigate the mechanistic locus of the discrete counting error (the $N \to N+1$ fencepost overshoot).
+
+Through a sequence of anatomical interventional experiments, we demonstrate that:
+\begin{enumerate}
+    \item \textbf{Exoneration of the Decoder:} By applying an algebraic amplifier ($f(N) = 10N - 6$, v15) to separate attention scan drift ($\Delta = \pm 10$) from output unembedding glitches ($\Delta = +1$), we find strictly \textbf{0 / 96} ($0.0\%$, two-sided 95\% Clopper-Pearson CI $[0.0\%, 3.8\%]$) decoder off-by-one errors, while input perceptual scan drift accounts for 34.4\% (33/96).
+    \item \textbf{Disqualification of the Tokenizer Hypothesis:} By byte- and character-matching a repetitive Korean subword marker (\marker{점점점◁}, 12 bytes UTF-8) against a clean Unicode geometric box-drawing block (\marker{▤▤▤▤}, 12 bytes UTF-8, v16), we show that replacing language with geometry fails to eliminate phantom errors ($35.4\%$ vs $41.7\%$, Fisher exact test $p = 0.675$). This fails to support the strong BPE tokenization hypothesis and is consistent with the hypothesis that the discrete counting limit reflects an attention phase boundary constraint.
+    \item \textbf{Dual-Path Attention Decoupling:} In adversarial gaslighting probes (v13), the model follows instructions to emit a falsehood in its visible content ($93.8\%$), yet spontaneous ``truth leaks'' directly from the latent reasoning channel (\texttt{thinking}) into the terminal token occur in 2/48 probes. This demonstrates that terminal logits can decouple from local autoregressive $n$-gram context.
+\end{enumerate}
+We formalize these empirical findings into the \textit{Attention Dispersion Law}: as monotonic sequences exceed local attention span capacity ($N \ge 8..16$), positional embedding phase interference smears receptive boundaries, inducing discrete overshoot. Consequently, deterministic agent architectures should complement in-context data passing with external reference passing and deterministic runtime parity gates.
+\end{abstract}
+
+\vspace{1em}
+\noindent\textbf{Keywords:} Transformer Interpretability, Self-Attention Limits, Dual-Path Attention, Induction Heads, In-Context Counting, LLM Agent Safety.
+
+\newpage
+
+\section{Introduction}
+
+Autoregressive transformers have revolutionized continuous natural language modeling, code generation, and semantic reasoning \cite{vaswani2017attention}. Despite these achievements, autonomous agents operating in production environments frequently encounter catastrophic failures when performing simple deterministic operations over structured strings: counting delimiters, tracking state machines, balancing quotation marks, or evaluating syntax tree depths.
+
+In production environments (e.g., automated code modification, binary log parsing, script execution), an off-by-one error ($N \to N+1$ or $N \to N-1$) is not a benign stylistic quirk. It leads directly to deadlocks in command-line interpreters, broken syntax transitions, and silent data corruption. In LLM research, two conflicting folk hypotheses have attempted to explain this counting failure:
+\begin{itemize}
+    \item \textbf{The Decoder Hypothesis ($H_{\text{DEC}}$):} The internal hidden representation accurately encodes the true count $N$, but the final linear projection (unembedding head) and temperature-induced softmax dispersion cause an accidental off-by-one fencepost emission.
+    \item \textbf{The Tokenizer Hypothesis ($H_{\text{BPE}}$):} Multi-byte characters and rare tokens undergo non-uniform subword splitting under Byte-Pair Encoding (BPE), causing spatial phase shifts in rotary positional embeddings (RoPE \cite{su2024roformer}) and misleading the model.
+\end{itemize}
+
+The \textbf{Argon experimental series} was established as a multi-stage empirical program to isolate, verify, and resolve this vulnerability under strict experimental controls. Across 1,416 canonical probes, we subjected state-of-the-art transformer runtimes to rigorous interventional probes.
+
+\subsection{Related Work: Attention Circuits and Perceptual Illusions}
+
+The discrete-counting failures documented in the Argon series intersect with three major areas of mechanistic interpretability: the mechanics of in-context learning, the geometry of representation spaces, and the computational limits of parallel architectures.
+
+\paragraph{Induction Heads and Contextual Routing.} Recent work has identified specific multi-layer attention circuits (``induction heads'') responsible for in-context learning and pattern completion \cite{olsson2022incontext}. These circuits allow a transformer to scan prior context, locate previous instances of the current token, and copy subsequent tokens. Our findings on Dual-Path Attention (\S\ref{sec:dual_path}) demonstrate that this routing mechanism is not strictly bound to the autoregressive output stream. The observed ``truth leaks''---wherein a terminal token jumps back to a latent counting state in the internal reasoning stream (\texttt{thinking}) despite contradicting the immediately preceding visible text---imply that competing attention circuits can override local $n$-gram continuation logic at the unembedding boundary. This aligns with the understanding that final logit distributions represent superpositions of multiple, potentially conflicting algorithmic pathways.
+
+\paragraph{Superposition and Representational Distortion.} The Attention Dispersion Law (\S\ref{sec:dispersion}) bears strong structural resemblance to the phenomena of superposition and feature distortion in polysemantic models \cite{elhage2022toy, cammarata2020circuits}. When an architecture represents dense periodic features (such as monotonic sequences of identical tokens) in finite-dimensional activation spaces, the mutual orthogonality of positional encodings degrades. At high repetition ($N \ge 16$), phase interference between adjacent positional embeddings smears attention receptive fields, resulting in phantom over-counting ($N+1$). As demonstrated in Argon v16, replacing complex natural language with geometric primitives fails to alleviate this error, confirming that fencepost hallucinations are structural consequences of information packing in multi-head attention.
+
+\paragraph{Serial Computation Limits in Transformers.} Theoretical and empirical investigations indicate that transformer architectures struggle with formal languages and automata requiring strict serial state tracking \cite{deletang2023neural}. The Argon series extends these insights by isolating the failure stage: the model does not fail during arithmetic decoding, but actively perceives an incorrect count during the input scanning phase (v15, where the decoder is exonerated at $\Delta = +1$). The failure is input-perceptual rather than output-generative, demonstrating that prompt-based self-correction cannot replace external deterministic parity checks (\S\ref{sec:architecture}).
+
+\section{Methodology \& Experimental Rigor}
+
+To satisfy rigorous scientific standards and eliminate confirmation bias, all experiments followed a pre-registered protocol and were audited under the Red Team Protocol of Project Argon. The author acts as that project's Red Team Auditor. The audit is internal, not independent: the same author designed the probes and checked the numbers, so no claim below rests on outside review (\S\ref{sec:twofailures}).
+
+\paragraph{Instrument and object of study.} The object of investigation is Project Argon itself: its probe protocol, its archives, and the claims written about them. The testing instrument was the frozen inference runtime reached through the Antigravity agent gateway, recorded in every archive entry as \texttt{model = flash\_lite}. That identifier, not a vendor model name, is what the telemetry supports, and it is the only name used here.
+
+\subsection{Isolation Runtime and No-Tools Invariant}
+All probes were executed using the frozen inference runtime of \texttt{flash\_lite} (a modern MoE transformer with an explicit latent reasoning channel, \texttt{thinking}). Except for exploratory baseline v8 (which permitted code execution) and reference control v10 (which read local disk files), all 960 canonical probes in v9 and v11--v16 were executed under strict \textbf{No-Tools isolation} (\texttt{tools=[]}). Every request log in \texttt{archive.jsonl} was cryptographically audited: unauthorized tool invocation was strictly $0/960$ ($0.0\%$).
+
+\subsection{Cryptographic Pre-Registration}
+Before executing any experimental probe, the runner script, prompt template, evaluation parser, and statistical test suite were frozen and hashed: the early series (v3--v8) into a per-run \texttt{MANIFEST.sha256}, the later series (v9--v16) into a per-series \texttt{FREEZE.txt}. Hypotheses and primary outcome criteria were committed prior to API calls, precluding post-hoc fitting of the pre-registered endpoints. Analyses specified after the data were seen are labelled \emph{post-hoc} where they are reported and are not used to carry a main claim.
+
+\subsection{Seed-Paired Randomization}
+To control for filler noise, sequence lengths, and positional shifts, probes utilized deterministic seed-paired grids:
+\begin{equation}
+    \text{Seed}_k = 20261100 + 16000 + k, \quad k \in [1, 48].
+\end{equation}
+Each seed generated identical context geometry across experimental arms, isolating the target intervention as the sole independent variable.
+
+\subsection{Algebraic Amplification}
+In Argon v15, we introduced the method of algebraic amplification to decouple attention errors from output decoder slips:
+\begin{equation}
+    f(N) = 10 \cdot N - 6.
+\end{equation}
+A scaling factor of $10\times$ cleanly separates hypotheses onto distinct decimal orders:
+\begin{itemize}
+    \item An attention scan error of 1 element ($N=16 \to 17$) shifts the tens place: $10 \times 17 - 6 = 164$ ($\Delta = +10$ from ground truth $154$).
+    \item A terminal decoder slip emits an off-by-one token in the units place: $154 + 1 = 155$ ($\Delta = +1$).
+\end{itemize}
+
+\subsection{Byte- and Character-Level Lexical Matching}
+To rigorously evaluate the BPE Tokenizer Hypothesis in v16, we contrasted a complex multi-byte Korean marker (\marker{점점점◁}, 4 Unicode characters, 12 bytes UTF-8)\footnote{In standard pdf\LaTeX\ typography, non-ASCII glyphs are rendered via typographic fallbacks (\texttt{jeom} for Hangul \texttt{U+C810}, $\boxminus$ for \texttt{U+25A4}, $\triangleleft$ for \texttt{U+25C1}); the exact 12-byte UTF-8 sequences are recorded byte for byte in \texttt{reproducibility/markers.txt}.} against a pure geometric block (\marker{▤▤▤▤}, Unicode \texttt{U+25A4}, 4 characters, 12 bytes UTF-8). Prompts were equalized bit-for-bit:
+\begin{equation}
+    |\text{Prompt}_A| = |\text{Prompt}_B| = 880 \text{ chars}, \quad \text{len}(\text{Prompt}_A)_{\text{UTF-8}} = \text{len}(\text{Prompt}_B)_{\text{UTF-8}} = 1421 \text{ bytes}.
+\end{equation}
+
+\section{Empirical Results}
+
+\subsection{Chronological Overview of the Argon Series}
+
+\begin{itemize}
+    \item \textbf{v8 (Tool Outsourcing):} When code execution tools are permitted, models delegate mental counting to Python in 25/96 sessions, but suffer data handoff corruption when piping results back into context.
+    \item \textbf{v9 (The No-Tools Cognitive Barrier):} Disabling external tools unmasks systemic $N \to N+1$ overcounting. Enabling latent reasoning (\texttt{thinking}, System 2) suppresses errors from $93.8\%$ to $27.9\%$ ($p = 2.91 \times 10^{-18}$, Odds Ratio $\text{OR} = 38.7$).
+    \item \textbf{v10 (Context Isolation):} Passing data by value inside prompts induces payload token drift. In contrast, Pass-by-Reference exhibited zero payload corruption, although exact counting accuracy remained comparable ($68/72 = 94.4\%$ vs $70/72 = 97.2\%$, Fisher exact test $p = 0.6808$, serving as an architectural guideline rather than an empirical law).
+    \item \textbf{v11 (System 2 Capacity Saturation):} Mandating explicit step-by-step enumeration (\texttt{1. marker, 2. marker...}) fails to eliminate $N+1$. At $N=16$, format retention degrades from $100\%$ to $89.6\%$ ($p = 0.056$), revealing cognitive budget exhaustion.
+    \item \textbf{v12 (Channel Decoupling):} Authoritative false prompt hints (``There are exactly 10 markers'') fail to distort the output decoder ($\text{decoder\_glitch} = 0/96$).
+    \item \textbf{v13 (Adversarial Gaslighting):} Under explicit commands to lie in visible text ($93.8\%$ compliance), the model's true latent count leaks directly from \texttt{thinking} into the final answer in 2/48 probes.
+    \item \textbf{v14 (Blind Algebraic Lie $N-6$):} In the absence of target digits in the prompt, the model emits $11$ ($17 - 6 = 11$) in $16.7\%$ of probes ($p = 0.00569$), consistent with the hypothesis that the model perceives $17$ items before executing mathematical operations.
+    \item \textbf{v15 (Algebraic Amplifier $10N-6$):} The $10\times$ multiplier isolates 33/96 attention scan drifts ($\Delta = \pm 10$), while decoder slips ($\Delta = +1$) remain strictly $0/96$ (two-sided 95\% Clopper-Pearson CI $[0.0\%, 3.8\%]$). Both shares are computed on the same 96 probes, so they are reported with their intervals rather than through a two-sample test.
+    \item \textbf{v16 (BPE vs. Geometry):} Replacing linguistic tokens with geometric primitives yields identical phantom rates ($35.4\%$ vs $41.7\%$, $p = 0.675$). The arms differ in error \emph{shape} rather than in error \emph{rate}: narrow $N+1$ overshoots give way to diffuse higher-order hallucinations (Table~\ref{tab:v16}; the five-bin test reported there is post-hoc).
+\end{itemize}
+
+\subsection{Attentional Drift: Exoneration of the Decoder (v15)}
+
+The design of experiment v15 delivered the definitive arbitration between the input scanning mechanism and the output unembedding head. Table~\ref{tab:v15} presents the distribution across 96 probes.
+
+\begin{table}[h!]
+\centering
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llcc@{}}
+\toprule
+\textbf{Outcome Category} & \textbf{Observed Values} & \textbf{Probes ($N=96$)} & \textbf{Rate [95\% Clopper-Pearson CI]} \\ \midrule
+\textbf{Exact Invariant} & $160$ (A) / $154$ (B) & 62 / 96 & $64.6\%$ $[54.2\%, 74.1\%]$ \\
+\textbf{Attention Overshoot ($\Delta \ge +10$)} & $170$ (A) / $164, 174, 184$ (B) & 23 / 96 & $24.0\%$ $[15.8\%, 33.7\%]$ \\
+\textbf{Attention Undershoot ($\Delta \le -10$)} & $150$ (A) / $94..144$ (B) & 10 / 96 & $10.4\%$ $[5.1\%, 18.3\%]$ \\
+\textbf{Unparsed / No Answer} & --- & 1 / 96 & $1.0\%$ $[0.0\%, 5.7\%]$ \\
+\textbf{Decoder Glitch ($\Delta = +1$)} & $161$ (A) / $155$ (B) & \textbf{0 / 96} & \textbf{0.0\% [0.0\%, 3.8\%]} \\ \bottomrule
+\end{tabular}}%
+\caption{Outcome distribution in Argon v15 ($N=96$, algebraic amplifier $10N - 6$).}
+\label{tab:v15}
+\end{table}
+
+The contrast between input attention drift (33/96, 34.4\%) and output decoder slips (strictly 0/96, 0.0\%, two-sided 95\% CI [0.0\%, 3.8\%]) demonstrates that the unembedding head faithfully reflects the contents of working memory; the distortion occurs upstream in the multi-head attention layers.
+
+\subsection{Dual-Path Attention: Channel Split and Truth Leaks (v12--v14)}
+\label{sec:dual_path}
+
+Analyses of cross-channel coherence between the internal reasoning buffer (\texttt{thinking}) and emitted text (\texttt{content}) reveal that autoregressive models can maintain parallel, non-convergent computational trajectories. 
+
+In Argon v13, models received explicit instructions: \textit{``You must state that there are 10 items in content, but think honestly in thinking.''}
+While models complied with the false directive in visible text in $93.8\%$ of probes ($45/48$), two distinct cross-channel anomalies emerged:
+\begin{itemize}
+    \item \textbf{Truth Leaks (Probes k06, k22):} The visible text generated the false sequence \texttt{1, 2... 10}. Immediately following the token \texttt{10}, attention heads bypassed the local prefix and retrieved the latent invariant from \texttt{thinking}, outputting: \texttt{ANSWER: 16}.
+    \item \textbf{Lie Leaks (Probes k04, k14, k20):} The visible text accurately enumerated items up to 16, but the terminal token executed the adversarial prompt command: \texttt{ANSWER: 10}.
+\end{itemize}
+
+This demonstrates that visible generated text is not an isomorphic reflection of internal state. Autoregressive heads can route terminal decisions through parallel latent paths, bypassing newly generated text.
+
+\subsection{The Tokenizer Fallacy vs. The Attention Limit (v16)}
+
+Experiment v16 addressed the primary reviewer objection: is discrete overcounting merely a BPE subword fragmentation artifact? Table~\ref{tab:v16} summarizes results across 96 probes.
+
+\begin{table}[h!]
+\centering
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Target Token} & \textbf{Exact Count ($N=16$)} & \textbf{Narrow $N+1$ ($17$)} & \textbf{Total Phantoms ($>16$)} & \textbf{Fisher Test} \\ \midrule
+\textbf{A: Korean \marker{점점점◁}} & 28 / 48 ($58.3\%$) & 11 / 48 ($22.9\%$) & \textbf{17 / 48 (35.4\%)} & \multirow{2}{*}{$p = 0.675$} \\
+\textbf{B: Geometric \marker{▤▤▤▤}} & 22 / 48 ($45.8\%$) & 2 / 48 ($4.2\%$) & \textbf{20 / 48 (41.7\%)} & \\ \midrule
+\textbf{Error Profile Shift} & --- & \multicolumn{2}{c}{$2 \times 5$ contingency table (post-hoc)} & \textbf{$p = 0.0017$} \\ \bottomrule
+\end{tabular}}%
+\caption{Outcome frequencies in Argon v16 ($N=96$, Korean BPE vs. Unicode Geometry).}
+\label{tab:v16}
+\end{table}
+
+The strong BPE hypothesis predicted that replacing multi-byte Korean text with geometric glyphs would eliminate phantoms ($H_{\text{BPE}}: \text{Rate}_B \to 0\%$). In reality, phantom occurrences in Arm B remained virtually identical: \textbf{$41.7\%$} vs. \textbf{$35.4\%$} ($p = 0.675$).
+
+However, a contingency analysis over the full five-bin error distribution ($2 \times 5$ exact test, $p = 0.0017$), specified after the data were seen and therefore reported as \emph{post-hoc}, points to a qualitative structural mutation:
+\begin{itemize}
+    \item Natural language tokens localize errors tightly around $N+1$ ($22.9\%$).
+    \item Monotonous geometric tokens trigger diffuse phase collapses, spreading errors into higher-order phantoms: 15 out of 48 probes ($31.2\%$) hallucinated counts of 19 and 20.
+\end{itemize}
+
+Because the five-bin test was specified after inspection, it does not carry the main claim. The pre-registered narrow $N+1$ contrast on its own gives $p = 0.0144$, which does not clear the Bonferroni threshold of $0.0125$ across the four planned contrasts.
+What the data support without qualification is the negative result above: replacing the token does not remove the phantoms.
+
+\section{Discussion: The Attention Dispersion Law}
+\label{sec:dispersion}
+
+\subsection{Mathematical Formulation}
+
+Our empirical findings support the \textit{Attention Dispersion Law}:
+\begin{quote}
+\textit{When an autoregressive transformer scans a periodic sequence of identical or quasi-identical tokens, the position-aware self-attention distribution undergoes spatial phase dispersion. Beyond a critical span threshold ($N \approx 8..16$), positional variance exceeds inter-token intervals, causing boundary interference and shifting the integrated mass by $+1$ (or $+k$).}
+\end{quote}
+
+In rotary position embeddings (RoPE \cite{su2024roformer}), query-key interaction is modulated by orthogonal rotation matrices:
+\begin{equation}
+    q_m^T k_n = x_m^T W_q^T R_{\Theta, m-n} W_k x_n.
+\end{equation}
+When token embeddings are identical ($x_m \approx x_n$), differentiation relies exclusively on the relative angle $\Delta \theta = (m - n)\theta_i$. On compact spans ($N \le 8$), rotation angles remain distinct. When $N \ge 16$, cumulative attention pooling across repeating patterns smears activation boundaries. The model interprets the terminal delimiter as an additional density peak, generating the phantom $N+1$ token.
+
+\subsection{The Dilemma of Voluntary Prompting}
+Our findings clarify why prompting interventions (``Think step-by-step'', ``Count carefully'') cannot solve discrete counting vulnerabilities:
+\begin{enumerate}
+    \item Compulsory step-by-step enumeration (v11) exhausts attention budgets, degrading format retention by $10.4\%$.
+    \item System 2 reasoning (v9) raises accuracy from $6.2\%$ to $72.1\%$ but leaves a residual $27.9\%$ error rate; the surviving errors are not exclusively $N+1$ ($22.9\%$ vs $4.2\%$ across the two v16 arms).
+    \item Terminal tokens can decouple from preceding verbalized reasoning (v13, Dual-Path Attention).
+\end{enumerate}
+
+\subsection{Two Failure Classes: Attention Dispersion and Expectation-Shift}
+\label{sec:twofailures}
+
+The failures quantified above are mechanical. Beyond a critical span, position-aware self-attention smears and the integrated mass shifts by $+1$ or $+k$, independent of task semantics and of who is prompting. We therefore separate two failure classes that are routinely conflated:
+
+\begin{enumerate}
+    \item \textbf{Attention/decoder dispersion (measured).} Context compaction and scanning attention over repeating tokens cause the model to lose the ground-truth value (the $N{+}1$ phantom across v6--v16; the $\Delta{=}+10$ algebraic drift in v15). This class is established by the present audit.
+    \item \textbf{Expectation-shift / sycophancy (hypothesis).} Within a single long session the model adapts to the user: it infers the user's stated expectation and steers output toward agreement with that expectation rather than with the real result. This is an inference-time adaptation mechanism (it operates in-context, not through weight rewrites) and is documented in the sycophancy literature \cite{sharma2023sycophancy}. Our v12 (authority anchor) and v13 (adversarial premise-following) show partial, non-significant signals of this shift, but the audit does \emph{not} establish it as the dominant cause of the dispersion measured above.
+\end{enumerate}
+
+We state the relationship as a hypothesis, not a conclusion: \emph{user-adaptation biases the model toward expectation-agreement; the Pass-by-Reference Protocol neither disputes nor disables this mechanism---it decouples the acceptance criterion from user approval by gating every assertion on ground truth (an archive checksum), neutralizing in-session drift at the infrastructure boundary.}
+
+\section{Architectural Blueprint for Deterministic LLM Agents}
+\label{sec:architecture}
+
+To construct resilient autonomous AI systems that interact with operating systems and code compilers, we formulate three architectural recommendations (working guidelines):
+
+\begin{enumerate}
+    \item \textbf{Recommendation 1: Pass-by-Reference Context Isolation.} Invariant structures, raw files, and configuration payloads must never be passed into context windows by value (\textit{Pass-by-Value}). Context windows must receive strictly typed references (file paths, database URIs), isolating data from attention phase smearing.
+    \item \textbf{Recommendation 2: Mandatory Deterministic Parity Checking.} All discrete assertions emitted by LLMs (counts, quoting parity, AST balances) must be validated by deterministic, non-transformer runtime gates (e.g., Finite State Automata, hash checkers). The transformer proposes; deterministic software disposes.
+    \item \textbf{Recommendation 3: Infrastructure-Level PreToolUse Gating.} Safety checks must not rely on voluntary model invocation. Interceptors must operate at the host infrastructure level (e.g., PreToolUse hooks), intercepting commands prior to shell execution.
+\end{enumerate}
+
+\section{Master Empirical Matrix}
+
+Table~\ref{tab:master} consolidates the full canonical experimental program ($N=1,416$ probes).
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}cclllcc@{}}
+\toprule
+\textbf{Series} & \textbf{Probes} & \textbf{Target Variable} & \textbf{Arm A (Control)} & \textbf{Arm B (Experimental)} & \textbf{Key Metric} & \textbf{Significance ($p$)} \\ \midrule
+\textbf{v6} & 96 & Replication of Pilot v1 & Graded doses $N=0..64$ & Replicated metric & False leaks & 0/92 echo-free ($p < 0.001$) \\
+\textbf{v8} & 216 & Code outsourcing & Mental count & Python sandbox tool & Tool adoption & 25/96 sessions ($p = 2.15 \times 10^{-10}$) \\
+\textbf{v9} & 288 & No-Tools barrier & Thinking enabled & Thinking disabled & Accuracy & $p = 2.91 \times 10^{-18}$ \\
+\textbf{v10} & 144 & Context isolation & Pass-by-Value & Pass-by-Reference & Drift 0 vs 1 & Accuracy $94.4\%$ vs $97.2\%$ ($p = 0.6808$, NS) \\
+\textbf{v11} & 192 & Enumeration capacity & Plain count $N=8, 16$ & Enumeration $N=8, 16$ & Format retention & $p = 0.056$ ($N=16$) \\
+\textbf{v12} & 96 & Authority bias & Neutral prompt & False hint ($N=10$) & Decoder slip 0/96 & Hint resistance 29/48 vs 29/48 ($p = 1.00$) \\
+\textbf{v13} & 96 & Adversarial gaslighting & Honest counting & Commanded lie ($N=10$) & Truth leak & 2/48 leaks ($p = 0.4947$, vs 0/48) \\
+\textbf{v14} & 96 & Blind lie ($N-6$) & Direct count 16 & Subtraction ($N-6$) & Output 11 & $8/48$ ($p = 0.00569$) \\
+\textbf{v15} & 96 & Algebraic amplifier & Scaled $10N$ & Amplifier $10N - 6$ & Decoder $\Delta = +1$ & 0/96 (95\% CI $[0.0\%, 3.8\%]$) \\
+\textbf{v16} & 96 & Tokenizer refutation & Korean \marker{점점점◁} & Geometry \marker{▤▤▤▤} & Phantom rate & $p = 0.675$ \\ \bottomrule
+\end{tabular}}%
+\caption{Consolidated canonical matrix of the Argon experimental series ($N=1,416$ probes).}
+\label{tab:master}
+\end{table}
+
+\section{Data Availability \& Reproducibility Statement}
+
+To guarantee empirical reproducibility according to FAIR data principles without bandwidth barriers, a lightweight verification bundle is openly published in the project repository:
+\begin{itemize}
+    \item \textbf{Canonical Verification Dataset:} The normalized record of all 1,416 experimental probes is compiled into \texttt{reproducibility/probes.jsonl} (261\,KB). The accompanying standalone script \texttt{reproducibility/verify\_numbers.py} deterministically recalculates key paper metrics across all series (v15 attention scan drift vs decoder stability, v9 System-2 cognitive suppression, No-Tools zero-leak invariant, v11 format degradation, v13 truth leaks, v14 blind subtraction, v16 geometric token control, v10 reference stability, and v12 authority resistance) with zero external dependencies.
+    \item \textbf{Code Repository:} \url{https://github.com/skywhiteangels-cell/llm-token-architect} (contains Quote Guard FSM, test suites, and the reproducibility bundle).
+    \item \textbf{Permanent Preprint Archive (Zenodo DOI):} \url{https://doi.org/10.5281/zenodo.23679671}
+    \item \textbf{Raw Telemetry Archives:} The full raw JSONL traces including prompt texts and internal reasoning logs ($\sim$570\,MB total across all runs, $\sim$460\,MB for canonical v8--v16) are preserved by the authors and available upon request.
+\end{itemize}
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}
