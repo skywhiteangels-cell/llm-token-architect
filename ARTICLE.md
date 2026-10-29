@@ -265,3 +265,7 @@ The following foundational works underpin the technical claims in this article:
 - **Orlanski, G., & Gittens, A. (2023).** *Measuring the Effect of Tokenization Bias on LLM Downstream Tasks.* — Direct study of how tokenization artifacts propagate into model outputs, particularly in structured generation scenarios. [arxiv.org/abs/2308.00722](https://arxiv.org/abs/2308.00722)
 
 > **Note on TokDrift:** The term «TokDrift» used in this article describes the observed behavioral pattern of autoregressive attention collapsing special-character boundaries into statistically dominant BPE tokens. It is used as a descriptive label for this failure mode, not as a reference to a single canonical paper.
+
+---
+
+*Field note — context, not evidence:* The client used for this audit reported version 5.9.3 while the work was in progress; its in-application release notes list fixes for long-session crashes and post-upgrade sandbox initialization failures. We did not archive those notes, so we record the overlap as context only. The fixes live in the client and tooling layer; our findings live in model-inference behaviour. They point at the same difficulty from opposite sides. We make no claim that the release responds to, or confirms, this work.
