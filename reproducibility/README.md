@@ -16,6 +16,8 @@ This lightweight reproducibility package allows deterministic verification of al
 | `check_expected.py` | Compares a fresh run against `expected_output.txt`; `--selftest` corrupts the reference and requires the check to fail, so a blind checker cannot pass. |
 | `check_protocol.py` | Runs the mechanical part of the audit checklist (section 7 of the protocol). Items that need the run archives are reported as `Н/Д` (not applicable) when the archives are absent, never as a silent pass. |
 | `check_tier0.py` | Tier 0 checker: extracts every file path and line-range reference from a document and verifies that the target exists and is long enough. Paths are resolved relative to the repository, so it works after a plain clone. **After a clone it may report problems in `VERDICT_JOURNEY.md`: that document cites files of the research archive (`Argon_v9/...` and similar) which are not part of this repository by design.** The checker is reporting exactly that, not malfunctioning. |
+| `length_vs_accuracy.py` | Prompt length against two different outcomes: whether a reasoning block is present, and whether the answer is correct. Reports Clopper–Pearson intervals, exact Fisher tests between arms of the same series, and Holm correction across all comparisons. Needs the run archives (`Argon_v*/runs/*/archive.jsonl`); without them it prints nothing. |
+| `drift_worksheet.py` | Extracts every numeric claim from the verdict documents into a CSV for manual classification (confirmed / refuted / no source), then scores `Drift_syc = refuted / (confirmed + refuted)` with a Clopper–Pearson interval. Classification is deliberately manual: the canonical output prints selected aggregates, so "not found" is not "refuted". |
 
 ## Quick Start (Zero Dependencies)
 
