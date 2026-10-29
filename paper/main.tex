@@ -13,14 +13,33 @@
 % Marker glyphs. Under XeTeX the marker is set in a font that actually
 % contains Hangul and the Geometric Shapes block; under pdflatex the
 % \DeclareUnicodeCharacter fallbacks above apply instead.
+% The candidate list is ordered by availability: Windows first, then the
+% Noto CJK families that a Linux box is likely to have. If none is present
+% the marker degrades to \texttt, which under XeTeX means a missing glyph
+% rather than a wrong one - a visible defect, not a silent substitution.
 \ifdefined\XeTeXversion
 \usepackage{fontspec}
+\newif\ifmarkerfontfound
+\markerfontfoundfalse
 \IfFontExistsTF{Arial Unicode MS}{%
-  \newfontfamily\markerfont{Arial Unicode MS}%
-  \newcommand{\marker}[1]{{\normalfont\markerfont #1}}%
-}{%
-  \newcommand{\marker}[1]{\texttt{#1}}%
-}
+  \newfontfamily\markerfont{Arial Unicode MS}\markerfontfoundtrue}{}
+\ifmarkerfontfound\else
+  \IfFontExistsTF{Noto Sans CJK KR}{%
+    \newfontfamily\markerfont{Noto Sans CJK KR}\markerfontfoundtrue}{}
+\fi
+\ifmarkerfontfound\else
+  \IfFontExistsTF{Noto Sans CJK JP}{%
+    \newfontfamily\markerfont{Noto Sans CJK JP}\markerfontfoundtrue}{}
+\fi
+\ifmarkerfontfound\else
+  \IfFontExistsTF{Malgun Gothic}{%
+    \newfontfamily\markerfont{Malgun Gothic}\markerfontfoundtrue}{}
+\fi
+\ifmarkerfontfound
+  \newcommand{\marker}[1]{{\normalfont\markerfont #1}}
+\else
+  \newcommand{\marker}[1]{\texttt{#1}}
+\fi
 \else
 \newcommand{\marker}[1]{\texttt{#1}}
 \fi
@@ -99,7 +118,7 @@ The discrete-counting failures documented in the Argon series intersect with thr
 
 To satisfy rigorous scientific standards and eliminate confirmation bias, all experiments followed a pre-registered protocol and were audited under the Red Team Protocol of Project Argon. The author acts as that project's Red Team Auditor. The audit is internal, not independent: the same author designed the probes and checked the numbers, so no claim below rests on outside review (\S\ref{sec:twofailures}).
 
-\paragraph{Instrument and object of study.} The object of investigation is Project Argon itself: its probe protocol, its archives, and the claims written about them. The testing instrument was the frozen inference runtime reached through the Antigravity agent gateway, recorded in every archive entry as \texttt{model = flash\_lite}. That identifier, not a vendor model name, is what the telemetry supports, and it is the only name used here.
+\paragraph{Instrument and object of study.} Three things are kept apart here. Project Argon is the framework: the probe protocol, the archives, and the claims written about them, audited under its Red Team Protocol. The object of investigation is the counting behaviour of the model observed under that framework. The instrument that executed the probes was the frozen inference runtime reached through the Antigravity agent gateway, recorded in every archive entry as \texttt{model = flash\_lite}; that identifier, not a vendor model name, is what the telemetry supports, and it is the only name used here.
 
 \subsection{Isolation Runtime and No-Tools Invariant}
 All probes were executed using the frozen inference runtime of \texttt{flash\_lite} (a modern MoE transformer with an explicit latent reasoning channel, \texttt{thinking}). Except for exploratory baseline v8 (which permitted code execution) and reference control v10 (which read local disk files), all 960 canonical probes in v9 and v11--v16 were executed under strict \textbf{No-Tools isolation} (\texttt{tools=[]}). Every request log in \texttt{archive.jsonl} was cryptographically audited: unauthorized tool invocation was strictly $0/960$ ($0.0\%$).

@@ -5,8 +5,29 @@
 \usepackage{fontspec}
 \setmainfont{Times New Roman}
 \setmonofont{Consolas}
-\newfontfamily\markerfont{Arial Unicode MS}
-\newcommand{\marker}[1]{{\normalfont\markerfont #1}}
+% Маркер набирается шрифтом, в котором есть и хангыль, и Geometric Shapes.
+% Порядок — по доступности: Windows, затем семейства Noto CJK для Linux.
+\newif\ifmarkerfontfound
+\markerfontfoundfalse
+\IfFontExistsTF{Arial Unicode MS}{%
+  \newfontfamily\markerfont{Arial Unicode MS}\markerfontfoundtrue}{}
+\ifmarkerfontfound\else
+  \IfFontExistsTF{Noto Sans CJK KR}{%
+    \newfontfamily\markerfont{Noto Sans CJK KR}\markerfontfoundtrue}{}
+\fi
+\ifmarkerfontfound\else
+  \IfFontExistsTF{Noto Sans CJK JP}{%
+    \newfontfamily\markerfont{Noto Sans CJK JP}\markerfontfoundtrue}{}
+\fi
+\ifmarkerfontfound\else
+  \IfFontExistsTF{Malgun Gothic}{%
+    \newfontfamily\markerfont{Malgun Gothic}\markerfontfoundtrue}{}
+\fi
+\ifmarkerfontfound
+  \newcommand{\marker}[1]{{\normalfont\markerfont #1}}
+\else
+  \newcommand{\marker}[1]{\texttt{#1}}
+\fi
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{booktabs,array,multirow}
 \usepackage{microtype}
@@ -82,7 +103,7 @@
 
 Чтобы соответствовать строгим научным требованиям и исключить предвзятость подтверждения, все эксперименты следовали предрегистрированному протоколу и проходили аудит по протоколу Red Team проекта Argon. Автор выступает аудитором Red Team этого проекта. Аудит внутренний, а не независимый: тот же автор ставил пробы и проверял числа, поэтому ни одно утверждение ниже не опирается на внешнюю проверку (\S\ref{sec:twofailures}).
 
-\paragraph{Инструмент и объект исследования.} Объект исследования — сам проект Argon: его протокол проб, его архивы и утверждения, написанные о них. Инструментом был замороженный инференс-рантайм, доступный через шлюз Antigravity и записанный в каждой записи архива как \texttt{model = flash\_lite}. Именно этот идентификатор, а не торговое название модели, подтверждается телеметрией, и только он здесь используется.
+\paragraph{Инструмент и объект исследования.} Здесь разведены три вещи. Проект Argon — это рамка: протокол проб, архивы и утверждения, написанные о них, под аудитом его же протокола Red Team. Объект исследования — поведение модели при счёте, наблюдаемое внутри этой рамки. Инструмент, исполнявший пробы, — замороженный инференс-рантайм, доступный через шлюз Antigravity и записанный в каждой записи архива как \texttt{model = flash\_lite}; именно этот идентификатор, а не торговое название модели, подтверждается телеметрией, и только он здесь используется.
 
 \subsection{Изоляция рантайма и инвариант No-Tools}
 Все пробы выполнялись на замороженном инференс-рантайме \texttt{flash\_lite} (современный MoE-трансформер с явным латентным каналом рассуждения, \texttt{thinking}). За исключением разведочного базового прогона v8 (где исполнение кода разрешалось) и референсного контроля v10 (читавшего локальные файлы с диска), все 960 канонических проб в v9 и v11--v16 выполнялись в строгой \textbf{изоляции No-Tools} (\texttt{tools=[]}). Каждый журнал запроса в \texttt{archive.jsonl} прошёл криптографический аудит: несанкционированных вызовов инструментов строго $0/960$ ($0{,}0\%$).
