@@ -15,6 +15,12 @@ submitted. Keep it that way unless the author says otherwise.
 | `references.bib` | Shared bibliography, six keys plus the sycophancy reference. |
 | `main.pdf` | Built English PDF. |
 | `main_ru.pdf` | Built Russian PDF. |
+| `arxiv_submission.tar.gz` | Ready-to-upload archive: `main.tex` and `references.bib`. |
+| `arxiv_submission.zip` | Same content as ZIP. |
+
+The archives are generated from the files beside them and hold nothing else.
+If a source changes, rebuild the archive in the same commit — a stale archive
+in this folder is exactly the drift the project spent a day cleaning up.
 
 ## Build
 
