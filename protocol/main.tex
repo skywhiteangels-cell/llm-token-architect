@@ -34,7 +34,8 @@ is not obvious fabrication but \emph{plausible overstatement}: the number is
 right, the interpretation is not, and the prose is confident. We describe a
 protocol that makes such overstatement mechanically detectable, and report what
 happened when we applied it to our own corpus of 1{,}416 probes across ten
-experimental series.
+experimental series. The audit covers ten $p$-values and twenty-one fractions,
+and Section~\ref{sec:status} states its scope.
 
 The protocol rests on six requirements: pre-registration freeze, external memory
 instead of context recall, separation of generator and auditor, deterministic
@@ -89,7 +90,8 @@ reformulation.
 the text. Repaired only by recounting from the log.
 
 Tier 0 is the most dangerous and the least defended: tiers I and II have
-mechanical checks, tier 0 has only attention.
+mechanical checks, whereas tier 0 has historically relied on attention alone;
+the protocol adds an existence check for it (P5).
 
 \section{The protocol}
 
@@ -132,6 +134,7 @@ not a demonstrated optimum, and models trained on overlapping corpora err
 correlatedly, so an ``ensemble'' does not guarantee independence of errors.
 
 \section{Application and honest status}
+\label{sec:status}
 
 The checklist has twelve items and is executable. On our corpus it reports:
 
