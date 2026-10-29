@@ -8,6 +8,7 @@ import json
 import os
 import sys
 from collections import Counter
+from itertools import product
 from math import comb
 
 # Set stdout encoding for Windows console
@@ -195,6 +196,61 @@ for label, k in (("exact", cat["exact"]), ("overshoot", cat["overshoot"]),
 v16_a17 = sum(1 for r in by["v16"] if "A" in r["arm"] and r["answer_val"] == 17)
 print("[v16] Arm A answered 17: %d / 48 = %.1f%%"
       % (v16_a17, v16_a17 / 48 * 100))
+
+
+# --- v16: full error-profile distribution (2 x 5) --------------------------
+# The five bins below were fixed DURING analysis, not before the run. This
+# test is post-hoc: it is not one of the four pre-registered contrasts, and
+# the paper reports it with that label. It is reproduced here because the
+# paper cites its p-value and the value must not be a literal in this script.
+PROFILE_BINS = ((16, 16), (17, 17), (18, 18), (19, 999), (0, 15))
+
+
+def profile_bin(value):
+    for i, (lo, hi) in enumerate(PROFILE_BINS):
+        if value is not None and lo <= value <= hi:
+            return i
+    return None
+
+
+def exact_rxc(rows):
+    """Two-sided exact test for an r x c table with fixed margins.
+
+    Generalises the Fisher criterion: sum the point probability of every
+    table whose probability does not exceed the observed one. Same relative
+    tolerance as fisher() below, for the same reason.
+    """
+    r, c = len(rows), len(rows[0])
+    cols = [sum(rows[i][j] for i in range(r)) for j in range(c)]
+    total = sum(cols)
+    row_tot = [sum(row) for row in rows]
+
+    def prob(vec):
+        p = 1.0
+        for x, n in zip(vec, cols):
+            p *= comb(n, x)
+        return p / comb(total, row_tot[0])
+
+    observed = prob(rows[0])
+    acc = 0.0
+    for vec in product(*(range(n + 1) for n in cols)):
+        if sum(vec) != row_tot[0]:
+            continue
+        pv = prob(vec)
+        if pv <= observed * (1 + 1e-9):
+            acc += pv
+    return acc
+
+
+profile = [[0] * len(PROFILE_BINS) for _ in range(2)]
+for r in by["v16"]:
+    b = profile_bin(r["answer_val"])
+    if b is not None:
+        profile[0 if "A" in r["arm"] else 1][b] += 1
+p_2x5 = exact_rxc(profile)
+print("[v16] Error profile, bins 16 / 17 / 18 / >=19 / <16:")
+print("      A %s   B %s" % (profile[0], profile[1]))
+print("      exact 2x5 p = %.6f   (post-hoc; binning fixed during analysis)" % p_2x5)
 
 
 
