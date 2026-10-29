@@ -76,7 +76,9 @@ def fisher_exact(a, b, c, d):
 
     p0 = p_of(a)
     lo, hi = max(0, a + c - (c + d)), min(a + b, a + c)
-    return sum(p_of(x) for x in range(lo, hi + 1) if p_of(x) <= p0 + 1e-12)
+    # Относительный допуск, не абсолютный: p0 + 1e-12 проглатывает весь хвост
+    # при малых p. Тот же дефект, что был в verify_numbers.py.
+    return sum(p_of(x) for x in range(lo, hi + 1) if p_of(x) <= p0 * (1 + 1e-9))
 
 
 def holm(pvals):

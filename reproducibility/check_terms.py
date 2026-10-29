@@ -35,7 +35,11 @@ def fisher(a, b, c, d):
 
     p0 = p(a)
     lo, hi = max(0, a + c - (c + d)), min(a + b, a + c)
-    return sum(p(x) for x in range(lo, hi + 1) if p(x) <= p0 + 1e-12)
+    # Relative tolerance, not absolute. An absolute one (p0 + 1e-12) swallows
+    # the whole tail when p is tiny: at p ~ 1e-18 the epsilon is five orders of
+    # magnitude larger than the value. Same defect, same fix as in
+    # verify_numbers.py, where it was found by an independent implementation.
+    return sum(p(x) for x in range(lo, hi + 1) if p(x) <= p0 * (1 + 1e-9))
 
 
 def load_v16(root):

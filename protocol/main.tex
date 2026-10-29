@@ -1,0 +1,209 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{microtype}
+\sloppy
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  citecolor=black
+}
+
+\title{Deterministic Audit of LLM-Generated Research Claims}
+\author{Vladimir V.~Borovikov\\
+\small Independent researcher\\
+\small \url{https://orcid.org/0009-0005-7773-3581}}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Large language models are increasingly used to draft the narrative parts of
+research: reports, verdicts, discussion sections. The failure mode that matters
+is not obvious fabrication but \emph{plausible overstatement}: the number is
+right, the interpretation is not, and the prose is confident. We describe a
+protocol that makes such overstatement mechanically detectable, and report what
+happened when we applied it to our own corpus of 1{,}416 probes across ten
+experimental series.
+
+The protocol rests on six requirements: pre-registration freeze, external memory
+instead of context recall, separation of generator and auditor, deterministic
+parity checking of every reported number, a three-tier taxonomy of claim errors,
+and multi-model adversarial review. We contribute an executable checklist of
+twelve items and report its honest status on our own work: six pass, one is
+amended, one fails, two are partial, two require human judgement. The protocol
+is not fully applied, and the checklist says so.
+\end{abstract}
+
+\section{Introduction}
+
+When an LLM writes up an experiment, the output is fluent by construction. The
+fluency is not evidence of correctness, but it reads as such---to reviewers, and
+to the authors. In our own series we observed a repeated pattern: the first
+draft of a verdict claimed more than the archive supported, and the claim was
+withdrawn only after a separate recount.
+
+Examples from our logs, all verifiable in the public repository:
+
+\begin{itemize}
+  \item a null result ($p = 0.338$) described as a refutation ``with 100\%
+        strictness'';
+  \item a comparison of $2/72$ against $0/72$ reported as a ``law''
+        (Fisher $p = 0.4965$~\cite{fisher1935});
+  \item a $p$-value printed as $4.81\times10^{-13}$ where the exact two-sided
+        Fisher test gives $2.909\times10^{-18}$---a tool error, not a model
+        error, that survived six weeks;
+  \item a footnote pointing to a data file that contained none of the cited
+        bytes.
+\end{itemize}
+
+The last two are instructive. The third was produced by our own checker; the
+fourth by a model writing a confident sentence about a file it had not opened.
+Neither was caught by re-reading.
+
+\section{A taxonomy of claim errors}
+\label{sec:taxonomy}
+
+We distinguish three tiers, because they are caught by different means.
+
+\textbf{Tier 0 --- reference fabrication.} The text cites an object that does
+not exist: a file, a line, a dataset, a value. Numbers may be arithmetically
+perfect. Neither recomputation nor proofreading detects it, because there is
+nothing to recompute. Detection requires checking existence.
+
+\textbf{Tier I --- interpretive overstatement.} The archive supports the number,
+not the sentence. ``$p = 0.34$'' becomes ``refuted''. Repaired by
+reformulation.
+
+\textbf{Tier II --- numerical error.} The archive holds a different number than
+the text. Repaired only by recounting from the log.
+
+Tier 0 is the most dangerous and the least defended: tiers I and II have
+mechanical checks, tier 0 has only attention.
+
+\section{The protocol}
+
+\paragraph{P1. Freeze.} Code, prompts, hypotheses and endpoints are hashed
+before the first probe. A self-signed manifest is a declaration, not a freeze:
+without a trusted timestamp it proves only the current state of the files. We
+introduce the status \textsc{freeze-amended} for series whose files changed
+after the freeze but where the change is documented, the results were recomputed
+and matched, and regression tests passed. It differs from ``annulled'' in that
+the numbers survive, and from ``frozen'' in that byte-level pipeline
+reproduction is lost.
+
+\paragraph{P2. External memory.} Numbers are read from files, never recalled
+from context. A model that must remember will eventually remember wrongly.
+
+\paragraph{P3. Separation of contours.} The generator writes, the auditor
+counts. The auditor is independent only if it is written from a separate
+specification; being ``a different script'' is not independence.
+
+\paragraph{P4. Parity check.} Every reported number---$p$-values, fractions,
+percentages, confidence bounds---is recomputed by a script, and the script's
+output is published alongside the paper. Two additions proved essential in
+practice. First, a \emph{known-answer test}: a deliberately corrupted reference
+that the checker must reject, otherwise a blind checker passes everything.
+Second, statistics must not be hand-rolled without cross-validation; a parity
+check that compares one homemade implementation with another compares a bug with
+a bug. Our own Fisher implementation carried an absolute tolerance of
+$10^{-12}$, which at $p \approx 10^{-18}$ is $3.5\times10^{5}$ times larger than
+the value itself and inflated the tail by five orders of magnitude. It was found
+by an independent implementation, not by the protocol---which is why
+cross-validation is now a required step rather than a lucky accident.
+
+\paragraph{P5. Taxonomy.} As in Section~\ref{sec:taxonomy}, with Tier~0 checked
+by a script that extracts file paths and line ranges from a document and
+verifies that the targets exist.
+
+\paragraph{P6. Multi-model review.} Several model families review each other. We
+report this as the weakest pillar: the number of passes is a working convention,
+not a demonstrated optimum, and models trained on overlapping corpora err
+correlatedly, so an ``ensemble'' does not guarantee independence of errors.
+
+\section{Application and honest status}
+
+The checklist has twelve items and is executable. On our corpus it reports:
+
+\begin{center}
+\begin{tabular}{@{}lrl@{}}
+\toprule
+Status & Count & Meaning \\
+\midrule
+Pass    & 6 & checked mechanically \\
+Amended & 1 & post-freeze edit, documented and recomputed \\
+Fail    & 1 & verifier independence: same author wrote both \\
+Partial & 2 & pre-registration, verdict versioning \\
+Manual  & 2 & trusted timestamp, archive immutability \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The single failure is not repairable by code. It requires a second author
+writing the checker from a specification they did not write themselves. We state
+this rather than paper over it, because a checklist that can only be passed by
+misreporting is worse than no checklist.
+
+The coverage of P4 is ten $p$-values---nine two-sample contrasts and the
+post-hoc five-bin test---twenty-one fractions, and all reported
+percentages including Clopper--Pearson bounds~\cite{clopper1934}, recomputed by
+two independent scripts whose agreement is verified on every run.
+
+\section{Limitations}
+
+The audit sample is not random: we audited the series where an audit was
+performed. We make no claim about the series we did not audit.
+
+The nine hypotheses were reconstructed from the manuscript, not frozen before
+the run. Multiple-comparison correction (Holm)~\cite{holm1979} is discussed prospectively; it
+was not applied to the completed series.
+
+Provenance is not provable: without a trusted timestamp we cannot show that the
+archive was in its present state \emph{before} the run rather than adjusted
+after. What is demonstrated is narrower---the numbers reproduce from the archive
+as it exists in the repository today.
+
+\section{Availability}
+
+Code, probes and the executable checklist:
+\url{https://github.com/skywhiteangels-cell/llm-token-architect}.
+The accompanying study: \url{https://doi.org/10.5281/zenodo.23679671}.
+
+\paragraph{Model identity.} All probe series reported here ran on
+\texttt{flash\_lite}, a publicly available model tier; the verdict texts were
+written with a different general-purpose model, noted in the project archive.
+Nothing is withheld behind a proprietary claim or a non-disclosure agreement:
+the archive and the verification scripts are released under the MIT licence, so
+every number can be recomputed without knowing which model produced it.
+
+\begin{thebibliography}{9}
+
+\bibitem{clopper1934}
+C.~J. Clopper and E.~S. Pearson.
+\newblock The use of confidence or fiducial limits illustrated in the case of
+  the binomial.
+\newblock \emph{Biometrika}, 26(4):404--413, 1934.
+
+\bibitem{fisher1935}
+R.~A. Fisher.
+\newblock \emph{The Design of Experiments}.
+\newblock Oliver \& Boyd, Edinburgh, 1935.
+
+\bibitem{holm1979}
+S.~Holm.
+\newblock A simple sequentially rejective multiple test procedure.
+\newblock \emph{Scandinavian Journal of Statistics}, 6(2):65--70, 1979.
+
+\end{thebibliography}
+
+\end{document}
