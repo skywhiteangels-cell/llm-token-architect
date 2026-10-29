@@ -27,6 +27,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
 
 EXT = r"(?:py|md|txt|json|jsonl|tex|bib|jpg|jpeg|png|html|csv|db|zip)"
+# Абсолютный путь Windows может содержать пробелы (C:\Users\Sky Angels\...).
+# Прежний шаблон обрывался на первом пробеле и давал ложное «файла нет».
+ABS_WIN_RE = re.compile(r"[A-Za-z]:\\[^\n:*?\"<>|]+?\." + EXT + r"\b")
 PATH_RE = re.compile(r"[A-Za-z0-9_][\w./\\-]*\." + EXT + r"\b")
 LINE_RE = re.compile(r"(?:стр\.?|строк[аиу]?|line|L)\s*(\d+)(?:\s*[–-]\s*(\d+))?", re.I)
 URL_RE = re.compile(r"https?://\S+")
@@ -55,8 +58,15 @@ def is_placeholder(path):
 
 
 def resolve(path, base_dir, roots):
-    """Ищет файл: рядом с документом, затем в корнях, затем по имени."""
+    """Ищет файл: рядом с документом, затем в корнях, затем по имени.
+
+    Абсолютный путь проверяется буквально: если в тексте написано
+    C:\\1\\foo.md, то одноимённый foo.md в другой папке — не оправдание.
+    Иначе мёртвая ссылка выглядит живой, и чекер врёт в самую опасную сторону.
+    """
     p = path.replace("\\", "/")
+    if re.match(r"^[A-Za-z]:/", p):
+        return p if os.path.isfile(p) else None
     for c in [os.path.join(base_dir, p)] + [os.path.join(r, p) for r in roots]:
         if os.path.isfile(c):
             return c
@@ -76,8 +86,14 @@ def check(doc, roots):
     # документ может лежать вне корней — тогда его собственный каталог тоже корень
     local = [base] + [r for r in roots if r != base]
 
-    paths = sorted(p.replace("\\_", "_") for p in set(PATH_RE.findall(text))
-                   if not is_placeholder(p))
+    # сначала абсолютные пути (в них бывают пробелы), потом остальные
+    abs_paths = set(ABS_WIN_RE.findall(text))
+    raw = abs_paths | set(PATH_RE.findall(text))
+    # PATH_RE вырезает из абсолютного пути обрывок после пробела
+    # («AI\2026-10-21-...\2026-10-29.md»). Такой обрывок не самостоятельная
+    # ссылка: если он — хвост полного пути, выбрасываем его.
+    raw = {p for p in raw if not any(a != p and a.endswith(p) for a in abs_paths)}
+    paths = sorted(p.replace("\\_", "_") for p in raw if not is_placeholder(p))
     missing, found = [], 0
     for p in paths:
         if resolve(p, base, local):
