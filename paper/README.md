@@ -4,6 +4,10 @@ Preprint source. Russian version included alongside the English one; both are
 built from the same numbers and the same caveats, so the two files can be
 diffed against each other for consistency.
 
+**The Russian version is published here and nowhere else.** It is not part of
+any arXiv, Zenodo or journal submission — only `main.tex` and `main.pdf` are
+submitted. Keep it that way unless the author says otherwise.
+
 | File | What it is |
 |---|---|
 | `main.tex` | English source. Builds under pdfLaTeX or XeLaTeX. |
