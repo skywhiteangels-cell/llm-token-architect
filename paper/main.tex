@@ -53,6 +53,12 @@
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
+% URL breaking: xurl permits a line break at any character of a URL,
+% which keeps long DOI and GitHub links from overflowing the margin.
+\usepackage{xurl}
+% Emergency stretch: LaTeX applies it only to lines that would otherwise
+% overflow, unlike \sloppy, which reflows every justified paragraph.
+\emergencystretch=3em
 
 \hypersetup{
     colorlinks=true,
@@ -147,7 +153,7 @@ A scaling factor of $10\times$ cleanly separates hypotheses onto distinct decima
 \subsection{Byte- and Character-Level Lexical Matching}
 To rigorously evaluate the BPE Tokenizer Hypothesis in v16, we contrasted a complex multi-byte Korean marker (\marker{점점점◁}, 4 Unicode characters, 12 bytes UTF-8)\footnote{In standard pdf\LaTeX\ typography, non-ASCII glyphs are rendered via typographic fallbacks (\texttt{jeom} for Hangul \texttt{U+C810}, $\boxminus$ for \texttt{U+25A4}, $\triangleleft$ for \texttt{U+25C1}); the exact 12-byte UTF-8 sequences are recorded byte for byte in \texttt{reproducibility/markers.txt}.} against a pure geometric block (\marker{▤▤▤▤}, Unicode \texttt{U+25A4}, 4 characters, 12 bytes UTF-8). Prompts were equalized bit-for-bit:
 \begin{equation}
-    |\text{Prompt}_A| = |\text{Prompt}_B| = 880 \text{ chars}, \quad \text{len}(\text{Prompt}_A)_{\text{UTF-8}} = \text{len}(\text{Prompt}_B)_{\text{UTF-8}} = 1421 \text{ bytes}.
+    |\text{Prompt}_A| = |\text{Prompt}_B| = 880 \text{ chars}, \; \text{len}(\text{Prompt}_A)_{\text{UTF-8}} = \text{len}(\text{Prompt}_B)_{\text{UTF-8}} = 1421 \text{ bytes}.
 \end{equation}
 
 \section{Empirical Results}
