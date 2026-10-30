@@ -1,0 +1,134 @@
+{
+  "23679671": {
+    "conceptdoi": "10.5281/zenodo.23679670",
+    "creators": [
+      {
+        "affiliation": "Independent Researcher",
+        "name": "Borovikov, Vladimir V.",
+        "orcid": "0009-0005-7773-3581"
+      }
+    ],
+    "description": "<p>Три научно-популярные статьи об одном исследовании &mdash; 1 416 канонических проб<br>на авторегрессионных трансформерах.</p>\n<p>1. Анатомия миража D*: как мы ловили ИИ на лжи, а поймали себя.<br>&nbsp; &nbsp;Как нейросети фабрикуют открытия, а первичные логи выводят их на чистую воду.<br>2. Кавычки, конечные автоматы и топология неизбежности в LLM-агентах.<br>&nbsp; &nbsp;Как BPE TokDrift становится вектором отказа CLI-рантаймов и почему защита<br>&nbsp; &nbsp;автономных систем строится на уровне детерминированных хуков.<br>3. Квантовые иллюзии трансформеров: почему нейросети ошибаются в устном счёте<br>&nbsp; &nbsp;и как они умеют осознанно врать.<br>&nbsp; &nbsp;Анатомия ментального счёта, Dual-Path Attention и сдвиг формы при инварианте<br>&nbsp; &nbsp;массы (Argon v11&ndash;v16).</p>\n<p>Текст написан от первого лица в конце исследовательской сессии: это рассказ<br>участника о том, что происходило, а не пересказ со стороны. Отсюда тон, прямая<br>речь и то, чего нет в формальных текстах.</p>\n<p>Формальное изложение &mdash; препринт 10.5281/zenodo.23813780. Методика аудита<br>утверждений &mdash; протокол 10.5281/zenodo.23817684.</p>\n<p>English summary: three Russian-language popular-science essays on a single study<br>of 1,416 canonical probes on autoregressive transformers, written in the first<br>person at the end of the research session. The formal treatment is the preprint<br>at 10.5281/zenodo.23813780; the audit protocol is at 10.5281/zenodo.23817684.</p>",
+    "doi": "10.5281/zenodo.23679671",
+    "files": [
+      {
+        "checksum": "md5:dedddbd288f13422220753f375cfa5cd",
+        "key": "The_Ghost_in_the_Context_Window_Trilogy.pdf",
+        "size": 599298
+      }
+    ],
+    "keywords": [
+      "LLM",
+      "Attention",
+      "Dual-Path Attention",
+      "BPE",
+      "deterministic hooks",
+      "popular science",
+      "The Ghost in the Context Window"
+    ],
+    "language": "rus",
+    "license": "cc-by-4.0",
+    "publication_date": "2026-10-27",
+    "related_identifiers": [
+      {
+        "identifier": "10.5281/zenodo.23813780",
+        "relation": "isSupplementedBy"
+      }
+    ],
+    "resource_type": "Preprint",
+    "title": "The Ghost in the Context Window: трилогия об анатомии перцептивных иллюзий, Dual-Path Attention и детерминированных топологиях",
+    "version": "1.0"
+  },
+  "23813780": {
+    "conceptdoi": "10.5281/zenodo.23813779",
+    "creators": [
+      {
+        "affiliation": "Independent Researcher",
+        "name": "Borovikov, Vladimir V.",
+        "orcid": "0009-0005-7773-3581"
+      }
+    ],
+    "description": "<p>Large language models (LLMs) excel at smooth semantic continuation, yet their behavior remains vulnerable when maintaining discrete invariants&mdash;exact integer counting constraints over long sequences. Across a pre-registered benchmark of 1,416 canonical probes (1,320 in the core Argon v8-v16 series, plus 96 in replication v6) evaluated under zero-temperature on modern Mixture-of-Experts transformer runtimes (with strict No-Tools isolation across all 960 purely cognitive counting probes in v9 and v11-v16, alongside tool-manipulation protocols in v8 and v10), we investigate the mechanistic locus of the discrete counting error (the N -&gt; N+1 fencepost overshoot).</p>\n<p>Through a sequence of anatomical interventional experiments, we demonstrate that:<br>1. Exoneration of the Decoder: By applying an algebraic amplifier (f(N) = 10N - 6, v15) to separate attention scan drift (Delta = +/-10) from output unembedding glitches (Delta = +1), we find strictly 0 / 96 (0.0%, two-sided 95% Clopper-Pearson CI [0.0%, 3.8%]) decoder off-by-one errors, while input perceptual scan drift accounts for 34.4% (33/96).<br>2. Disqualification of the Tokenizer Hypothesis: By byte- and character-matching a repetitive Korean subword marker (12 bytes UTF-8) against a clean Unicode geometric box-drawing block (12 bytes UTF-8, v16), we show that replacing language with geometry fails to eliminate phantom errors (35.4% vs 41.7%, Fisher exact test p = 0.675). This fails to support the strong BPE tokenization hypothesis and is consistent with the hypothesis that the discrete counting limit reflects an attention phase boundary constraint.<br>3. Dual-Path Attention Decoupling: In adversarial gaslighting probes (v13), the model follows instructions to emit a falsehood in its visible content (93.8%), yet spontaneous \"truth leaks\" directly from the latent reasoning channel (thinking) into the terminal token occur in 2/48 probes. This demonstrates that terminal logits can decouple from local autoregressive n-gram context.</p>\n<p>We formalize these empirical findings into the Attention Dispersion Law: as monotonic sequences exceed local attention span capacity (N &gt;= 8..16), positional embedding phase interference smears receptive boundaries, inducing discrete overshoot. Consequently, deterministic agent architectures should complement in-context data passing with external reference passing and deterministic runtime parity gates.</p>\n<p>The Russian version of this preprint is the second file in this record:<br>main_PACKAGE_v2_ru.pdf. / Русская версия &mdash; второй файл записи:<br>main_PACKAGE_v2_ru.pdf.</p>",
+    "doi": "10.5281/zenodo.23813780",
+    "files": [
+      {
+        "checksum": "md5:65c5f7ad5efd2f3dc561c1c2b775c86c",
+        "key": "main_PACKAGE_v2.pdf",
+        "size": 121725
+      },
+      {
+        "checksum": "md5:9cb075070321a84d6d70db2e15a11e2b",
+        "key": "main_PACKAGE_v2_ru.pdf",
+        "size": 211068
+      }
+    ],
+    "keywords": [
+      "Transformers",
+      "Attention mechanism",
+      "Autoregressive models",
+      "Deep Learning",
+      "LLM",
+      "The Ghost in the Context Window"
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "publication_date": "2026-10-30",
+    "related_identifiers": [
+      {
+        "identifier": "10.5281/zenodo.23679671",
+        "relation": "isSupplementTo"
+      },
+      {
+        "identifier": "10.5281/zenodo.23817684",
+        "relation": "isSupplementedBy"
+      }
+    ],
+    "resource_type": "Preprint",
+    "title": "The Attention Dispersion Law and Dual-Path Decoupling in Autoregressive Transformers",
+    "version": "v2.0"
+  },
+  "23817684": {
+    "conceptdoi": "10.5281/zenodo.23817683",
+    "creators": [
+      {
+        "affiliation": "Independent Researcher",
+        "name": "Borovikov, Vladimir V.",
+        "orcid": "0009-0005-7773-3581"
+      }
+    ],
+    "description": "<p>Large language models are increasingly used to draft the narrative parts of<br>research: reports, verdicts, discussion sections. The failure mode that matters<br>is not obvious fabrication but \\emph{plausible overstatement}: the number is<br>right, the interpretation is not, and the prose is confident. We describe a<br>protocol that makes such overstatement mechanically detectable, and report what<br>happened when we applied it to our own corpus of 1{,}416 probes across ten<br>experimental series. The audit covers ten $p$-values and twenty-one fractions,<br>and Section~\\ref{sec:status} states its scope.</p>\n<p>The protocol rests on six requirements: pre-registration freeze, external memory<br>instead of context recall, separation of generator and auditor, deterministic<br>parity checking of every reported number, a three-tier taxonomy of claim errors,<br>and multi-model adversarial review. We contribute an executable checklist of<br>twelve items and report its honest status on our own work: six pass, one is<br>amended, one fails, two are partial, two require human judgement. The protocol<br>is not fully applied, and the checklist says so.</p>\n<p>The Russian version of this preprint is the second file in this record:<br>main_PACKAGE_v2_ru.pdf. / Русская версия &mdash; второй файл записи:<br>main_PACKAGE_v2_ru.pdf.</p>",
+    "doi": "10.5281/zenodo.23817684",
+    "files": [
+      {
+        "checksum": "md5:a7d648379da6fdf1f490f57986976dac",
+        "key": "main_PROTOCOL_ru.pdf",
+        "size": 123921
+      },
+      {
+        "checksum": "md5:bb6772889e18326bd906f5d9f8faa2fa",
+        "key": "main_PROTOCOL.pdf",
+        "size": 49093
+      }
+    ],
+    "keywords": [
+      "LLM",
+      "Reproducibility",
+      "Research audit",
+      "Pre-registration",
+      "Error taxonomy",
+      "The Ghost in the Context Window"
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "publication_date": "2026-10-30",
+    "related_identifiers": [
+      {
+        "identifier": "10.5281/zenodo.23813780",
+        "relation": "isSupplementTo"
+      }
+    ],
+    "resource_type": "Preprint",
+    "title": "Deterministic Audit of LLM-Generated Research Claims",
+    "version": "1.0"
+  }
+}

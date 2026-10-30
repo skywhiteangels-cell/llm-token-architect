@@ -157,6 +157,7 @@ Exit 2 blocks the tool call and hands the reason back to the model. See
 | [protocol/](protocol/) | The audit protocol: source, both PDFs, its own submission archive |
 | [trilogy/](trilogy/) | The popular trilogy: source markdown and the script that builds its PDF |
 | [reproducibility/](reproducibility/) | Verification bundle — 1,416 probes, 13 scripts, canonical output, and the checkers that read it |
+| [zenodo/](zenodo/) | Snapshot of the three published records; `check.py` reports any drift between the repository and what Zenodo actually serves |
 | [archive/](archive/) | Superseded prompts, kept for the record |
 | [CITATION.cff](CITATION.cff) · [.zenodo.json](.zenodo.json) | Citation metadata for this repository and for GitHub-to-Zenodo releases |
 
