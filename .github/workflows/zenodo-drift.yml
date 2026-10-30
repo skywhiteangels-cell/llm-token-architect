@@ -34,14 +34,38 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Код возврата снимаем руками: шаг не должен падать здесь, иначе
+      # нельзя отличить дрейф от «сравнивать было нечем».
       - name: Compare the committed snapshot with what Zenodo serves
-        run: python zenodo/check.py
-
-      - name: What to do when this fails
-        if: failure()
+        id: check
         run: |
-          echo "::warning::Снимок разошёлся с опубликованным."
-          echo "Это не поломка кода. Либо на Zenodo что-то изменили и это"
-          echo "надо зафиксировать, либо запись на Zenodo привели не к тому,"
-          echo "что лежит в репозитории. Разобрать и переснять:"
+          set +e
+          python zenodo/check.py
+          rc=$?
+          set -e
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+
+      - name: Drift — the snapshot is behind
+        if: steps.check.outputs.rc == '1'
+        run: |
+          echo "::error::Снимок разошёлся с опубликованным — подробности в выводе шага сверки."
+          echo "Это не поломка кода. Либо на Zenodo что-то изменили, и это надо"
+          echo "зафиксировать, либо запись привели не к тому, что лежит в репозитории."
+          echo "Разобрать и переснять:"
           echo "    python zenodo/snapshot.py && git commit zenodo/records.json"
+          exit 1
+
+      - name: Nothing to compare — the check did not run
+        if: steps.check.outputs.rc == '2'
+        run: |
+          echo "::warning::Сверка не состоялась: нет снимка, нет snapshot.py рядом или молчит API Zenodo."
+          echo "Расхождения здесь нет — сравнивать было не с чем. Перезапустите job;"
+          echo "если повторяется, проверьте доступ к zenodo.org из раннера."
+          exit 1
+
+      - name: The checker itself failed
+        if: steps.check.outputs.rc == '3'
+        run: |
+          echo "::error::check.py завершился с внутренней ошибкой — трейс в логе шага сверки."
+          echo "Это дефект проверяющего, а не расхождение снимка."
+          exit 1

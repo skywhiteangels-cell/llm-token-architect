@@ -138,4 +138,12 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except SystemExit:
+        raise
+    except Exception as exc:
+        # Отдельный код: сломался сам чекер, а не разошёлся снимок.
+        # Без него исключение дало бы код 1, то есть выглядело бы как дрейф.
+        print("ОШИБКА: %s: %s" % (type(exc).__name__, exc))
+        sys.exit(3)
