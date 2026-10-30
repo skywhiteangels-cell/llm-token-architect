@@ -14,7 +14,7 @@ submitted. Keep it that way unless the author says otherwise.
 | `main_ru.tex` | Russian source. XeLaTeX/LuaLaTeX only (Cyrillic via `fontspec`). |
 | `references.bib` | Shared bibliography, six keys plus the sycophancy reference. |
 | `main_PACKAGE_v2.pdf` | Built English PDF. |
-| `main_PACKAGE_ru.pdf` | Built Russian PDF. |
+| `main_PACKAGE_v2_ru.pdf` | Built Russian PDF. |
 | `arxiv_submission.tar.gz` | Ready-to-upload archive: `main.tex` and `references.bib`. |
 | `arxiv_submission.zip` | Same content as ZIP. |
 
@@ -30,7 +30,7 @@ tectonic -X compile main_ru.tex
 ```
 
 The build writes `main.pdf` and `main_ru.pdf`. Rename them to
-`main_PACKAGE_v2.pdf` and `main_PACKAGE_ru.pdf` so the committed names stay
+`main_PACKAGE_v2.pdf` and `main_PACKAGE_v2_ru.pdf` so the committed names stay
 current — a rebuild that leaves the old file untouched is the same drift this
 folder has already had once.
 
