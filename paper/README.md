@@ -5,7 +5,7 @@ built from the same numbers and the same caveats, so the two files can be
 diffed against each other for consistency.
 
 **The Russian version is published here and nowhere else.** It is not part of
-any arXiv, Zenodo or journal submission — only `main.tex` and `main_v2.pdf` are
+any arXiv, Zenodo or journal submission — only `main.tex` and `main_PACKAGE.pdf` are
 submitted. Keep it that way unless the author says otherwise.
 
 | File | What it is |
@@ -13,7 +13,7 @@ submitted. Keep it that way unless the author says otherwise.
 | `main.tex` | English source. Builds under pdfLaTeX or XeLaTeX. |
 | `main_ru.tex` | Russian source. XeLaTeX/LuaLaTeX only (Cyrillic via `fontspec`). |
 | `references.bib` | Shared bibliography, six keys plus the sycophancy reference. |
-| `main_v2.pdf` | Built English PDF. |
+| `main_PACKAGE.pdf` | Built English PDF. |
 | `main_ru_v2.pdf` | Built Russian PDF. |
 | `arxiv_submission.tar.gz` | Ready-to-upload archive: `main.tex` and `references.bib`. |
 | `arxiv_submission.zip` | Same content as ZIP. |
@@ -29,9 +29,10 @@ tectonic -X compile main.tex
 tectonic -X compile main_ru.tex
 ```
 
-The build writes `main.pdf` and `main_ru.pdf`. Rename the output to `main_v2.pdf`
-and `main_ru_v2.pdf` so the committed names stay current — a rebuild that leaves
-the old `_v2` file untouched is the same drift this folder has already had once.
+The build writes `main.pdf` and `main_ru.pdf`. Rename the first to
+`main_PACKAGE.pdf` (and the second to `main_ru_v2.pdf`) so the committed names
+stay current — a rebuild that leaves the old file untouched is the same drift
+this folder has already had once.
 
 `main.tex` keeps a pdfLaTeX path: the marker glyphs fall back to typographic
 substitutes there. `main_ru.tex` requires XeLaTeX because the Cyrillic text
