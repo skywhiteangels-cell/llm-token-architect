@@ -10,7 +10,7 @@ This lightweight reproducibility package allows deterministic verification of al
 | `probes.jsonl` | 1,416 canonical probes (`series, probe_id, arm, n, k, answer_val, expected_val, thinking_present, format_ok, tool_used`) — 261 KB. |
 | `verify_numbers.py` | Standalone zero-dependency reproduction script recalculating all paper metrics across all series. |
 | `build_bundle.py` | Data extractor that compiles `probes.jsonl` directly from the raw telemetry archives. |
-| `markers.txt` | The two v16 markers byte for byte, with hex: `점점점◁` and `▤▤▤▤`, 12 bytes each. The PDF renders them through typographic fallbacks, so this file — not the printed page — is the reference. |
+| `markers.txt` | The two v16 markers byte for byte, with hex: `점점점◁` and `▤▤▤▤`, 12 bytes each. The shipped PDF is built with XeLaTeX and shows the real characters; a pdfLaTeX build substitutes fallbacks, so this file — not the printed page — stays the reference. |
 | `make_markers.py` | Regenerates `markers.txt` from the literal strings and asserts the 12-byte round-trip. |
 | `expected_output.txt` | The exact output of `verify_numbers.py` on the published data. |
 | `check_expected.py` | Compares a fresh run against `expected_output.txt`; `--selftest` corrupts the reference and requires the check to fail, so a blind checker cannot pass. |

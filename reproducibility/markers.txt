@@ -1,10 +1,13 @@
 # Exact v16 markers, byte for byte.
 #
-# The PDF renders these glyphs through typographic fallbacks
-# (jeom for U+C810, boxminus for U+25A4, triangleleft for U+25C1),
-# so the printed page does not show the bytes used in the experiment.
-# This file is the reference: the strings below are the ones sent in the
-# prompt field of the raw telemetry archives.
+# Glyph rendering depends on the engine. The shipped PDF is built with
+# XeLaTeX and sets the markers in a font that has them, so the page shows
+# the real characters. A pdfLaTeX build - what arXiv runs by default -
+# substitutes typographic fallbacks instead (jeom for U+C810, boxminus for
+# U+25A4, triangleleft for U+25C1), and there the printed page does not show
+# the bytes used in the experiment.
+# This file is the reference either way: the strings below are the ones sent
+# in the prompt field of the raw telemetry archives.
 #
 # Format: name <TAB> string <TAB> hex bytes <TAB> bytes <TAB> chars
 
