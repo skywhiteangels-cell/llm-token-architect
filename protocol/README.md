@@ -8,7 +8,7 @@ experimental paper in `../ARXIV_PACKAGE`.
 | `main.tex` | Complete source. Self-contained: the bibliography is inline, so no `.bib` file is needed and there is nothing to run BibTeX on. |
 | `main_PROTOCOL.pdf` | Built PDF. Named apart from the full paper's `main_PACKAGE.pdf` so the two never get confused. |
 | `main_ru.tex` | Russian version. Not part of any submission; kept for the bilingual repository. |
-| `main_ru.pdf` | Built Russian PDF. |
+| `main_ru_PROTOCOL.pdf` | Built Russian PDF. |
 | `arxiv_submission.tar.gz` | Ready-to-upload archive: `main.tex` only. |
 | `arxiv_submission.zip` | Same content as ZIP. |
 
@@ -19,9 +19,10 @@ tectonic -X compile main.tex        # or pdflatex main.tex, twice
 tectonic -X compile main_ru.tex     # XeLaTeX/LuaLaTeX only
 ```
 
-The build writes `main.pdf` and `main_ru.pdf`. Rename the first to
-`main_PROTOCOL.pdf` after a rebuild; otherwise a fresh `main.pdf` appears next
-to the committed file and it stops being obvious which one is current.
+The build writes `main.pdf` and `main_ru.pdf`. Rename them to
+`main_PROTOCOL.pdf` and `main_ru_PROTOCOL.pdf` after a rebuild; otherwise a fresh
+`main.pdf` appears next to the committed file and it stops being obvious which
+one is current.
 
 `main.tex` is written for pdfLaTeX (`T1` + `inputenc` + `lmodern`), which is
 what arXiv runs by default; it also builds under XeLaTeX. `main_ru.tex` needs
