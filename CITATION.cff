@@ -1,0 +1,54 @@
+cff-version: 1.2.0
+message: "If you use the code, cite this repository. If you refer to the results, cite the preprint."
+title: "llm-token-architect: Quote Guard, the Attention Dispersion study and its audit protocol"
+abstract: >-
+  A deterministic pre-flight check that stops an autonomous agent from hanging its
+  own shell on an unbalanced quote, together with the experimental study it came
+  from (1,416 canonical probes on autoregressive transformers), the popular
+  trilogy written about it, and the protocol for auditing the claims made in the
+  study. Code is MIT; the papers and the trilogy are CC BY 4.0.
+type: software
+authors:
+  - family-names: Borovikov
+    given-names: Vladimir V.
+    orcid: "https://orcid.org/0009-0005-7773-3581"
+    affiliation: Independent Researcher
+license: MIT
+repository-code: "https://github.com/skywhiteangels-cell/llm-token-architect"
+url: "https://github.com/skywhiteangels-cell/llm-token-architect"
+date-released: "2026-10-30"
+keywords:
+  - LLM
+  - agent safety
+  - shell parsing
+  - reproducibility
+  - attention
+preferred-citation:
+  type: article
+  title: "The Attention Dispersion Law and Dual-Path Decoupling in Autoregressive Transformers"
+  authors:
+    - family-names: Borovikov
+      given-names: Vladimir V.
+      orcid: "https://orcid.org/0009-0005-7773-3581"
+      affiliation: Independent Researcher
+  doi: "10.5281/zenodo.23813780"
+  url: "https://doi.org/10.5281/zenodo.23813780"
+  year: 2026
+  month: 10
+  publisher:
+    name: Zenodo
+references:
+  - type: generic
+    title: "The Ghost in the Context Window — трилогия"
+    authors:
+      - family-names: Borovikov
+        given-names: Vladimir V.
+    doi: "10.5281/zenodo.23679671"
+    year: 2026
+  - type: generic
+    title: "Deterministic Audit of LLM-Generated Research Claims"
+    authors:
+      - family-names: Borovikov
+        given-names: Vladimir V.
+    doi: "10.5281/zenodo.23817684"
+    year: 2026

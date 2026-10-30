@@ -1,0 +1,42 @@
+{
+  "title": "llm-token-architect: Quote Guard and the Attention Dispersion study",
+  "description": "<p>A deterministic pre-flight check that stops an autonomous agent from hanging its own shell on an unbalanced quote, together with the experimental study it came from, the popular trilogy written about it, and the protocol for auditing the claims made in that study.</p><p>The code is MIT-licensed; the papers and the trilogy are CC BY 4.0 and carry their own DOIs, listed below.</p>",
+  "upload_type": "software",
+  "license": "MIT",
+  "access_right": "open",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Borovikov, Vladimir V.",
+      "orcid": "0009-0005-7773-3581",
+      "affiliation": "Independent Researcher"
+    }
+  ],
+  "keywords": [
+    "LLM",
+    "agent safety",
+    "shell parsing",
+    "reproducibility",
+    "attention"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.23813780",
+      "relation": "isSupplementTo",
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.5281/zenodo.23817684",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.5281/zenodo.23679671",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
+    }
+  ]
+}

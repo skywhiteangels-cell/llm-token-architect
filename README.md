@@ -24,6 +24,21 @@ if the lexer ends still inside a quote, backtick, or line-continuation escape.
 
 Two files, no dependencies, one exit code.
 
+## Published records
+
+| | Work | DOI | Language |
+|---|---|---|---|
+| 1 | [The Ghost in the Context Window](https://doi.org/10.5281/zenodo.23679671) — трилогия: three essays on the study | `10.5281/zenodo.23679671` | русский |
+| 2 | [The Attention Dispersion Law and Dual-Path Decoupling in Autoregressive Transformers](https://doi.org/10.5281/zenodo.23813780) — the preprint | `10.5281/zenodo.23813780` | English · русский |
+| 3 | [Deterministic Audit of LLM-Generated Research Claims](https://doi.org/10.5281/zenodo.23817684) — the audit protocol | `10.5281/zenodo.23817684` | English · русский |
+
+Record 3 audits the claims of record 2; record 1 is the popular account written at
+the end of the same session. The three are linked on Zenodo in both directions.
+
+If you use the code, cite this repository. If you refer to the results, cite
+record 2 — [`CITATION.cff`](CITATION.cff) carries both.
+
+
 ## Quick start
 
 ```bash
@@ -138,6 +153,12 @@ Exit 2 blocks the tool call and hands the reason back to the model. See
 | [MASTER_PROMPT_LITE.md](MASTER_PROMPT_LITE.md) | ~300-word drop-in system prompt |
 | [ARTICLE.md](ARTICLE.md) · [ARTICLE_RU.md](ARTICLE_RU.md) | The essay: parables, BPE subword blindness, the "Token Architect" method, and why frontier models still break on the first meter |
 | [WHY_RU.md](WHY_RU.md) | Why every file is built the way it is — the decision log (Russian) |
+| [paper/](paper/) | The preprint: LaTeX source, English and Russian PDFs, the arXiv submission archive |
+| [protocol/](protocol/) | The audit protocol: source, both PDFs, its own submission archive |
+| [trilogy/](trilogy/) | The popular trilogy: source markdown and the script that builds its PDF |
+| [reproducibility/](reproducibility/) | Verification bundle — 1,416 probes, 13 scripts, canonical output, and the checkers that read it |
+| [archive/](archive/) | Superseded prompts, kept for the record |
+| [CITATION.cff](CITATION.cff) · [.zenodo.json](.zenodo.json) | Citation metadata for this repository and for GitHub-to-Zenodo releases |
 
 ## Tests
 
