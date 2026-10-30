@@ -30,7 +30,7 @@ what arXiv runs by default; it also builds under XeLaTeX. `main_ru.tex` needs
 
 ## Before submitting
 
-- Category: `cs.CL` primary, `cs.LG` cross-list.
+- Category: `cs.CL` primary, `cs.LG` and `cs.AI` cross-list.
 - The paper reports a checklist in which one item fails — verifier
   independence. That is deliberate and stated in the text; do not soften it
   in the abstract.
