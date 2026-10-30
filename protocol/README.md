@@ -6,7 +6,7 @@ experimental paper in `../ARXIV_PACKAGE`.
 | File | Purpose |
 |---|---|
 | `main.tex` | Complete source. Self-contained: the bibliography is inline, so no `.bib` file is needed and there is nothing to run BibTeX on. |
-| `main_PROTOCOL.pdf` | Built PDF. Named apart from the full paper's `main_PACKAGE.pdf` so the two never get confused. |
+| `main_PROTOCOL.pdf` | Built PDF. Named apart from the full paper's `main_PACKAGE_v2.pdf` so the two never get confused. |
 | `main_ru.tex` | Russian version. Not part of any submission; kept for the bilingual repository. |
 | `main_PROTOCOL_ru.pdf` | Built Russian PDF. |
 | `arxiv_submission.tar.gz` | Ready-to-upload archive: `main.tex` only. |
