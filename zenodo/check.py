@@ -17,10 +17,18 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
+import time
 from pathlib import Path
 
-from snapshot import OUT, RECORDS, collect
+try:
+    from snapshot import OUT, RECORDS, collect
+    HAVE_SNAPSHOT = True
+except ImportError:
+    # check.py скопировали без snapshot.py — сравнивать нечем, и это не
+    # провал сверки. Отдельный код, чтобы CI не читал это как расхождение.
+    HAVE_SNAPSHOT = False
 
 # Поля, расхождение по которым считается ошибкой.
 TRACKED = (
@@ -28,6 +36,29 @@ TRACKED = (
     "resource_type", "language", "license", "creators", "keywords",
     "description", "related_identifiers", "files",
 )
+
+
+def snapshot_stamp() -> str:
+    """Когда снимок попал в репозиторий — по git, иначе по времени файла.
+
+    Дата не хранится внутри records.json намеренно: иначе каждый запуск
+    snapshot.py переписывал бы файл ради одной строки, и «изменилось ли
+    что-нибудь» перестало бы читаться по diff.
+    """
+    try:
+        res = subprocess.run(
+            ["git", "log", "-1", "--format=%cI", "--", OUT.name],
+            cwd=str(OUT.parent), capture_output=True, text=True, timeout=10,
+        )
+        stamp = res.stdout.strip()
+        if stamp:
+            return stamp[:19].replace("T", " ")
+    except Exception:
+        pass
+    try:
+        return time.strftime("%Y-%m-%d %H:%M", time.localtime(OUT.stat().st_mtime))
+    except OSError:
+        return "неизвестно"
 
 
 def short(value, limit: int = 90) -> str:
@@ -55,6 +86,11 @@ def main() -> int:
     ap.add_argument("--quiet", action="store_true", help="только итог")
     args = ap.parse_args()
 
+    if not HAVE_SNAPSHOT:
+        print("Н/Д: рядом нет snapshot.py — сравнивать нечем.")
+        print("Это не провал сверки: файл скопирован без своей зависимости.")
+        return 2
+
     if not OUT.exists():
         print("Н/Д: нет %s — сначала запустите snapshot.py" % OUT.name)
         return 2
@@ -70,6 +106,8 @@ def main() -> int:
     print("=" * 68)
     print("СВЕРКА ZENODO: снимок в репозитории против опубликованного")
     print("=" * 68)
+    print("снимок снят: %s" % snapshot_stamp())
+    print()
 
     problems = 0
     for rid in RECORDS:

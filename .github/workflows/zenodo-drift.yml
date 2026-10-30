@@ -1,0 +1,47 @@
+name: Zenodo drift
+
+# Записи на Zenodo правятся в браузере, пуша при этом не происходит —
+# push-триггер такого не увидит. Поэтому расписание, а не событие.
+#
+# Дрейф здесь не ошибка сборки, а сигнал: снимок в zenodo/records.json
+# отстал от опубликованного. Лечится осознанным переснятием отдельным
+# коммитом, а не автоправкой.
+#
+# GitHub отключает расписание в репозиториях без активности около 60 дней;
+# если это случится, workflow поднимается вручную через workflow_dispatch.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # понедельник, 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # Полная история: check.py берёт дату снимка из git log по файлу,
+          # на поверхностном клоне он показал бы дату HEAD и соврал бы.
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compare the committed snapshot with what Zenodo serves
+        run: python zenodo/check.py
+
+      - name: What to do when this fails
+        if: failure()
+        run: |
+          echo "::warning::Снимок разошёлся с опубликованным."
+          echo "Это не поломка кода. Либо на Zenodo что-то изменили и это"
+          echo "надо зафиксировать, либо запись на Zenodo привели не к тому,"
+          echo "что лежит в репозитории. Разобрать и переснять:"
+          echo "    python zenodo/snapshot.py && git commit zenodo/records.json"
