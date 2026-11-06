@@ -3,6 +3,46 @@
 All notable changes to this repository. Versions here are the internal iterations
 of the guardrail, not semver releases of a package.
 
+## v3.1.3 — 2026-11-07
+
+### Fixed
+- **`hooks/antigravity_guard.py` was a 101-byte stub in the working tree.** It
+  called `sys.exit(0)` and printed nothing, so `tests/test_antigravity_hook.py`
+  failed on the first case (`json.loads` on an empty stdout). The committed hook
+  was already the 213-line implementation; restoring the working tree from
+  `HEAD` makes the test pass 12/12. No code change was needed in the commit.
+
+### Changed
+- **`MASTER_PROMPT.md` / `MASTER_PROMPT_LITE.md`: the guard is a program, not an
+  oracle.** Added four outcomes (SAFE / UNSAFE / ERROR / AMBIGUOUS), the rule
+  that `skip` is not a verdict, hook-vs-CLI precedence, the ban on configuration
+  bypasses (`QUOTE_GUARD_SHELL`, a wrong `QUOTE_GUARD_MAP`, `QUOTE_GUARD_TOOLS`,
+  editing `settings.json` / `hooks.json`), the `cmd` gap for unknown tools, and
+  the false-positive procedure (grammar first, two rewrites, record, escalate).
+  Part 3 now requires proof that the hook fires: 23/23 selftest, a synthetic
+  payload that must exit 2 in Bash and PowerShell, and a live `echo ok` that must
+  appear as `ok: tool=...`, not `skip: ...`.
+- **`hooks/README.md`: heredocs are masked, not skipped.** The section was still
+  describing the pre-v3.1.2 behaviour; it now matches `mask_heredocs()` and
+  `state=HEREDOC`. Log examples no longer present `skip: heredoc` as current;
+  Antigravity gained a 12-check verification line; `Same protection` became
+  `Same check, more to forget` with the Bash/PowerShell split and the
+  `eval` / `-EncodedCommand` limit; the Tool→Grammar table gained `sh`, `bash`,
+  `powershell`; `QUOTE_GUARD_SHELL` is marked as an override, not a way to pass;
+  `UNKNOWN_SHELLS` is named for cmd-capable harnesses.
+- **`README.md`: exit 1 is unsafe or a crash.** The CLI cannot tell them apart;
+  `--json` is the classifier. A hook's exit 2 means block, a different contract.
+
+### Added
+- **`guard_false_positives.md`** — append-only log with a fixed schema: command,
+  path (hook/CLI), grammar, both verdicts for AMBIGUOUS, message header, lexer
+  and hook hashes, git rev, classification (`guard bug` / `unsupported
+  construct`), evidence, and a mutable `Resolution`. A wrong `--shell` is a
+  caller error and is not recorded.
+
+### Tests
+- 25 hook + 12 antigravity + 46/31 parity ×2 + 23 selftest ×2 — all green.
+
 ## v3.1.2 — 2026-10-26
 
 ### Fixed
