@@ -20,8 +20,13 @@ of the guardrail, not semver releases of a package.
   editing `settings.json` / `hooks.json`), the `cmd` gap for unknown tools, and
   the false-positive procedure (grammar first, two rewrites, record, escalate).
   Part 3 now requires proof that the hook fires: 23/23 selftest, a synthetic
-  payload that must exit 2 in Bash and PowerShell, and a live `echo ok` that must
-  appear as `ok: tool=...`, not `skip: ...`.
+  payload, and a live `echo ok` that must appear as `ok: tool=...`, not
+  `skip: ...`. The synthetic payload's contract is stated per hook, because
+  applying one to the other reads a working hook as broken:
+  `pre_tool_use_guard.py` and `quote_guard.py` must exit 2, while
+  `antigravity_guard.py` exits 0 in every case — a crash included — so its exit
+  code cannot separate a block from a crash, and it is verified by its 12-check
+  suite instead.
 - **`hooks/README.md`: heredocs are masked, not skipped.** The section was still
   describing the pre-v3.1.2 behaviour; it now matches `mask_heredocs()` and
   `state=HEREDOC`. Log examples no longer present `skip: heredoc` as current;

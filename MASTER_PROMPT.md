@@ -120,13 +120,23 @@ calls provides exactly zero protection.
 Before the first shell command of a session:
   1. `python parity_check.py --selftest` passes (23 cases). A failing selftest
      is ERROR, not UNSAFE.
-  2. Synthetic payload (safe — the hook analyzes, it does not execute):
-       Bash:
-         echo '{"tool_name":"Bash","tool_input":{"command":"echo \"unterminated"}}' | python <hook>.py ; echo "exit=$?"
-       PowerShell:
-         '{"tool_name":"Bash","tool_input":{"command":"echo \"unterminated"}}' | python <hook>.py ; "exit=$LASTEXITCODE"
-     Both must print a BLOCKED message and exit=2. Exit 0 or a traceback = the
-     hook itself is broken.
+  2. Synthetic payload (safe — the hook analyzes, it does not execute). The
+     contract differs between hooks, and applying the wrong one reads a working
+     hook as broken:
+       pre_tool_use_guard.py, quote_guard.py — deny is exit 2, message on
+       stderr, stdout empty; a safe command is exit 0 and silent.
+         Bash:
+           echo '{"tool_name":"Bash","tool_input":{"command":"echo \"unterminated"}}' | python <hook>.py ; echo "exit=$?"
+         PowerShell:
+           '{"tool_name":"Bash","tool_input":{"command":"echo \"unterminated"}}' | python <hook>.py ; "exit=$LASTEXITCODE"
+       Must print a BLOCKED message and exit=2. Exit 0 or a traceback = broken.
+       antigravity_guard.py — deny is exit 0 with {"decision": "deny"} on
+       stdout, allow is exit 0 with {"decision": "allow"}. The exit code is 0
+       in every case, a crash included, so it proves nothing on its own: a
+       crashed hook also denies. Never use this payload as the Antigravity
+       canary — run `python tests/test_antigravity_hook.py` (12 checks). If you
+       do probe by hand, read the reason: a quote state means the hook fired,
+       "runtime error" means it crashed.
   3. Live test: create debug.on next to the hook, run `echo ok`, confirm the
      last log line is `ok: tool=...`, not `skip: ...`, then remove debug.on.
      A skip means the hook did not see the command; treat it as unprotected.
@@ -135,5 +145,4 @@ Before the first shell command of a session:
 
 Step 2 proves the hook works; step 3 proves the harness calls it. Both are
 required. Never test the hook by running a command that would hang if the hook
-fails. Antigravity: use hooks/antigravity_guard.py and verify with
-`python tests/test_antigravity_hook.py` (12 checks).
+fails.
