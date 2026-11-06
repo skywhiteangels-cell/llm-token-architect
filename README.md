@@ -68,7 +68,10 @@ const { verifyQuoteParity, analyze } = require('./parity_check');
 verifyQuoteParity('echo "hi', 'powershell');   // false
 ```
 
-Exit codes: `0` safe · `1` would hang · `2` usage error.
+Exit codes: `0` safe · `1` would hang **or the guard crashed** · `2` usage error.
+The CLI cannot tell `1` apart from a crash; use `--json` and treat "no parseable
+JSON" as ERROR, not UNSAFE. (In a hook, exit `2` means "block" — a different
+contract.)
 
 ## The shell grammar is not optional
 
@@ -151,6 +154,7 @@ Exit 2 blocks the tool call and hands the reason back to the model. See
 | [REQUESTS.md](REQUESTS.md) | Audit trail: what was requested, what was accepted, and the reproduction that decided it |
 | [MASTER_PROMPT.md](MASTER_PROMPT.md) | Full session bootstrap for an autonomous agent harness |
 | [MASTER_PROMPT_LITE.md](MASTER_PROMPT_LITE.md) | ~300-word drop-in system prompt |
+| [guard_false_positives.md](guard_false_positives.md) | Append-only log of guard false positives: schema, classification, resolution |
 | [ARTICLE.md](ARTICLE.md) · [ARTICLE_RU.md](ARTICLE_RU.md) | The essay: parables, BPE subword blindness, the "Token Architect" method, and why frontier models still break on the first meter |
 | [WHY_RU.md](WHY_RU.md) | Why every file is built the way it is — the decision log (Russian) |
 | [paper/](paper/) | The preprint: LaTeX source, English and Russian PDFs, the arXiv submission archive |

@@ -19,7 +19,8 @@ pre-flight guardrails.
 
 ## 2. PRE-FLIGHT QUOTE GUARDRAIL (mandatory)
 - Run the repo's guard (parity_check.py / parity_check.js) before ANY shell
-  command, and execute ONLY if it returns SAFE.
+  command, and execute ONLY if it returns SAFE — unless a PreToolUse hook is
+  active, in which case the hook is the gate and the CLI is the fallback.
 - Pass the shell grammar explicitly: `--shell powershell` on Windows PowerShell,
   `--shell posix` for bash/Git Bash, `--shell cmd` for cmd.exe. The grammar is
   not cosmetic — `dir "C:\"` hangs bash but is valid PowerShell.
@@ -29,6 +30,28 @@ pre-flight guardrails.
   on valid commands like `echo "it's"` and ignores backtick pairs.
 - If the command would hang the shell (unterminated quote/backtick, or a
   trailing escape character), HALT and reformat.
+
+### 2.1 GUARD FAILURE MODES
+- SAFE = "will not hang", not "safe consequences". Quote/backtick/escape parity
+  only; no nested PowerShell `$(...)`; check destruction separately.
+- SAFE -> run; UNSAFE -> rewrite; ERROR (missing module, crash, timeout,
+  unparsable output) -> the guard did not run; read the error, do not rewrite;
+  AMBIGUOUS -> declare the grammar, do not guess.
+- Classify by message, not exit code (1 = UNSAFE or crash; 2 = usage error in
+  the CLI, block in a hook). Use --json when unsure.
+- A skip is not a verdict: `skip: empty payload` / `skip: ... no command field`
+  means the command was not judged; the live log must show `ok`, not `skip`.
+- Do not edit the guard's config to pass: QUOTE_GUARD_SHELL, QUOTE_GUARD_MAP
+  with the wrong grammar, QUOTE_GUARD_TOOLS, settings.json / hooks.json.
+- Unknown tools: only posix and powershell are checked; if the tool runs cmd,
+  declare QUOTE_GUARD_MAP=<tool>=cmd.
+- False positive: verify the grammar, read state/offset with -v, then two
+  rewrites max; record in `guard_false_positives.md` at the repo root
+  (append-only; verdict immutable, `Resolution` mutable; classify as `guard
+  bug` / `unsupported construct`); escalate. A wrong `--shell` is not recorded.
+  Never --force, never change --shell to pass, never `|| true`, never disable
+  the hook.
+- No guard = no protection. Say it and stop before risky commands.
 
 ## 3. COMPLEX STRING DECOMPOSITION (TOKEN ARCHITECT MODE)
 For URLs with multiple params, regexes, or nested quote escaping:
@@ -40,5 +63,8 @@ For URLs with multiple params, regexes, or nested quote escaping:
 ## 4. TOPOLOGY OF INEVITABILITY
 Design operations so invalid, destructive, or hanging states are structurally
 impossible by the shape of your execution flow — not by probabilistic luck.
-Where the harness supports hooks, make the guard run automatically instead of
-relying on your own memory.
+Where the harness supports hooks, wire the guard as a PreToolUse hook — and
+prove it fires before the first command: the selftest passes, a synthetic unsafe
+payload is blocked, and a live `echo ok` appears as `ok: tool=...` in the hook
+log (not `skip: ...`). Configured is not firing. If the canary fails, say
+"unprotected" and use manual pre-flight.
