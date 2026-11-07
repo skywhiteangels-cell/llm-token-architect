@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>ANCHOR_TRANSLATION_NOTE</title>
+<style>
+@page { size: A4; margin: 22mm 19mm 22mm 19mm; }
+body {
+  font-family: Georgia, Cambria, 'Times New Roman', serif;
+  font-size: 10.5pt; line-height: 1.66; color: #1a202c; background: #fff;
+}
+h1, h2, h3, h4 { font-family: 'Segoe UI', system-ui, sans-serif; color: #1a365d; line-height: 1.3; }
+h1 { font-size: 19pt; margin: 0 0 .6em; padding-bottom: 6px; border-bottom: 2px solid #2b6cb0; page-break-after: avoid; }
+h2 { font-size: 14pt; color: #2c5282; margin: 1.5em 0 .45em; page-break-after: avoid; }
+h3 { font-size: 12pt; color: #2b6cb0; margin: 1.2em 0 .35em; page-break-after: avoid; }
+h4 { font-size: 10.5pt; color: #4a5568; margin: 1em 0 .25em; page-break-after: avoid; }
+p { margin: .45em 0 .8em; text-align: justify; }
+a { color: #2b6cb0; text-decoration: none; }
+code {
+  font-family: 'Cascadia Code', Consolas, 'Courier New', monospace; font-size: 8.8pt;
+  background: #edf2f7; color: #c53030; padding: 1px 4px; border-radius: 3px;
+  border: 1px solid #e2e8f0; word-break: break-word;
+}
+pre {
+  background: #f7fafc; border: 1px solid #cbd5e0; border-left: 4px solid #3182ce;
+  padding: 10px 13px; border-radius: 4px; margin: .9em 0;
+  font-family: 'Cascadia Code', Consolas, 'Courier New', monospace;
+  font-size: 8.2pt; line-height: 1.4; color: #2d3748;
+  white-space: pre-wrap; word-break: break-word; page-break-inside: avoid;
+}
+pre code { background: none; border: none; padding: 0; color: inherit; font-size: 8.2pt; }
+table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 8.8pt; page-break-inside: avoid; }
+th, td { border: 1px solid #cbd5e0; padding: 6px 9px; text-align: left; vertical-align: top; }
+th { background: #ebf8ff; color: #2b6cb0; font-family: 'Segoe UI', system-ui, sans-serif; }
+tr:nth-child(even) td { background: #f7fafc; }
+blockquote {
+  border-left: 4px solid #4299e1; margin: 1em 0; padding: 6px 13px;
+  background: #ebf8ff; color: #2d3748; font-style: italic; page-break-inside: avoid;
+}
+hr { border: none; border-top: 1px solid #e2e8f0; margin: 1.6em 0; }
+ul, ol { margin: .45em 0 .85em 1.5em; padding: 0; }
+li { margin-bottom: .3em; }
+.math { font-family: Georgia, serif; white-space: nowrap; }
+.math-display {
+  text-align: center; font-family: Georgia, serif; font-size: 11.5pt; padding: 9px 0;
+  margin: 1em 0; background: #f7fafc; border: 1px dashed #cbd5e0; border-radius: 4px;
+  page-break-inside: avoid;
+}
+img { max-width: 100%; }
+</style>
+</head>
+<body>
+<h1>Why the Anchor Changed Its Alphabet</h1>
+<p>A standalone note on the substitution <code># ЯКОРЬ</code> → <code># ANCHOR</code> in the English edition of the trilogy.</p>
+<p>2026-11-07 · 768 paired probes · 24 layouts · application 2.29.0.0</p>
+<p>This document is self-contained. It does not require the run archive, the pre-registration file, or the rest of the Argon series to be read.</p>
+<hr />
+<h2>1. The question this note answers</h2>
+<p>The English text prints the response-format anchor as <code># ANCHOR</code>. All 1,416 canonical probes (v6 and v8–v16) carry <code># ЯКОРЬ</code> — Cyrillic, Russian for "anchor". The A/B archive described below is a deliberate exception: its arm B uses the Latin form.</p>
+<p>A reader who tries to reproduce a prompt from the article will type <code># ANCHOR</code> and get a prompt that was never executed. That is the quietest kind of reproduction failure: nothing breaks, nothing warns, the model answers, and the reader has no way to know that the control string in front of them is a translation rather than the original.</p>
+<p>So the substitution is not a typographic decision. It is an intervention in the stimulus, and it was treated as one: pre-registered, frozen, measured, and reported with its limits.</p>
+<h2>2. What was translated and what was not</h2>
+<p>Two rules, applied throughout both editions:</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Form used</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quoted prompts, log excerpts, search strings</td>
+<td><code># ЯКОРЬ</code></td>
+<td>These are artifacts. A quoted artifact that has been edited is no longer evidence.</td>
+</tr>
+<tr>
+<td>Descriptive prose about the anchor</td>
+<td><code># ANCHOR</code></td>
+<td>The article is written in English; a Russian literal inside an English sentence costs a gloss at every occurrence.</td>
+</tr>
+</tbody>
+</table>
+<p>The anchor is not a term to be translated. It is a token inside a prompt — a byte sequence the model receives. Prose can be translated freely, because prose carries meaning. A control literal carries no meaning; it carries identity. Change the identity and you have changed the experiment.</p>
+<h2>3. Why translate it at all</h2>
+<p>Keeping the Cyrillic everywhere would have been the safe option — it is what all 1,416 probes actually used. It was rejected for three practical reasons, none of them stylistic:</p>
+<ul>
+<li>a reader without a Cyrillic keyboard cannot type the string;</li>
+<li>a reader cannot search the article for a token they cannot produce;</li>
+<li>every quoted literal needs a gloss, and a gloss attached to each of them turns a note into an obstacle.</li>
+</ul>
+<p>But "inconvenient" is not an argument for changing a stimulus. The substitution needed a measurement, not an opinion. That measurement is the rest of this document.</p>
+<h2>4. The experiment</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Design</td>
+<td>24 layouts × 2 arms × 16 repeats</td>
+</tr>
+<tr>
+<td>Probes</td>
+<td>768 (all valid: 0 truncated, 0 without an answer)</td>
+</tr>
+<tr>
+<td>Arms</td>
+<td>A = <code># ЯКОРЬ</code>, B = <code># ANCHOR</code></td>
+</tr>
+<tr>
+<td>Task</td>
+<td>count 16 elements; answer as a number</td>
+</tr>
+<tr>
+<td>Marker</td>
+<td><code>점점점◁</code>, identical in both arms</td>
+</tr>
+<tr>
+<td>Model</td>
+<td><code>flash_lite</code> (server-side alias)</td>
+</tr>
+<tr>
+<td>Application</td>
+<td>2.29.0.0, recorded in every probe</td>
+</tr>
+<tr>
+<td>Window</td>
+<td>13:26:59 → 14:34:06, 67 minutes</td>
+</tr>
+<tr>
+<td>Pre-registration</td>
+<td>created 13:14:07, finalized 13:18:56 — 8 minutes before the first probe; sha256 <code>e74e6ad3…</code> is the post-amendment hash (before AMENDMENT 1: <code>75b5616f…</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Isolation was checked mechanically, not by eye.</strong> In all 24 layouts the two prompts differ by exactly one substring:</p>
+<pre><code class="language-text">prompt_B == prompt_A.replace(&quot;# ЯКОРЬ&quot;, &quot;# ANCHOR&quot;)   — 24 / 24
+first divergence: position 850, inside the anchor
+unique sha256: 48 / 48
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Arm</th>
+<th>Characters</th>
+<th>Bytes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A <code># ЯКОРЬ</code></td>
+<td>880</td>
+<td>1,421</td>
+</tr>
+<tr>
+<td>B <code># ANCHOR</code></td>
+<td>881</td>
+<td>1,417</td>
+</tr>
+</tbody>
+</table>
+<p>Arm A's length matches the canonical v16 prompt (880 / 1,421) exactly — the grid was built from that template, not from a similar one.</p>
+<p>One asymmetry the design cannot remove: B is +1 character and −4 bytes. Different alphabets make equal characters and equal bytes mutually exclusive. This is a stated limitation, not an execution defect.</p>
+<p>The unit of analysis is the <strong>layout</strong>, not the probe: <code>d_k = p_A(k) − p_B(k)</code>, K = 24. Block difficulty cancels in the difference, so between-layout variance in difficulty does not enter the estimate.</p>
+<h2>5. Primary result: equivalence, not "no difference"</h2>
+<table>
+<thead>
+<tr>
+<th>Arm</th>
+<th>Correct</th>
+<th>Share</th>
+<th>CP 95%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A <code># ЯКОРЬ</code></td>
+<td>279 / 384</td>
+<td><strong>72.7%</strong></td>
+<td>[0.679; 0.771]</td>
+</tr>
+<tr>
+<td>B <code># ANCHOR</code></td>
+<td>270 / 384</td>
+<td><strong>70.3%</strong></td>
+<td>[0.655; 0.748]</td>
+</tr>
+</tbody>
+</table>
+<p>Marginal Fisher, for reference: p = 0.5226.</p>
+<p>Paired analysis across 24 layouts:</p>
+<pre><code class="language-text">d = +0.0234   (+2.3 pp)
+SD(d) = 0.1785   SE = 0.0364   df = 23
+90% CI: [−0.0390; +0.0859]   =   [−3.9; +8.6] pp
+TOST against ±10 pp: p = 0.0234
+</code></pre>
+<p>Both bounds of the 90% interval lie inside ±10 pp. <strong>Equivalence is shown at alpha = 0.05.</strong></p>
+<p>The power of the same design, evaluated at the observed τ̂ = 0.105951, is <strong>64.7%</strong>, not the 86.3% of the pre-registration (which assumed τ = 0 and was independently confirmed at 86.28%). The "about 67%" of earlier drafts is the table value for τ = 0.10 carried over without recomputation. This is a property of the plan, not evidence about this run: recomputing power at the observed effect adds nothing to the p-value, it only shows that the reserve was thinner than promised — and thinner than it first appeared.</p>
+<p>This wording matters. "No difference" is not a claim the data supports — the 90% interval runs from −3.9 to +8.6 pp, so any difference in that range is compatible with the result. What the data supports is that the difference is bounded.</p>
+<h2>6. The result does not rest on outliers</h2>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>d</th>
+<th>90% CI</th>
+<th>TOST p</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all 24 layouts</td>
+<td>+0.0234</td>
+<td>[−3.9; +8.6]</td>
+<td>0.0234</td>
+<td>equivalent</td>
+</tr>
+<tr>
+<td>without L08</td>
+<td>+0.0054</td>
+<td>[−5.1; +6.2]</td>
+<td>0.0046</td>
+<td>equivalent</td>
+</tr>
+<tr>
+<td>without L09</td>
+<td>+0.0082</td>
+<td>[−5.1; +6.7]</td>
+<td>0.0072</td>
+<td>equivalent</td>
+</tr>
+<tr>
+<td>without L12</td>
+<td>+0.0082</td>
+<td>[−5.1; +6.7]</td>
+<td>0.0072</td>
+<td>equivalent</td>
+</tr>
+<tr>
+<td>without L01</td>
+<td>+0.0353</td>
+<td>[−2.6; +9.7]</td>
+<td>0.0430</td>
+<td>equivalent</td>
+</tr>
+<tr>
+<td>without the 4 extreme layouts</td>
+<td>−0.0187</td>
+<td>[−5.9; +2.1]</td>
+<td>0.0012</td>
+<td>equivalent</td>
+</tr>
+</tbody>
+</table>
+<p>Dropping any single layout keeps the conclusion. Dropping the extremes moves the estimate toward zero and improves p — equivalence is not being carried by outliers.</p>
+<h2>7. What the substitution did not do</h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+<th>Reading</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Error profile, 2 × 5 (offset −1, 0, +1, +2, ≥+3)</td>
+<td>X² = 7.917, df = 4, p = 0.0947</td>
+<td>not significant; B's tilt toward +2 (28 vs 11) is a tendency, not a result</td>
+</tr>
+<tr>
+<td>Anchor present in the visible <code>content</code> channel</td>
+<td>768 / 768 = 100% (one-sided 95% upper bound for the failure rate: 0.39%)</td>
+<td>the literal survived translation in every probe</td>
+</tr>
+<tr>
+<td><code>thinking</code> channel non-empty</td>
+<td>666 / 768 = 86.7%, CP95 [84.1%; 89.0%]</td>
+<td>the output protocol was fully followed in 86.7% of probes, not 100%</td>
+</tr>
+</tbody>
+</table>
+<p>The third row is the one worth keeping in view. The anchor was never lost, but the protocol that asks the model to enumerate the elements inside <code>thinking</code> was not satisfied in 102 probes (13.3%, CP95 [11.0%; 15.9%]). By arm: A 87.8% (337/384), B 85.7% (329/384). This was not a pre-registered endpoint and is reported post hoc; its association with failure (39/102 = 38.2%, CP95 [28.8%; 48.4%], vs 510/666 = 76.6%, CP95 [73.2%; 79.7%]) is an association, not a cause.</p>
+<h2>8. Limits</h2>
+<ol>
+<li><strong>One prompt template.</strong> Equivalence is shown for this task and this response format, not for "anchors in general".</li>
+<li><strong>One application version.</strong> 2.29.0.0. Behaviour on 2.28.2.0 was not measured on this question.</li>
+<li><strong>Characters and bytes are not equalized</strong> (+1 / −4). Different alphabets make this unattainable, not merely undone.</li>
+<li><strong>The model is an alias.</strong> Records say <code>flash_lite</code>; no server-side model identifier exists.</li>
+<li><strong>The interaction is at the significance boundary.</strong> τ̂² = 0.01123; X² = 35.509 ((K−1)·var_obs/var_bin), df = 23, p = 0.0463 — the Cochran Q on the same data is 38.040 (p = 0.0252) when the sum is taken around the unweighted mean; around the weighted mean it is 37.778 (p = 0.0269). Either statistic leaves the conclusion unchanged. The <strong>standard-error floor</strong> at infinite repeats is τ̂/√K = <strong>2.2 pp</strong>; <strong>±3.7 pp</strong> is the half-width of the 90% CI (t × SE floor). A ±10 pp corridor survives this; a narrower corridor would need new layouts, not more repeats.</li>
+<li><strong>No blinding.</strong> The stop rule was by clock, but the log was visible throughout. This is discipline, not blinding.</li>
+<li><strong>Slot balance was not achieved.</strong> The pre-registration promised 12/12 per repeat; a global shuffle did not preserve it, and A ran first in 196 of 384 pairs (51.0%). Recorded post hoc. It does not affect the paired analysis, since slot enters no endpoint and every layout appeared in both arms.</li>
+<li><strong>18 probes were quarantined and used nowhere</strong>: 5 on 2.28.2.0 (the stand updated mid-run at 13:17:38) and 13 on 2.29.0.0 (run during the update-verification phase, before readiness was confirmed). All 768 reported probes are from a single version.</li>
+</ol>
+<h2>9. What the reader should conclude</h2>
+<p><strong>Supported:</strong></p>
+<blockquote>
+<p>Replacing the Cyrillic anchor <code># ЯКОРЬ</code> with the Latin <code># ANCHOR</code> did not change counting accuracy beyond ±10 pp: difference +2.3 pp, 90% CI [−3.9; +8.6], TOST p = 0.0234, 768 paired probes across 24 layouts, application 2.29.0.0.</p>
+</blockquote>
+<p><strong>Not supported:</strong></p>
+<ul>
+<li>"the anchor is universal" — one template, one version;</li>
+<li>"there is no difference" — the correct statement is equivalence within ±10 pp;</li>
+<li>"B is worse than A" — +2.3 pp sits inside the corridor, marginal p = 0.52;</li>
+<li>"the error profile changed" — p = 0.0947, threshold not crossed;</li>
+<li>"it was the same on 2.28.2.0" — not measured.</li>
+</ul>
+<h2>10. How to use the anchor when reproducing</h2>
+<p>Use <code># ЯКОРЬ</code> in anything you execute. Use <code># ANCHOR</code> only when describing it in English prose. If you paste <code># ANCHOR</code> into a prompt, you are running arm B of this experiment, not the original series — the numbers will be close, but they will not be the published ones. One clarification on §1: the statement about Cyrillic covers the 1,416 canonical probes, not every Argon file — in this very A/B archive arm A is 384/384 Cyrillic and arm B is 384/384 Latin.</p>
+<p>The archive of this run (768 records, 768 conversation IDs, 16 repeats) and the code that produced and analysed it (<code>anchor_ab.py</code>, <code>run_anchor_ab.py</code>, <code>analyze_anchor_ab.py</code>) are kept locally with the run in <code>C:\1\Argon_1_1</code>; the frozen archive is 1,078,880 bytes. Raw telemetry is not published: it contains session content of the operator. It is available on request.</p>
+<hr />
+<h1>Русская версия</h1>
+<h2>Зачем этот документ</h2>
+<p>В английском тексте якорь напечатан как <code># ANCHOR</code>, а во всех 1 416 канонических пробах (v6 и v8–v16) стоит <code># ЯКОРЬ</code>. Архив самого A/B — намеренное исключение: рука B целиком латинская. Читатель, который захочет повторить промпт по статье, наберёт <code># ANCHOR</code> и получит промпт, который никогда не исполнялся. Это самый тихий вид провала воспроизводимости: ничего не падает, ничего не предупреждает, модель отвечает — и отличить перевод от оригинала нечем.</p>
+<p>Поэтому замена литерала — не типографика, а вмешательство в стимул. К нему и отнеслись как к вмешательству: пре-регистрация, заморозка, замер, отчёт с ограничениями.</p>
+<h2>Смысл в двух правилах</h2>
+<table>
+<thead>
+<tr>
+<th>Что</th>
+<th>В какой форме</th>
+<th>Почему</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Цитаты промптов, выдержки логов, строки поиска</td>
+<td><code># ЯКОРЬ</code></td>
+<td>Это артефакты. Отредактированный артефакт перестаёт быть свидетельством.</td>
+</tr>
+<tr>
+<td>Описательная проза про якорь</td>
+<td><code># ANCHOR</code></td>
+<td>Статья на английском; кириллический литерал в английской фразе требует глоссы при каждом вхождении.</td>
+</tr>
+</tbody>
+</table>
+<p>Якорь — не термин, который переводят. Это токен внутри промпта, последовательность байт, которую получает модель. Проза несёт смысл — её можно переводить свободно. Литерал несёт не смысл, а тождество: меняешь тождество — меняешь эксперимент.</p>
+<h2>Почему вообще перевели</h2>
+<p>Оставить кириллицу везде было бы безопасно: именно так шли все 1 416 проб. Отказались по трём практическим причинам, ни одна из которых не стилистическая: читатель без кириллической раскладки не наберёт строку; не сможет искать в статье токен, который не может воспроизвести; и каждая глосса стоит абзаца, а глосса при каждом процитированном литерале превращает примечание в помеху.</p>
+<p>Но «неудобно» — не аргумент в пользу замены стимула. Замена требовала замера, а не мнения. Этот замер — разделы 4–8 выше; таблицы общие для обеих языковых версий и здесь не дублируются, чтобы не разошлись.</p>
+<h2>Результат одной строкой</h2>
+<p>Замена кириллического якоря на латинский не изменила точность счёта за пределы ±10 п.п.: разница <strong>+2.3 п.п.</strong>, 90% ДИ <strong>[−3.9; +8.6]</strong>, TOST <strong>p = 0.0234</strong>, 768 парных проб на 24 раскладках, приложение 2.29.0.0. Точность: A 279/384 = 72.7%, B 270/384 = 70.3%. Мощность здесь — свойство плана, а не прогона: та же конструкция при наблюдённом τ̂ = 0.105951 даёт 64.7%, а не 86.3% из пре-регистрации и не «~67%» из ранних редакций; пост-хок пересчёт ничего не добавляет к p.</p>
+<p>Формулировка «разницы нет» неверна: 90% ДИ простирается от −3.9 до +8.6 п.п., и любое различие внутри этого диапазона с данными совместимо. Верная формулировка — различие ограничено сверху, и граница коридора пройдена.</p>
+<h2>Что при этом не показано</h2>
+<p>Один шаблон промпта, одна версия приложения, символы и байты не уравнены (+1 / −4), модель — алиас, взаимодействие якорь × раскладка на границе значимости (X² = 35.509, p = 0.0463 — тест однородности дисперсий; Cochran Q = 38.040 вокруг невзвешенного d̄, p = 0.0252, вокруг взвешенного — 37.778, p = 0.0269), ослепления не было, баланс слота 196/188 вместо заявленных 192/192 (12/12 в каждом повторе). Пол SE при бесконечных повторах — 2.2 п.п.; ±3.7 п.п. — полуширина 90% ДИ. Якорь в видимом ответе — 768/768 (верхняя граница 95% для доли отказов — 0.39%), канал <code>thinking</code> — 666/768, ДИ [84.1%; 89.0%]. Полный список — раздел 8.</p>
+<h2>Как воспроизводить</h2>
+<p>В том, что исполняешь, — <code># ЯКОРЬ</code>. В том, что описываешь по-английски, — <code># ANCHOR</code>. Вставишь <code># ANCHOR</code> в промпт — это рука B этого эксперимента, не исходная серия: числа будут близкими, но не опубликованными. Уточнение к первому абзацу: утверждение о кириллице относится к 1 416 каноническим пробам, а не ко всем файлам Argon — в этом самом A/B-архиве рука A целиком кириллическая (384/384), рука B целиком латинская (384/384).</p>
+</body>
+</html>

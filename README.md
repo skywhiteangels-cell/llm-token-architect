@@ -1,6 +1,6 @@
 # Quote Guard — a pre-flight check that stops an agent from hanging its own shell
 
-> 📖 **Read the full experimental trilogy (1,416 canonical probes):** [The Ghost in the Context Window (PDF)](The_Ghost_in_the_Context_Window_Trilogy.pdf)
+> 📖 **Read the full experimental trilogy (1,416 canonical probes):** [The Ghost in the Context Window (PDF)](trilogy/The_Ghost_in_the_Context_Window_Trilogy_v1.1_en.pdf)
 
 **🇬🇧 English** | [ 🇷🇺 Читать на русском ](README_RU.md)
 
