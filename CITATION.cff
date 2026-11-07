@@ -43,7 +43,7 @@ references:
     authors:
       - family-names: Borovikov
         given-names: Vladimir V.
-    doi: "10.5281/zenodo.23679671"
+    doi: "10.5281/zenodo.24045183"
     year: 2026
   - type: generic
     title: "Deterministic Audit of LLM-Generated Research Claims"

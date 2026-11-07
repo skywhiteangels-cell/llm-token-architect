@@ -28,12 +28,14 @@ Two files, no dependencies, one exit code.
 
 | | Work | DOI | Language |
 |---|---|---|---|
-| 1 | [The Ghost in the Context Window](https://doi.org/10.5281/zenodo.23679671) — трилогия: three essays on the study | `10.5281/zenodo.23679671` | русский |
+| 1 | [The Ghost in the Context Window](https://doi.org/10.5281/zenodo.24045183) — трилогия, v1.1: three essays, RU + EN, plus the anchor note | `10.5281/zenodo.24045183` | русский · English |
 | 2 | [The Attention Dispersion Law and Dual-Path Decoupling in Autoregressive Transformers](https://doi.org/10.5281/zenodo.23813780) — the preprint | `10.5281/zenodo.23813780` | English · русский |
 | 3 | [Deterministic Audit of LLM-Generated Research Claims](https://doi.org/10.5281/zenodo.23817684) — the audit protocol | `10.5281/zenodo.23817684` | English · русский |
 
 Record 3 audits the claims of record 2; record 1 is the popular account written at
-the end of the same session. The three are linked on Zenodo in both directions.
+the end of the same session. All are linked on Zenodo in both directions. Version
+1.0 of the trilogy (`10.5281/zenodo.23679671`) is superseded by 1.1 and stays in
+the snapshot, because a superseded record is what most drift happens to.
 
 If you use the code, cite this repository. If you refer to the results, cite
 record 2 — [`CITATION.cff`](CITATION.cff) carries both.

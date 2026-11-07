@@ -130,5 +130,59 @@
     "resource_type": "Preprint",
     "title": "Deterministic Audit of LLM-Generated Research Claims",
     "version": "1.0"
+  },
+  "24045183": {
+    "conceptdoi": "10.5281/zenodo.23679670",
+    "creators": [
+      {
+        "affiliation": "Independent Researcher",
+        "name": "Borovikov, Vladimir V.",
+        "orcid": "0009-0005-7773-3581"
+      }
+    ],
+    "description": "<p><strong>Three popular-science essays on a single study of 1,416 canonical probes on</strong><br><strong>autoregressive transformers (RU/EN).</strong></p>\n<p>1. Anatomy of the D* Mirage: How We Caught an AI Lying, and Caught Ourselves<br>2. Quotes, Finite State Machines, and the Topology of Inevitability in LLM Agents<br>3. Quantum Illusions of Transformers: Why Neural Networks Fail at Mental<br>&nbsp; &nbsp;Counting and How They Knowingly Lie</p>\n<p>First-person account written at the end of the research session. Version 1.1:<br>adds the English translation and a standalone methodological note, \"Why the<br>Anchor Changed Its Alphabet\" (ANCHOR_TRANSLATION_NOTE), justifying the<br>substitution of the Cyrillic anchor # ЯКОРЬ with the Latin # ANCHOR &mdash; a<br>stimulus intervention validated by a pre-registered A/B test (768 probes,<br>counting-accuracy equivalence within &plusmn;10 pp, TOST p = 0.0234). Supersedes<br>v1.0 (10.5281/zenodo.23679671).</p>\n<p><strong>Related:</strong><br>- Preprint: 10.5281/zenodo.23813780<br>- Claim-audit protocol: 10.5281/zenodo.23817684<br>- Previous version (1.0): 10.5281/zenodo.23679671<br><br><strong>Три научно-популярные статьи об одном исследовании &mdash; 1 416 канонических</strong><br><strong>проб на авторегрессионных трансформерах (RU/EN).</strong></p>\n<p>1. Анатомия миража D*: как мы ловили ИИ на лжи, а поймали себя<br>2. Кавычки, конечные автоматы и Топология неизбежности в LLM-агентах<br>3. Квантовые иллюзии трансформеров: почему нейросети ошибаются в устном<br>&nbsp; &nbsp;счёте и как они умеют осознанно врать</p>\n<p>Текст &mdash; от первого лица, в конце исследовательской сессии. Версия 1.1:<br>добавлен английский перевод и методологический документ<br>&laquo;Why the Anchor Changed Its Alphabet&raquo; (ANCHOR_TRANSLATION_NOTE) &mdash; замена<br>кириллического якоря # ЯКОРЬ на латинский # ANCHOR, вмешательство в стимул,<br>проверенное пре-регистрированным A/B-тестом (768 проб, эквивалентность<br>точности счёта &plusmn;10 п.п., TOST p = 0.0234). Заменяет v1.0<br>(10.5281/zenodo.23679671).</p>\n<p><strong>Связанные материалы:</strong><br>- Препринт: 10.5281/zenodo.23813780<br>- Протокол аудита утверждений: 10.5281/zenodo.23817684<br>- Пред. версия (1.0): 10.5281/zenodo.23679671</p>",
+    "doi": "10.5281/zenodo.24045183",
+    "files": [
+      {
+        "checksum": "md5:70bb5fd89e428ea404e69fe7bdb66c56",
+        "key": "The_Ghost_in_the_Context_Window_Trilogy_v1.1_ru.pdf",
+        "size": 656874
+      },
+      {
+        "checksum": "md5:6fda304e49df4ecb35dd49acc4733c80",
+        "key": "The_Ghost_in_the_Context_Window_Trilogy_v1.1_en.pdf",
+        "size": 490123
+      },
+      {
+        "checksum": "md5:4d1e2fd2e6474f218c0df3de3538c9d5",
+        "key": "ANCHOR_TRANSLATION_NOTE.pdf",
+        "size": 302430
+      }
+    ],
+    "keywords": [
+      "LLM",
+      "Attention",
+      "Dual-Path Attention",
+      "BPE",
+      "deterministic hooks",
+      "popular science",
+      "The Ghost in the Context Window"
+    ],
+    "language": "eng",
+    "license": "cc-by-4.0",
+    "publication_date": "2026-11-07",
+    "related_identifiers": [
+      {
+        "identifier": "10.5281/zenodo.23813780",
+        "relation": "isSupplementedBy"
+      },
+      {
+        "identifier": "10.5281/zenodo.23679671",
+        "relation": "isNewVersionOf"
+      }
+    ],
+    "resource_type": "Preprint",
+    "title": "The Ghost in the Context Window: трилогия об анатомии перцептивных иллюзий, Dual-Path Attention и детерминированных топологиях",
+    "version": "1.1"
   }
 }
