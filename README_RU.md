@@ -133,7 +133,7 @@ CLI, который надо не забыть вызвать, — это та �
 ```
 
 Код возврата 2 блокирует вызов инструмента и возвращает модели причину. Другие
-харнессы — см. [hooks/README.md](hooks/README.md).
+харнессы — см. [hooks/README_RU.md](hooks/README_RU.md).
 
 Там же записано, что измерено на **Antigravity 2.29.0.0** (7 ноября 2026): охват
 уровня проекта против пользовательского, отключение через `enabled: false` вместо
@@ -148,7 +148,7 @@ CLI, который надо не забыть вызвать, — это та �
 | [parity_check.py](parity_check.py) | Python-предохранитель — `analyze()` / `verify_quote_parity()`, CLI, `--selftest` |
 | [parity_check.js](parity_check.js) | Node-предохранитель — тот же автомат, та же маска heredoc, тот же фикстур кейсов |
 | [hooks/pre_tool_use_guard.py](hooks/pre_tool_use_guard.py) | Хук PreToolUse: блокирует зависающие команды до запуска |
-| [hooks/README.md](hooks/README.md) | Подключение для Claude Code и других харнессов |
+| [hooks/README_RU.md](hooks/README_RU.md) | Подключение для Claude Code и других харнессов |
 | [tests/test_parity.py](tests/test_parity.py) · [tests/test_parity.js](tests/test_parity.js) | Внешние наборы тестов (46 / 46 проверок на общем фикстуре), без зависимостей |
 | [tests/fixtures/cases.jsonl](tests/fixtures/cases.jsonl) | Единственная таблица кейсов, которую читают оба набора — расхождение не пройдёт незамеченным |
 | [REQUESTS.md](REQUESTS.md) | Аудит-след: что просили, что приняли и какая проверка это решила |
