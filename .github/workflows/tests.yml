@@ -39,13 +39,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Run Python Standalone Tests (41 checks)
+      - name: Run Python Standalone Tests (46 checks)
         run: python tests/test_parity.py
 
-      - name: Run Hook Behaviour Tests (21 checks)
+      - name: Run Hook Behaviour Tests (25 checks)
         run: python tests/test_hook.py
 
-      - name: Run Node.js Standalone Tests (39 checks)
+      - name: Run Antigravity Hook Tests (12 checks)
+        run: python tests/test_antigravity_hook.py
+
+      - name: Run Node.js Standalone Tests (46 checks)
         run: node tests/test_parity.js
 
       - name: Duplicate-Block Detector Self-Test (5 checks)
