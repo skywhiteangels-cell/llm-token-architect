@@ -141,6 +141,11 @@ A CLI the agent has to remember is still probabilistic luck. `hooks/` contains a
 Exit 2 blocks the tool call and hands the reason back to the model. See
 [hooks/README.md](hooks/README.md) for other harnesses.
 
+That file also records what was measured on **Antigravity 2.29.0.0** (7 Nov 2026):
+project versus user scope, `enabled: false` instead of a path that does not exist,
+config read per call rather than at start, and plugins as one more possible source
+of hooks. Measured on that build; not claimed for others.
+
 ## Files
 
 | File | Purpose |
