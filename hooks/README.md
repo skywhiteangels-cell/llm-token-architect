@@ -42,6 +42,60 @@ Verify: `python tests/test_antigravity_hook.py` (12 checks). A 101-byte file tha
 only calls `sys.exit(0)` is a stub, not a hook; it produces no JSON and fails the
 first check.
 
+### Verified against 2.29.0.0, 7 Nov 2026
+
+Everything in this subsection was measured on **Antigravity 2.29.0.0** — the
+build whose archives record `app_version = 2.29.0.0` and which the release notes
+call 2.29 / 44.5.1. It is not a claim about other builds: the hook API is young,
+and a release can change any of it. If a hook stops firing after an update,
+re-run the checks at the end of this subsection before assuming the guard broke.
+
+**Scope.** Two levels exist, and the project one wins where it applies:
+
+| Level | File | Applies to |
+|---|---|---|
+| project | `<workspace>/.agents/hooks.json` | that workspace |
+| user | `~/.gemini/config/hooks.json` | every workspace on the machine |
+
+Measured: with only the user-level file present, the hook fires in unrelated
+workspaces — a session in `C:\2` produced both `ok` and `BLOCKED` lines in the
+log while the guard file itself lived under `C:\1`. Deleting the project-level
+file is therefore a change of scope, not a cleanup.
+
+**Disabling.** Use the flag, not a broken path:
+
+```json
+{"type": "command", "command": "...", "timeout": 5, "enabled": false}
+```
+
+Pointing `command` at a missing file also stops the guard, but it does so by
+failing the hook: the host reports an error on every tool call and blocks the
+command. That is fail-closed and loud — measured — but it is a fault, not a
+setting, and it leaves no way to tell "disabled" from "broken".
+
+**Config is read per call, not at start.** Swapping the path took effect on the
+next `run_command` with no restart. So do not rely on a restart to apply a
+change — and do not assume a running session still uses the config it started
+with.
+
+**Other sources of hooks.** A plugin can ship its own `hooks.json`, next to
+`skills/`, `agents/`, `rules/` and `mcp_config.json`. When a command is blocked
+and the user config says nothing about it, check the plugin list before
+suspecting the guard. On the installation this was measured on, one plugin was
+present and shipped no hooks, so there was exactly one source — a property of
+that installation, not of the design.
+
+**`PostToolUse` is not used here.** The guard is a `PreToolUse` hook only. A
+`PostToolUse` entry is where "run the tests after the hook file changes" would
+belong — the step that is easiest to skip when the edit looks trivial — but
+nothing is wired there, and this README should not imply otherwise.
+
+**Three checks, two minutes.** (1) `touch debug.on`, run a command, read the log
+— that answers "is it firing at all". (2) Repeat in a different workspace —
+that answers "project or machine scope". (3) Point `command` at a missing file
+and run a command — it must be **blocked**; if it runs, the host fails open and
+the guard is decoration.
+
 ## WorkBuddy AI
 
 Config: `~/.workbuddy-ai/settings.json` — a `hooks` key at the top level:
