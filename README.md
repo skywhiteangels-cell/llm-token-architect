@@ -186,6 +186,9 @@ answers at all, not the grammar table.
 
 No pytest, no npm install. Exit code 0 or it is broken.
 
+The twelve antigravity cases, the difference between a self-test and a repository
+scan, and what none of these suites cover: [TESTS.md](TESTS.md).
+
 ## The idea behind it
 
 The essay in [ARTICLE.md](ARTICLE.md) argues for what it calls the **Topology of

@@ -179,6 +179,9 @@ python tools/check_duplicate_blocks.py --selftest # 5 проверок
 
 Ни pytest, ни npm install не нужны. Либо код возврата 0, либо сломано.
 
+Двенадцать случаев antigravity-хука, разница между селф-тестом и прогоном по
+репозиторию и то, чего эти наборы не покрывают: [TESTS.md](TESTS.md).
+
 ## Идея
 
 Статья в [ARTICLE_RU.md](ARTICLE_RU.md) отстаивает то, что автор называет
