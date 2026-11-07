@@ -40,6 +40,31 @@ def fetch(record_id: int) -> dict:
         return json.load(resp)
 
 
+# Старый API отдаёт один `language` (первый из выбранных). Новый, InvenioRDM,
+# отдаёт массив `languages` — и только он показывает, что языков два. В
+# интерфейсе Zenodo видно оба, поэтому снимок по одному полю терял второй и не
+# мог заметить его удаление.
+RDM_ACCEPT = "application/vnd.inveniordm.v1+json"
+
+
+def fetch_languages(record_id: int) -> list:
+    """Коды всех языков записи, по алфавиту. Пустой список — не удалось."""
+    req = urllib.request.Request(
+        API % record_id,
+        headers={
+            "User-Agent": "llm-token-architect-zenodo-snapshot/1.0",
+            "Accept": RDM_ACCEPT,
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            raw = json.load(resp)
+    except Exception:
+        return []
+    items = (raw.get("metadata") or {}).get("languages") or []
+    return sorted(i["id"] for i in items if i.get("id"))
+
+
 def normalise(raw: dict) -> dict:
     """Оставить только то, что имеет смысл сравнивать.
 
@@ -80,7 +105,9 @@ def normalise(raw: dict) -> dict:
 def collect() -> dict:
     out = {}
     for rid in RECORDS:
-        out[str(rid)] = normalise(fetch(rid))
+        rec = normalise(fetch(rid))
+        rec["languages"] = fetch_languages(rid)
+        out[str(rid)] = rec
     return out
 
 
@@ -97,7 +124,9 @@ def main() -> int:
         total = sum(f["size"] for f in files)
         print("%-9s %-52s" % (rid, (rec["title"] or "")[:52]))
         print("          %s | %s | %s | файлов: %d (%d Б)" % (
-            rec["doi"], rec["language"] or "—", rec["resource_type"] or "—",
+            rec["doi"],
+            "+".join(rec["languages"]) or rec["language"] or "—",
+            rec["resource_type"] or "—",
             len(files), total))
         for r in rec["related_identifiers"]:
             print("          %-16s %s" % (r["relation"], r["identifier"]))

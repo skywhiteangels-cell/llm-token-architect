@@ -33,7 +33,7 @@ except ImportError:
 # Поля, расхождение по которым считается ошибкой.
 TRACKED = (
     "doi", "conceptdoi", "title", "version", "publication_date",
-    "resource_type", "language", "license", "creators", "keywords",
+    "resource_type", "language", "languages", "license", "creators", "keywords",
     "description", "related_identifiers", "files",
 )
 
