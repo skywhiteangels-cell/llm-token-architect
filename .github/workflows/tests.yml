@@ -62,3 +62,14 @@ jobs:
 
       - name: Run Node.js Self-Tests (23 cases)
         run: node parity_check.js --selftest
+
+      # The five suites above test the guard. These two test the study: they
+      # recompute every canonical number from probes.jsonl and compare the
+      # output with the reference. Both read only committed files, so they run
+      # without the run archives. They emit no per-check count, which is why
+      # they are not part of the 134 on the badge.
+      - name: Recompute canonical numbers
+        run: python reproducibility/verify_numbers.py
+
+      - name: Compare with the reference output
+        run: python reproducibility/check_expected.py

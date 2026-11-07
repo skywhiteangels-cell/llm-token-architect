@@ -72,6 +72,20 @@ checker is, and the selftest says nothing about the repository.
 Same with the guard: 23 is "the guard answers at all", 46 is "the guard answers
 correctly on the fixture". Adding them together would count one property twice.
 
+## CI checks the numbers too
+
+The workflow runs the five suites above and two more steps that have no count:
+
+| Step | What it proves |
+|---|---|
+| `python reproducibility/verify_numbers.py` | every canonical figure recomputes from `probes.jsonl` |
+| `python reproducibility/check_expected.py` | that output still equals `expected_output.txt`, line for line |
+
+Both read only committed files — no run archives — so they work in a fresh
+clone. They print no per-check count, which is why 134 does not include them: the
+badge counts assertions, and these are two passes over 1,416 probes. Without
+them the CI would stay green while the bundle drifted from its own reference.
+
 ## Not covered
 
 - **Unparsable input.** The hook denies it (`{"decision": "deny", "reason":
