@@ -17,6 +17,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 
 import markdown
 
@@ -141,13 +142,16 @@ img { max-width: 100%; }
 """
 
 
-def build(md_path: str, out_dir: str) -> str:
+def build(md_path: str, out_dir: str, keep_html: bool = False) -> str:
     with open(md_path, encoding="utf-8") as f:
         md = f.read().replace("\r\n", "\n")
 
     base = os.path.splitext(os.path.basename(md_path))[0]
-    html_path = os.path.join(out_dir, base + ".html")
     pdf_path = os.path.join(out_dir, base + ".pdf")
+    # HTML — промежуточный файл: в каталог он попадает только по --keep-html,
+    # иначе живёт во временном и не мусорит в репозитории
+    html_dir = out_dir if keep_html else tempfile.mkdtemp(prefix="pdfbuild_")
+    html_path = os.path.join(html_dir, base + ".html")
 
     body = md_to_html(md)
     doc = (
@@ -186,12 +190,13 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("files", nargs="+")
     ap.add_argument("--outdir", default=None)
+    ap.add_argument("--keep-html", action="store_true")
     a = ap.parse_args(argv)
 
     out_dir = a.outdir or os.path.dirname(os.path.abspath(a.files[0]))
     os.makedirs(out_dir, exist_ok=True)
     for p in a.files:
-        build(p, out_dir)
+        build(p, out_dir, a.keep_html)
     return 0
 
 
