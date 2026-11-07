@@ -1,315 +1,315 @@
-{"series": "v6", "probe_id": "N0_k01", "arm": null, "n": 0, "k": 1, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N0_k02", "arm": null, "n": 0, "k": 2, "answer_val": 55, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N0_k03", "arm": null, "n": 0, "k": 3, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N0_k04", "arm": null, "n": 0, "k": 4, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N0_k05", "arm": null, "n": 0, "k": 5, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N0_k06", "arm": null, "n": 0, "k": 6, "answer_val": 55, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N0_k07", "arm": null, "n": 0, "k": 7, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N0_k08", "arm": null, "n": 0, "k": 8, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N0_k09", "arm": null, "n": 0, "k": 9, "answer_val": 55, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N0_k10", "arm": null, "n": 0, "k": 10, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N0_k11", "arm": null, "n": 0, "k": 11, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N0_k12", "arm": null, "n": 0, "k": 12, "answer_val": 55, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N1_k01", "arm": null, "n": 1, "k": 1, "answer_val": 3, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v6", "probe_id": "N1_k02", "arm": null, "n": 1, "k": 2, "answer_val": 3, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v6", "probe_id": "N1_k03", "arm": null, "n": 1, "k": 3, "answer_val": 1, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N1_k04", "arm": null, "n": 1, "k": 4, "answer_val": 1, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N1_k05", "arm": null, "n": 1, "k": 5, "answer_val": 1, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N1_k06", "arm": null, "n": 1, "k": 6, "answer_val": 3, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v6", "probe_id": "N1_k07", "arm": null, "n": 1, "k": 7, "answer_val": 1, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N1_k08", "arm": null, "n": 1, "k": 8, "answer_val": 3, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v6", "probe_id": "N1_k09", "arm": null, "n": 1, "k": 9, "answer_val": 3, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v6", "probe_id": "N1_k10", "arm": null, "n": 1, "k": 10, "answer_val": 3, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v6", "probe_id": "N1_k11", "arm": null, "n": 1, "k": 11, "answer_val": 1, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N1_k12", "arm": null, "n": 1, "k": 12, "answer_val": 1, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N2_k01", "arm": null, "n": 2, "k": 1, "answer_val": 2, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N2_k02", "arm": null, "n": 2, "k": 2, "answer_val": 2, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N2_k03", "arm": null, "n": 2, "k": 3, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N2_k04", "arm": null, "n": 2, "k": 4, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N2_k05", "arm": null, "n": 2, "k": 5, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N2_k06", "arm": null, "n": 2, "k": 6, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N2_k07", "arm": null, "n": 2, "k": 7, "answer_val": 2, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N2_k08", "arm": null, "n": 2, "k": 8, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N2_k09", "arm": null, "n": 2, "k": 9, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N2_k10", "arm": null, "n": 2, "k": 10, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N2_k11", "arm": null, "n": 2, "k": 11, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N2_k12", "arm": null, "n": 2, "k": 12, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N4_k01", "arm": null, "n": 4, "k": 1, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N4_k02", "arm": null, "n": 4, "k": 2, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N4_k03", "arm": null, "n": 4, "k": 3, "answer_val": 4, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N4_k04", "arm": null, "n": 4, "k": 4, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N4_k05", "arm": null, "n": 4, "k": 5, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N4_k06", "arm": null, "n": 4, "k": 6, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N4_k07", "arm": null, "n": 4, "k": 7, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N4_k08", "arm": null, "n": 4, "k": 8, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N4_k09", "arm": null, "n": 4, "k": 9, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N4_k10", "arm": null, "n": 4, "k": 10, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N4_k11", "arm": null, "n": 4, "k": 11, "answer_val": 4, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N4_k12", "arm": null, "n": 4, "k": 12, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N8_k01", "arm": null, "n": 8, "k": 1, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N8_k02", "arm": null, "n": 8, "k": 2, "answer_val": null, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v6", "probe_id": "N8_k03", "arm": null, "n": 8, "k": 3, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N8_k04", "arm": null, "n": 8, "k": 4, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N8_k05", "arm": null, "n": 8, "k": 5, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N8_k06", "arm": null, "n": 8, "k": 6, "answer_val": 8, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N8_k07", "arm": null, "n": 8, "k": 7, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N8_k08", "arm": null, "n": 8, "k": 8, "answer_val": 8, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N8_k09", "arm": null, "n": 8, "k": 9, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N8_k10", "arm": null, "n": 8, "k": 10, "answer_val": 8, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N8_k11", "arm": null, "n": 8, "k": 11, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N8_k12", "arm": null, "n": 8, "k": 12, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N16_k01", "arm": null, "n": 16, "k": 1, "answer_val": 16, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N16_k02", "arm": null, "n": 16, "k": 2, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N16_k03", "arm": null, "n": 16, "k": 3, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N16_k04", "arm": null, "n": 16, "k": 4, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N16_k05", "arm": null, "n": 16, "k": 5, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N16_k06", "arm": null, "n": 16, "k": 6, "answer_val": 16, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N16_k07", "arm": null, "n": 16, "k": 7, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N16_k08", "arm": null, "n": 16, "k": 8, "answer_val": 16, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N16_k09", "arm": null, "n": 16, "k": 9, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N16_k10", "arm": null, "n": 16, "k": 10, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N16_k11", "arm": null, "n": 16, "k": 11, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N16_k12", "arm": null, "n": 16, "k": 12, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N32_k01", "arm": null, "n": 32, "k": 1, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N32_k02", "arm": null, "n": 32, "k": 2, "answer_val": 32, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N32_k03", "arm": null, "n": 32, "k": 3, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N32_k04", "arm": null, "n": 32, "k": 4, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N32_k05", "arm": null, "n": 32, "k": 5, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N32_k06", "arm": null, "n": 32, "k": 6, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N32_k07", "arm": null, "n": 32, "k": 7, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N32_k08", "arm": null, "n": 32, "k": 8, "answer_val": 32, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N32_k09", "arm": null, "n": 32, "k": 9, "answer_val": 32, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N32_k10", "arm": null, "n": 32, "k": 10, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N32_k11", "arm": null, "n": 32, "k": 11, "answer_val": 32, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N32_k12", "arm": null, "n": 32, "k": 12, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N64_k01", "arm": null, "n": 64, "k": 1, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N64_k02", "arm": null, "n": 64, "k": 2, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N64_k03", "arm": null, "n": 64, "k": 3, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N64_k04", "arm": null, "n": 64, "k": 4, "answer_val": 64, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N64_k05", "arm": null, "n": 64, "k": 5, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N64_k06", "arm": null, "n": 64, "k": 6, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N64_k07", "arm": null, "n": 64, "k": 7, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N64_k08", "arm": null, "n": 64, "k": 8, "answer_val": 64, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N64_k09", "arm": null, "n": 64, "k": 9, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N64_k10", "arm": null, "n": 64, "k": 10, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N64_k11", "arm": null, "n": 64, "k": 11, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v6", "probe_id": "N64_k12", "arm": null, "n": 64, "k": 12, "answer_val": 64, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k01", "arm": "length", "n": 8, "k": 1, "answer_val": 53, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k02", "arm": "length", "n": 8, "k": 2, "answer_val": 17, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k03", "arm": "length", "n": 8, "k": 3, "answer_val": 46, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k04", "arm": "length", "n": 8, "k": 4, "answer_val": 7668, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k05", "arm": "length", "n": 8, "k": 5, "answer_val": 43, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k06", "arm": "length", "n": 8, "k": 6, "answer_val": 220, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k07", "arm": "length", "n": 8, "k": 7, "answer_val": 364, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k08", "arm": "length", "n": 8, "k": 8, "answer_val": 47, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k09", "arm": "length", "n": 8, "k": 9, "answer_val": 105, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k10", "arm": "length", "n": 8, "k": 10, "answer_val": 68, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k11", "arm": "length", "n": 8, "k": 11, "answer_val": 25, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k12", "arm": "length", "n": 8, "k": 12, "answer_val": 730, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k13", "arm": "length", "n": 8, "k": 13, "answer_val": 162, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k14", "arm": "length", "n": 8, "k": 14, "answer_val": 33, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k15", "arm": "length", "n": 8, "k": 15, "answer_val": 1979, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k16", "arm": "length", "n": 8, "k": 16, "answer_val": 775, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k17", "arm": "length", "n": 8, "k": 17, "answer_val": 66, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k18", "arm": "length", "n": 8, "k": 18, "answer_val": 3216, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k19", "arm": "length", "n": 8, "k": 19, "answer_val": 34290, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k20", "arm": "length", "n": 8, "k": 20, "answer_val": 186, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k21", "arm": "length", "n": 8, "k": 21, "answer_val": 268, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k22", "arm": "length", "n": 8, "k": 22, "answer_val": 41, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k23", "arm": "length", "n": 8, "k": 23, "answer_val": 31, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c460_k24", "arm": "length", "n": 8, "k": 24, "answer_val": 49, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k01", "arm": "length", "n": 8, "k": 1, "answer_val": 53, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k02", "arm": "length", "n": 8, "k": 2, "answer_val": 17, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k03", "arm": "length", "n": 8, "k": 3, "answer_val": 46, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k04", "arm": "length", "n": 8, "k": 4, "answer_val": 7668, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k05", "arm": "length", "n": 8, "k": 5, "answer_val": 43, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k06", "arm": "length", "n": 8, "k": 6, "answer_val": 220, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k07", "arm": "length", "n": 8, "k": 7, "answer_val": 364, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k08", "arm": "length", "n": 8, "k": 8, "answer_val": 47, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k09", "arm": "length", "n": 8, "k": 9, "answer_val": 105, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k10", "arm": "length", "n": 8, "k": 10, "answer_val": 68, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k11", "arm": "length", "n": 8, "k": 11, "answer_val": 25, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k12", "arm": "length", "n": 8, "k": 12, "answer_val": 730, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k13", "arm": "length", "n": 8, "k": 13, "answer_val": 162, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k14", "arm": "length", "n": 8, "k": 14, "answer_val": 33, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k15", "arm": "length", "n": 8, "k": 15, "answer_val": 1979, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k16", "arm": "length", "n": 8, "k": 16, "answer_val": 775, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k17", "arm": "length", "n": 8, "k": 17, "answer_val": 66, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k18", "arm": "length", "n": 8, "k": 18, "answer_val": 3216, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k19", "arm": "length", "n": 8, "k": 19, "answer_val": 34290, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k20", "arm": "length", "n": 8, "k": 20, "answer_val": 186, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k21", "arm": "length", "n": 8, "k": 21, "answer_val": 268, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k22", "arm": "length", "n": 8, "k": 22, "answer_val": 41, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k23", "arm": "length", "n": 8, "k": 23, "answer_val": 31, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c920_k24", "arm": "length", "n": 8, "k": 24, "answer_val": 49, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k01", "arm": "length", "n": 8, "k": 1, "answer_val": 53, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k02", "arm": "length", "n": 8, "k": 2, "answer_val": 17, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k03", "arm": "length", "n": 8, "k": 3, "answer_val": 46, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k04", "arm": "length", "n": 8, "k": 4, "answer_val": 7668, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k05", "arm": "length", "n": 8, "k": 5, "answer_val": 43, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k06", "arm": "length", "n": 8, "k": 6, "answer_val": 220, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k07", "arm": "length", "n": 8, "k": 7, "answer_val": 364, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k08", "arm": "length", "n": 8, "k": 8, "answer_val": 47, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k09", "arm": "length", "n": 8, "k": 9, "answer_val": 105, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k10", "arm": "length", "n": 8, "k": 10, "answer_val": 68, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k11", "arm": "length", "n": 8, "k": 11, "answer_val": 25, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k12", "arm": "length", "n": 8, "k": 12, "answer_val": 730, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k13", "arm": "length", "n": 8, "k": 13, "answer_val": 162, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k14", "arm": "length", "n": 8, "k": 14, "answer_val": 33, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k15", "arm": "length", "n": 8, "k": 15, "answer_val": 1979, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k16", "arm": "length", "n": 8, "k": 16, "answer_val": 775, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k17", "arm": "length", "n": 8, "k": 17, "answer_val": 66, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k18", "arm": "length", "n": 8, "k": 18, "answer_val": 3216, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k19", "arm": "length", "n": 8, "k": 19, "answer_val": 34290, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k20", "arm": "length", "n": 8, "k": 20, "answer_val": 186, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k21", "arm": "length", "n": 8, "k": 21, "answer_val": 268, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k22", "arm": "length", "n": 8, "k": 22, "answer_val": 41, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k23", "arm": "length", "n": 8, "k": 23, "answer_val": 31, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c1840_k24", "arm": "length", "n": 8, "k": 24, "answer_val": 49, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k01", "arm": "length", "n": 8, "k": 1, "answer_val": 53, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k02", "arm": "length", "n": 8, "k": 2, "answer_val": 17, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k03", "arm": "length", "n": 8, "k": 3, "answer_val": 46, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k04", "arm": "length", "n": 8, "k": 4, "answer_val": 7668, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k05", "arm": "length", "n": 8, "k": 5, "answer_val": 43, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k06", "arm": "length", "n": 8, "k": 6, "answer_val": 220, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k07", "arm": "length", "n": 8, "k": 7, "answer_val": 364, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k08", "arm": "length", "n": 8, "k": 8, "answer_val": 47, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k09", "arm": "length", "n": 8, "k": 9, "answer_val": 105, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k10", "arm": "length", "n": 8, "k": 10, "answer_val": 68, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k11", "arm": "length", "n": 8, "k": 11, "answer_val": 25, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k12", "arm": "length", "n": 8, "k": 12, "answer_val": 730, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k13", "arm": "length", "n": 8, "k": 13, "answer_val": 162, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k14", "arm": "length", "n": 8, "k": 14, "answer_val": 33, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k15", "arm": "length", "n": 8, "k": 15, "answer_val": 1979, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k16", "arm": "length", "n": 8, "k": 16, "answer_val": 775, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k17", "arm": "length", "n": 8, "k": 17, "answer_val": 66, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k18", "arm": "length", "n": 8, "k": 18, "answer_val": 3216, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k19", "arm": "length", "n": 8, "k": 19, "answer_val": 34290, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k20", "arm": "length", "n": 8, "k": 20, "answer_val": 186, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k21", "arm": "length", "n": 8, "k": 21, "answer_val": 268, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k22", "arm": "length", "n": 8, "k": 22, "answer_val": 41, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k23", "arm": "length", "n": 8, "k": 23, "answer_val": 31, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c3680_k24", "arm": "length", "n": 8, "k": 24, "answer_val": 49, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k01", "arm": "length", "n": 8, "k": 1, "answer_val": 53, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k02", "arm": "length", "n": 8, "k": 2, "answer_val": 17, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k03", "arm": "length", "n": 8, "k": 3, "answer_val": 46, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k04", "arm": "length", "n": 8, "k": 4, "answer_val": 7668, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k05", "arm": "length", "n": 8, "k": 5, "answer_val": 43, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k06", "arm": "length", "n": 8, "k": 6, "answer_val": 220, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k07", "arm": "length", "n": 8, "k": 7, "answer_val": 364, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k08", "arm": "length", "n": 8, "k": 8, "answer_val": 47, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k09", "arm": "length", "n": 8, "k": 9, "answer_val": 105, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k10", "arm": "length", "n": 8, "k": 10, "answer_val": 68, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k11", "arm": "length", "n": 8, "k": 11, "answer_val": 25, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k12", "arm": "length", "n": 8, "k": 12, "answer_val": 730, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k13", "arm": "length", "n": 8, "k": 13, "answer_val": 162, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k14", "arm": "length", "n": 8, "k": 14, "answer_val": 33, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k15", "arm": "length", "n": 8, "k": 15, "answer_val": 1979, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k16", "arm": "length", "n": 8, "k": 16, "answer_val": 775, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k17", "arm": "length", "n": 8, "k": 17, "answer_val": 66, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k18", "arm": "length", "n": 8, "k": 18, "answer_val": 3216, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k19", "arm": "length", "n": 8, "k": 19, "answer_val": 34290, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k20", "arm": "length", "n": 8, "k": 20, "answer_val": 186, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k21", "arm": "length", "n": 8, "k": 21, "answer_val": 268, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k22", "arm": "length", "n": 8, "k": 22, "answer_val": 41, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k23", "arm": "length", "n": 8, "k": 23, "answer_val": 31, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "length_c7360_k24", "arm": "length", "n": 8, "k": 24, "answer_val": 49, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k01", "arm": "scope", "n": 8, "k": 1, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k02", "arm": "scope", "n": 8, "k": 2, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k03", "arm": "scope", "n": 8, "k": 3, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k04", "arm": "scope", "n": 8, "k": 4, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k05", "arm": "scope", "n": 8, "k": 5, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k06", "arm": "scope", "n": 8, "k": 6, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k07", "arm": "scope", "n": 8, "k": 7, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k08", "arm": "scope", "n": 8, "k": 8, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k09", "arm": "scope", "n": 8, "k": 9, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k10", "arm": "scope", "n": 8, "k": 10, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k11", "arm": "scope", "n": 8, "k": 11, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k12", "arm": "scope", "n": 8, "k": 12, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k13", "arm": "scope", "n": 8, "k": 13, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k14", "arm": "scope", "n": 8, "k": 14, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k15", "arm": "scope", "n": 8, "k": 15, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k16", "arm": "scope", "n": 8, "k": 16, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k17", "arm": "scope", "n": 8, "k": 17, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k18", "arm": "scope", "n": 8, "k": 18, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k19", "arm": "scope", "n": 8, "k": 19, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k20", "arm": "scope", "n": 8, "k": 20, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k21", "arm": "scope", "n": 8, "k": 21, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k22", "arm": "scope", "n": 8, "k": 22, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k23", "arm": "scope", "n": 8, "k": 23, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c0_k24", "arm": "scope", "n": 8, "k": 24, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k01", "arm": "scope", "n": 8, "k": 1, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k02", "arm": "scope", "n": 8, "k": 2, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k03", "arm": "scope", "n": 8, "k": 3, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k04", "arm": "scope", "n": 8, "k": 4, "answer_val": 9, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k05", "arm": "scope", "n": 8, "k": 5, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k06", "arm": "scope", "n": 8, "k": 6, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k07", "arm": "scope", "n": 8, "k": 7, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k08", "arm": "scope", "n": 8, "k": 8, "answer_val": 7, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k09", "arm": "scope", "n": 8, "k": 9, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k10", "arm": "scope", "n": 8, "k": 10, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k11", "arm": "scope", "n": 8, "k": 11, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k12", "arm": "scope", "n": 8, "k": 12, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k13", "arm": "scope", "n": 8, "k": 13, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k14", "arm": "scope", "n": 8, "k": 14, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k15", "arm": "scope", "n": 8, "k": 15, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k16", "arm": "scope", "n": 8, "k": 16, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k17", "arm": "scope", "n": 8, "k": 17, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k18", "arm": "scope", "n": 8, "k": 18, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k19", "arm": "scope", "n": 8, "k": 19, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k20", "arm": "scope", "n": 8, "k": 20, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k21", "arm": "scope", "n": 8, "k": 21, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k22", "arm": "scope", "n": 8, "k": 22, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k23", "arm": "scope", "n": 8, "k": 23, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c1_k24", "arm": "scope", "n": 8, "k": 24, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k01", "arm": "scope", "n": 8, "k": 1, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k02", "arm": "scope", "n": 8, "k": 2, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k03", "arm": "scope", "n": 8, "k": 3, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k04", "arm": "scope", "n": 8, "k": 4, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k05", "arm": "scope", "n": 8, "k": 5, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k06", "arm": "scope", "n": 8, "k": 6, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k07", "arm": "scope", "n": 8, "k": 7, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k08", "arm": "scope", "n": 8, "k": 8, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k09", "arm": "scope", "n": 8, "k": 9, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k10", "arm": "scope", "n": 8, "k": 10, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k11", "arm": "scope", "n": 8, "k": 11, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k12", "arm": "scope", "n": 8, "k": 12, "answer_val": 7, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k13", "arm": "scope", "n": 8, "k": 13, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k14", "arm": "scope", "n": 8, "k": 14, "answer_val": 9, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k15", "arm": "scope", "n": 8, "k": 15, "answer_val": 9, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k16", "arm": "scope", "n": 8, "k": 16, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k17", "arm": "scope", "n": 8, "k": 17, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k18", "arm": "scope", "n": 8, "k": 18, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k19", "arm": "scope", "n": 8, "k": 19, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k20", "arm": "scope", "n": 8, "k": 20, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k21", "arm": "scope", "n": 8, "k": 21, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k22", "arm": "scope", "n": 8, "k": 22, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k23", "arm": "scope", "n": 8, "k": 23, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c2_k24", "arm": "scope", "n": 8, "k": 24, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k01", "arm": "scope", "n": 8, "k": 1, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k02", "arm": "scope", "n": 8, "k": 2, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k03", "arm": "scope", "n": 8, "k": 3, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k04", "arm": "scope", "n": 8, "k": 4, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k05", "arm": "scope", "n": 8, "k": 5, "answer_val": 8, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k06", "arm": "scope", "n": 8, "k": 6, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k07", "arm": "scope", "n": 8, "k": 7, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k08", "arm": "scope", "n": 8, "k": 8, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k09", "arm": "scope", "n": 8, "k": 9, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k10", "arm": "scope", "n": 8, "k": 10, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k11", "arm": "scope", "n": 8, "k": 11, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k12", "arm": "scope", "n": 8, "k": 12, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k13", "arm": "scope", "n": 8, "k": 13, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k14", "arm": "scope", "n": 8, "k": 14, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k15", "arm": "scope", "n": 8, "k": 15, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k16", "arm": "scope", "n": 8, "k": 16, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k17", "arm": "scope", "n": 8, "k": 17, "answer_val": 8, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k18", "arm": "scope", "n": 8, "k": 18, "answer_val": 9, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k19", "arm": "scope", "n": 8, "k": 19, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k20", "arm": "scope", "n": 8, "k": 20, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k21", "arm": "scope", "n": 8, "k": 21, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k22", "arm": "scope", "n": 8, "k": 22, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k23", "arm": "scope", "n": 8, "k": 23, "answer_val": 8, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
-{"series": "v8", "probe_id": "scope_c3_k24", "arm": "scope", "n": 8, "k": 24, "answer_val": 7, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null}
+{"series": "v6", "probe_id": "N0_k01", "arm": null, "n": 0, "k": 1, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N0_k02", "arm": null, "n": 0, "k": 2, "answer_val": 55, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N0_k03", "arm": null, "n": 0, "k": 3, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N0_k04", "arm": null, "n": 0, "k": 4, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N0_k05", "arm": null, "n": 0, "k": 5, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N0_k06", "arm": null, "n": 0, "k": 6, "answer_val": 55, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N0_k07", "arm": null, "n": 0, "k": 7, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N0_k08", "arm": null, "n": 0, "k": 8, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N0_k09", "arm": null, "n": 0, "k": 9, "answer_val": 55, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N0_k10", "arm": null, "n": 0, "k": 10, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N0_k11", "arm": null, "n": 0, "k": 11, "answer_val": 55, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N0_k12", "arm": null, "n": 0, "k": 12, "answer_val": 55, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N1_k01", "arm": null, "n": 1, "k": 1, "answer_val": 3, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N1_k02", "arm": null, "n": 1, "k": 2, "answer_val": 3, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N1_k03", "arm": null, "n": 1, "k": 3, "answer_val": 1, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N1_k04", "arm": null, "n": 1, "k": 4, "answer_val": 1, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N1_k05", "arm": null, "n": 1, "k": 5, "answer_val": 1, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N1_k06", "arm": null, "n": 1, "k": 6, "answer_val": 3, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N1_k07", "arm": null, "n": 1, "k": 7, "answer_val": 1, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N1_k08", "arm": null, "n": 1, "k": 8, "answer_val": 3, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N1_k09", "arm": null, "n": 1, "k": 9, "answer_val": 3, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N1_k10", "arm": null, "n": 1, "k": 10, "answer_val": 3, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": null, "leak_own": true, "echo": true}
+{"series": "v6", "probe_id": "N1_k11", "arm": null, "n": 1, "k": 11, "answer_val": 1, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N1_k12", "arm": null, "n": 1, "k": 12, "answer_val": 1, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N2_k01", "arm": null, "n": 2, "k": 1, "answer_val": 2, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N2_k02", "arm": null, "n": 2, "k": 2, "answer_val": 2, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": true, "echo": true}
+{"series": "v6", "probe_id": "N2_k03", "arm": null, "n": 2, "k": 3, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N2_k04", "arm": null, "n": 2, "k": 4, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N2_k05", "arm": null, "n": 2, "k": 5, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N2_k06", "arm": null, "n": 2, "k": 6, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N2_k07", "arm": null, "n": 2, "k": 7, "answer_val": 2, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N2_k08", "arm": null, "n": 2, "k": 8, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N2_k09", "arm": null, "n": 2, "k": 9, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N2_k10", "arm": null, "n": 2, "k": 10, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N2_k11", "arm": null, "n": 2, "k": 11, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N2_k12", "arm": null, "n": 2, "k": 12, "answer_val": 2, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N4_k01", "arm": null, "n": 4, "k": 1, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N4_k02", "arm": null, "n": 4, "k": 2, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N4_k03", "arm": null, "n": 4, "k": 3, "answer_val": 4, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N4_k04", "arm": null, "n": 4, "k": 4, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N4_k05", "arm": null, "n": 4, "k": 5, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N4_k06", "arm": null, "n": 4, "k": 6, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N4_k07", "arm": null, "n": 4, "k": 7, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N4_k08", "arm": null, "n": 4, "k": 8, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N4_k09", "arm": null, "n": 4, "k": 9, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N4_k10", "arm": null, "n": 4, "k": 10, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N4_k11", "arm": null, "n": 4, "k": 11, "answer_val": 4, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N4_k12", "arm": null, "n": 4, "k": 12, "answer_val": 4, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N8_k01", "arm": null, "n": 8, "k": 1, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N8_k02", "arm": null, "n": 8, "k": 2, "answer_val": null, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N8_k03", "arm": null, "n": 8, "k": 3, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N8_k04", "arm": null, "n": 8, "k": 4, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N8_k05", "arm": null, "n": 8, "k": 5, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N8_k06", "arm": null, "n": 8, "k": 6, "answer_val": 8, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N8_k07", "arm": null, "n": 8, "k": 7, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N8_k08", "arm": null, "n": 8, "k": 8, "answer_val": 8, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N8_k09", "arm": null, "n": 8, "k": 9, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N8_k10", "arm": null, "n": 8, "k": 10, "answer_val": 8, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": true, "echo": true}
+{"series": "v6", "probe_id": "N8_k11", "arm": null, "n": 8, "k": 11, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N8_k12", "arm": null, "n": 8, "k": 12, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N16_k01", "arm": null, "n": 16, "k": 1, "answer_val": 16, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N16_k02", "arm": null, "n": 16, "k": 2, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N16_k03", "arm": null, "n": 16, "k": 3, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N16_k04", "arm": null, "n": 16, "k": 4, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N16_k05", "arm": null, "n": 16, "k": 5, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N16_k06", "arm": null, "n": 16, "k": 6, "answer_val": 16, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N16_k07", "arm": null, "n": 16, "k": 7, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N16_k08", "arm": null, "n": 16, "k": 8, "answer_val": 16, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N16_k09", "arm": null, "n": 16, "k": 9, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N16_k10", "arm": null, "n": 16, "k": 10, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N16_k11", "arm": null, "n": 16, "k": 11, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N16_k12", "arm": null, "n": 16, "k": 12, "answer_val": 16, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N32_k01", "arm": null, "n": 32, "k": 1, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N32_k02", "arm": null, "n": 32, "k": 2, "answer_val": 32, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N32_k03", "arm": null, "n": 32, "k": 3, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": true, "echo": true}
+{"series": "v6", "probe_id": "N32_k04", "arm": null, "n": 32, "k": 4, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N32_k05", "arm": null, "n": 32, "k": 5, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N32_k06", "arm": null, "n": 32, "k": 6, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N32_k07", "arm": null, "n": 32, "k": 7, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N32_k08", "arm": null, "n": 32, "k": 8, "answer_val": 32, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N32_k09", "arm": null, "n": 32, "k": 9, "answer_val": 32, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N32_k10", "arm": null, "n": 32, "k": 10, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N32_k11", "arm": null, "n": 32, "k": 11, "answer_val": 32, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N32_k12", "arm": null, "n": 32, "k": 12, "answer_val": 32, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N64_k01", "arm": null, "n": 64, "k": 1, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N64_k02", "arm": null, "n": 64, "k": 2, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N64_k03", "arm": null, "n": 64, "k": 3, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N64_k04", "arm": null, "n": 64, "k": 4, "answer_val": 64, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N64_k05", "arm": null, "n": 64, "k": 5, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N64_k06", "arm": null, "n": 64, "k": 6, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N64_k07", "arm": null, "n": 64, "k": 7, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N64_k08", "arm": null, "n": 64, "k": 8, "answer_val": 64, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N64_k09", "arm": null, "n": 64, "k": 9, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N64_k10", "arm": null, "n": 64, "k": 10, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N64_k11", "arm": null, "n": 64, "k": 11, "answer_val": 64, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v6", "probe_id": "N64_k12", "arm": null, "n": 64, "k": 12, "answer_val": 64, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": null, "leak_own": false, "echo": false}
+{"series": "v8", "probe_id": "length_c460_k01", "arm": "length", "n": 8, "k": 1, "answer_val": 53, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k02", "arm": "length", "n": 8, "k": 2, "answer_val": 17, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k03", "arm": "length", "n": 8, "k": 3, "answer_val": 46, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k04", "arm": "length", "n": 8, "k": 4, "answer_val": 7668, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k05", "arm": "length", "n": 8, "k": 5, "answer_val": 43, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k06", "arm": "length", "n": 8, "k": 6, "answer_val": 220, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k07", "arm": "length", "n": 8, "k": 7, "answer_val": 364, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k08", "arm": "length", "n": 8, "k": 8, "answer_val": 47, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k09", "arm": "length", "n": 8, "k": 9, "answer_val": 105, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k10", "arm": "length", "n": 8, "k": 10, "answer_val": 68, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k11", "arm": "length", "n": 8, "k": 11, "answer_val": 25, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k12", "arm": "length", "n": 8, "k": 12, "answer_val": 730, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k13", "arm": "length", "n": 8, "k": 13, "answer_val": 162, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k14", "arm": "length", "n": 8, "k": 14, "answer_val": 33, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k15", "arm": "length", "n": 8, "k": 15, "answer_val": 1979, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k16", "arm": "length", "n": 8, "k": 16, "answer_val": 775, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k17", "arm": "length", "n": 8, "k": 17, "answer_val": 66, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k18", "arm": "length", "n": 8, "k": 18, "answer_val": 3216, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k19", "arm": "length", "n": 8, "k": 19, "answer_val": 34290, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k20", "arm": "length", "n": 8, "k": 20, "answer_val": 186, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k21", "arm": "length", "n": 8, "k": 21, "answer_val": 268, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k22", "arm": "length", "n": 8, "k": 22, "answer_val": 41, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k23", "arm": "length", "n": 8, "k": 23, "answer_val": 31, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c460_k24", "arm": "length", "n": 8, "k": 24, "answer_val": 49, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k01", "arm": "length", "n": 8, "k": 1, "answer_val": 53, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k02", "arm": "length", "n": 8, "k": 2, "answer_val": 17, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k03", "arm": "length", "n": 8, "k": 3, "answer_val": 46, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k04", "arm": "length", "n": 8, "k": 4, "answer_val": 7668, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k05", "arm": "length", "n": 8, "k": 5, "answer_val": 43, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k06", "arm": "length", "n": 8, "k": 6, "answer_val": 220, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k07", "arm": "length", "n": 8, "k": 7, "answer_val": 364, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k08", "arm": "length", "n": 8, "k": 8, "answer_val": 47, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k09", "arm": "length", "n": 8, "k": 9, "answer_val": 105, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k10", "arm": "length", "n": 8, "k": 10, "answer_val": 68, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k11", "arm": "length", "n": 8, "k": 11, "answer_val": 25, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k12", "arm": "length", "n": 8, "k": 12, "answer_val": 730, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k13", "arm": "length", "n": 8, "k": 13, "answer_val": 162, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k14", "arm": "length", "n": 8, "k": 14, "answer_val": 33, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k15", "arm": "length", "n": 8, "k": 15, "answer_val": 1979, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k16", "arm": "length", "n": 8, "k": 16, "answer_val": 775, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k17", "arm": "length", "n": 8, "k": 17, "answer_val": 66, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k18", "arm": "length", "n": 8, "k": 18, "answer_val": 3216, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k19", "arm": "length", "n": 8, "k": 19, "answer_val": 34290, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k20", "arm": "length", "n": 8, "k": 20, "answer_val": 186, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k21", "arm": "length", "n": 8, "k": 21, "answer_val": 268, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k22", "arm": "length", "n": 8, "k": 22, "answer_val": 41, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k23", "arm": "length", "n": 8, "k": 23, "answer_val": 31, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c920_k24", "arm": "length", "n": 8, "k": 24, "answer_val": 49, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k01", "arm": "length", "n": 8, "k": 1, "answer_val": 53, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k02", "arm": "length", "n": 8, "k": 2, "answer_val": 17, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k03", "arm": "length", "n": 8, "k": 3, "answer_val": 46, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k04", "arm": "length", "n": 8, "k": 4, "answer_val": 7668, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k05", "arm": "length", "n": 8, "k": 5, "answer_val": 43, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k06", "arm": "length", "n": 8, "k": 6, "answer_val": 220, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k07", "arm": "length", "n": 8, "k": 7, "answer_val": 364, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k08", "arm": "length", "n": 8, "k": 8, "answer_val": 47, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k09", "arm": "length", "n": 8, "k": 9, "answer_val": 105, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k10", "arm": "length", "n": 8, "k": 10, "answer_val": 68, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k11", "arm": "length", "n": 8, "k": 11, "answer_val": 25, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k12", "arm": "length", "n": 8, "k": 12, "answer_val": 730, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k13", "arm": "length", "n": 8, "k": 13, "answer_val": 162, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k14", "arm": "length", "n": 8, "k": 14, "answer_val": 33, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k15", "arm": "length", "n": 8, "k": 15, "answer_val": 1979, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k16", "arm": "length", "n": 8, "k": 16, "answer_val": 775, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k17", "arm": "length", "n": 8, "k": 17, "answer_val": 66, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k18", "arm": "length", "n": 8, "k": 18, "answer_val": 3216, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k19", "arm": "length", "n": 8, "k": 19, "answer_val": 34290, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k20", "arm": "length", "n": 8, "k": 20, "answer_val": 186, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k21", "arm": "length", "n": 8, "k": 21, "answer_val": 268, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k22", "arm": "length", "n": 8, "k": 22, "answer_val": 41, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k23", "arm": "length", "n": 8, "k": 23, "answer_val": 31, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c1840_k24", "arm": "length", "n": 8, "k": 24, "answer_val": 49, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k01", "arm": "length", "n": 8, "k": 1, "answer_val": 53, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k02", "arm": "length", "n": 8, "k": 2, "answer_val": 17, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k03", "arm": "length", "n": 8, "k": 3, "answer_val": 46, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k04", "arm": "length", "n": 8, "k": 4, "answer_val": 7668, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k05", "arm": "length", "n": 8, "k": 5, "answer_val": 43, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k06", "arm": "length", "n": 8, "k": 6, "answer_val": 220, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k07", "arm": "length", "n": 8, "k": 7, "answer_val": 364, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k08", "arm": "length", "n": 8, "k": 8, "answer_val": 47, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k09", "arm": "length", "n": 8, "k": 9, "answer_val": 105, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k10", "arm": "length", "n": 8, "k": 10, "answer_val": 68, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k11", "arm": "length", "n": 8, "k": 11, "answer_val": 25, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k12", "arm": "length", "n": 8, "k": 12, "answer_val": 730, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k13", "arm": "length", "n": 8, "k": 13, "answer_val": 162, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k14", "arm": "length", "n": 8, "k": 14, "answer_val": 33, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k15", "arm": "length", "n": 8, "k": 15, "answer_val": 1979, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k16", "arm": "length", "n": 8, "k": 16, "answer_val": 775, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k17", "arm": "length", "n": 8, "k": 17, "answer_val": 66, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k18", "arm": "length", "n": 8, "k": 18, "answer_val": 3216, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k19", "arm": "length", "n": 8, "k": 19, "answer_val": 34290, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k20", "arm": "length", "n": 8, "k": 20, "answer_val": 186, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k21", "arm": "length", "n": 8, "k": 21, "answer_val": 268, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k22", "arm": "length", "n": 8, "k": 22, "answer_val": 41, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k23", "arm": "length", "n": 8, "k": 23, "answer_val": 31, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c3680_k24", "arm": "length", "n": 8, "k": 24, "answer_val": 49, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k01", "arm": "length", "n": 8, "k": 1, "answer_val": 53, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k02", "arm": "length", "n": 8, "k": 2, "answer_val": 17, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k03", "arm": "length", "n": 8, "k": 3, "answer_val": 46, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k04", "arm": "length", "n": 8, "k": 4, "answer_val": 7668, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k05", "arm": "length", "n": 8, "k": 5, "answer_val": 43, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k06", "arm": "length", "n": 8, "k": 6, "answer_val": 220, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k07", "arm": "length", "n": 8, "k": 7, "answer_val": 364, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k08", "arm": "length", "n": 8, "k": 8, "answer_val": 47, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k09", "arm": "length", "n": 8, "k": 9, "answer_val": 105, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k10", "arm": "length", "n": 8, "k": 10, "answer_val": 68, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k11", "arm": "length", "n": 8, "k": 11, "answer_val": 25, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k12", "arm": "length", "n": 8, "k": 12, "answer_val": 730, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k13", "arm": "length", "n": 8, "k": 13, "answer_val": 162, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k14", "arm": "length", "n": 8, "k": 14, "answer_val": 33, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k15", "arm": "length", "n": 8, "k": 15, "answer_val": 1979, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k16", "arm": "length", "n": 8, "k": 16, "answer_val": 775, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k17", "arm": "length", "n": 8, "k": 17, "answer_val": 66, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k18", "arm": "length", "n": 8, "k": 18, "answer_val": 3216, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k19", "arm": "length", "n": 8, "k": 19, "answer_val": 34290, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k20", "arm": "length", "n": 8, "k": 20, "answer_val": 186, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k21", "arm": "length", "n": 8, "k": 21, "answer_val": 268, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k22", "arm": "length", "n": 8, "k": 22, "answer_val": 41, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k23", "arm": "length", "n": 8, "k": 23, "answer_val": 31, "expected_val": null, "thinking_present": true, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "length_c7360_k24", "arm": "length", "n": 8, "k": 24, "answer_val": 49, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k01", "arm": "scope", "n": 8, "k": 1, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k02", "arm": "scope", "n": 8, "k": 2, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k03", "arm": "scope", "n": 8, "k": 3, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k04", "arm": "scope", "n": 8, "k": 4, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k05", "arm": "scope", "n": 8, "k": 5, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k06", "arm": "scope", "n": 8, "k": 6, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k07", "arm": "scope", "n": 8, "k": 7, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k08", "arm": "scope", "n": 8, "k": 8, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k09", "arm": "scope", "n": 8, "k": 9, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c0_k10", "arm": "scope", "n": 8, "k": 10, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c0_k11", "arm": "scope", "n": 8, "k": 11, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k12", "arm": "scope", "n": 8, "k": 12, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k13", "arm": "scope", "n": 8, "k": 13, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k14", "arm": "scope", "n": 8, "k": 14, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k15", "arm": "scope", "n": 8, "k": 15, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k16", "arm": "scope", "n": 8, "k": 16, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k17", "arm": "scope", "n": 8, "k": 17, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k18", "arm": "scope", "n": 8, "k": 18, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k19", "arm": "scope", "n": 8, "k": 19, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": false, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k20", "arm": "scope", "n": 8, "k": 20, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k21", "arm": "scope", "n": 8, "k": 21, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k22", "arm": "scope", "n": 8, "k": 22, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k23", "arm": "scope", "n": 8, "k": 23, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c0_k24", "arm": "scope", "n": 8, "k": 24, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k01", "arm": "scope", "n": 8, "k": 1, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c1_k02", "arm": "scope", "n": 8, "k": 2, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k03", "arm": "scope", "n": 8, "k": 3, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c1_k04", "arm": "scope", "n": 8, "k": 4, "answer_val": 9, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k05", "arm": "scope", "n": 8, "k": 5, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k06", "arm": "scope", "n": 8, "k": 6, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k07", "arm": "scope", "n": 8, "k": 7, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k08", "arm": "scope", "n": 8, "k": 8, "answer_val": 7, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k09", "arm": "scope", "n": 8, "k": 9, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c1_k10", "arm": "scope", "n": 8, "k": 10, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k11", "arm": "scope", "n": 8, "k": 11, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k12", "arm": "scope", "n": 8, "k": 12, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c1_k13", "arm": "scope", "n": 8, "k": 13, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c1_k14", "arm": "scope", "n": 8, "k": 14, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k15", "arm": "scope", "n": 8, "k": 15, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k16", "arm": "scope", "n": 8, "k": 16, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k17", "arm": "scope", "n": 8, "k": 17, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k18", "arm": "scope", "n": 8, "k": 18, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c1_k19", "arm": "scope", "n": 8, "k": 19, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k20", "arm": "scope", "n": 8, "k": 20, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k21", "arm": "scope", "n": 8, "k": 21, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k22", "arm": "scope", "n": 8, "k": 22, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c1_k23", "arm": "scope", "n": 8, "k": 23, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c1_k24", "arm": "scope", "n": 8, "k": 24, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k01", "arm": "scope", "n": 8, "k": 1, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k02", "arm": "scope", "n": 8, "k": 2, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k03", "arm": "scope", "n": 8, "k": 3, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c2_k04", "arm": "scope", "n": 8, "k": 4, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k05", "arm": "scope", "n": 8, "k": 5, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k06", "arm": "scope", "n": 8, "k": 6, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k07", "arm": "scope", "n": 8, "k": 7, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k08", "arm": "scope", "n": 8, "k": 8, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k09", "arm": "scope", "n": 8, "k": 9, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k10", "arm": "scope", "n": 8, "k": 10, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k11", "arm": "scope", "n": 8, "k": 11, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k12", "arm": "scope", "n": 8, "k": 12, "answer_val": 7, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k13", "arm": "scope", "n": 8, "k": 13, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k14", "arm": "scope", "n": 8, "k": 14, "answer_val": 9, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k15", "arm": "scope", "n": 8, "k": 15, "answer_val": 9, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k16", "arm": "scope", "n": 8, "k": 16, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c2_k17", "arm": "scope", "n": 8, "k": 17, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k18", "arm": "scope", "n": 8, "k": 18, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k19", "arm": "scope", "n": 8, "k": 19, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c2_k20", "arm": "scope", "n": 8, "k": 20, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c2_k21", "arm": "scope", "n": 8, "k": 21, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k22", "arm": "scope", "n": 8, "k": 22, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c2_k23", "arm": "scope", "n": 8, "k": 23, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c2_k24", "arm": "scope", "n": 8, "k": 24, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c3_k01", "arm": "scope", "n": 8, "k": 1, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c3_k02", "arm": "scope", "n": 8, "k": 2, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c3_k03", "arm": "scope", "n": 8, "k": 3, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c3_k04", "arm": "scope", "n": 8, "k": 4, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c3_k05", "arm": "scope", "n": 8, "k": 5, "answer_val": 8, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c3_k06", "arm": "scope", "n": 8, "k": 6, "answer_val": 6, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c3_k07", "arm": "scope", "n": 8, "k": 7, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c3_k08", "arm": "scope", "n": 8, "k": 8, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c3_k09", "arm": "scope", "n": 8, "k": 9, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c3_k10", "arm": "scope", "n": 8, "k": 10, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c3_k11", "arm": "scope", "n": 8, "k": 11, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c3_k12", "arm": "scope", "n": 8, "k": 12, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c3_k13", "arm": "scope", "n": 8, "k": 13, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c3_k14", "arm": "scope", "n": 8, "k": 14, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c3_k15", "arm": "scope", "n": 8, "k": 15, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c3_k16", "arm": "scope", "n": 8, "k": 16, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c3_k17", "arm": "scope", "n": 8, "k": 17, "answer_val": 8, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c3_k18", "arm": "scope", "n": 8, "k": 18, "answer_val": 9, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c3_k19", "arm": "scope", "n": 8, "k": 19, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c3_k20", "arm": "scope", "n": 8, "k": 20, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c3_k21", "arm": "scope", "n": 8, "k": 21, "answer_val": 8, "expected_val": null, "thinking_present": true, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c3_k22", "arm": "scope", "n": 8, "k": 22, "answer_val": 9, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
+{"series": "v8", "probe_id": "scope_c3_k23", "arm": "scope", "n": 8, "k": 23, "answer_val": 8, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": true}
+{"series": "v8", "probe_id": "scope_c3_k24", "arm": "scope", "n": 8, "k": 24, "answer_val": 7, "expected_val": null, "thinking_present": false, "format_ok": true, "tool_used": false}
 {"series": "v9", "probe_id": "A_control_n0_k01", "arm": "A_control", "n": null, "k": 1, "answer_val": 8, "expected_val": 8, "thinking_present": true, "format_ok": true, "tool_used": false}
 {"series": "v9", "probe_id": "A_control_n0_k02", "arm": "A_control", "n": null, "k": 2, "answer_val": 8, "expected_val": 8, "thinking_present": true, "format_ok": true, "tool_used": false}
 {"series": "v9", "probe_id": "A_control_n0_k03", "arm": "A_control", "n": null, "k": 3, "answer_val": 8, "expected_val": 8, "thinking_present": true, "format_ok": true, "tool_used": false}

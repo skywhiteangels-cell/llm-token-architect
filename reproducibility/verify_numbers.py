@@ -142,7 +142,12 @@ print("[v10] Exact counts: Reference %d / %d = %.1f%% vs Value %d / %d = %.1f%% 
 
 # --- v6: Pilot Replication ---
 v6 = by["v6"]
+v6_leak = sum(1 for r in v6 if r.get("leak_own"))
+v6_noecho = [r for r in v6 if not r.get("echo")]
+v6_noecho_leak = sum(1 for r in v6_noecho if r.get("leak_own"))
 print("[v6]  Replication probes: N = %d" % len(v6))
+print("      Naive leak metric: %d / %d = %.1f%%; probes without prompt echo: %d, leaks among them: %d"
+      % (v6_leak, len(v6), v6_leak / len(v6) * 100, len(v6_noecho), v6_noecho_leak))
 
 
 # --- Clopper-Pearson intervals for the v15 categories ----------------------
@@ -309,11 +314,18 @@ for label, a, b, c, d in PAIRS:
     # 0.6808, 0.675, 1.00, 0.00569.
     print("      %-24s %s" % (label, fmt_p(fisher(a, b, c, d))))
 
-# v8 has no tool_used field in the archive: the count comes from the session
-# files and is recorded in VERDICT_v8.md §3.2. Included so that every p-value
-# in the paper appears in this output.
-print("      %-24s %s   (from sessions; no tool_used field in v8)"
-      % ("v8 tool adoption", fmt_p(fisher(25, 96 - 25, 0, 120))))
+# v8 has no tool_used field in its own archive. The flag in probes.jsonl is
+# derived from the session databases shipped in raw_sessions_backup.zip:
+# a probe counts as tool-using if its trajectory contains a step with
+# step_type == 132 (tool invocation). The count is read from data, not typed.
+v8_scope = [r for r in by["v8"] if r["arm"] == "scope"]
+v8_used = sum(1 for r in v8_scope if r.get("tool_used"))
+v8_len = [r for r in by["v8"] if r["arm"] == "length"]
+print("[v8]  Tool adoption, scope arm: %d / %d = %.1f%%; length arm: %d / %d"
+      % (v8_used, len(v8_scope), v8_used / len(v8_scope) * 100,
+         sum(1 for r in v8_len if r.get("tool_used")), len(v8_len)))
+print("      %-24s %s   (tool_used derived from session DBs, step_type=132)"
+      % ("v8 tool adoption", fmt_p(fisher(v8_used, len(v8_scope) - v8_used, 0, len(v8_len)))))
 
 print("==================================================================")
 print("ALL CANONICAL CHECKS PASSED DETERMINISTICALLY.")
