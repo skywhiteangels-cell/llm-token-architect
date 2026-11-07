@@ -13,7 +13,7 @@ from math import comb
 
 # Set stdout encoding for Windows console
 if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace", newline="\n")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 candidates = [
