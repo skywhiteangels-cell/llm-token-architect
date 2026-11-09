@@ -25,7 +25,8 @@ case({"toolCall": {"name": "run_command", "args": {"CommandLine": 'echo "hello"'
      "allow", "run_command: сбалансированная строка")
 
 case({"toolCall": {"name": "run_command", "args": {"CommandLine": 'dir "C:\\"'}}},
-     "allow", "run_command: PowerShell путь C:\\ валиден")
+     "allow", "run_command: PowerShell путь C:\\ валиден",
+     {"QUOTE_GUARD_SHELL": "powershell"})
 
 case({"toolCall": {"name": "run_command", "args": {"CommandLine": 'echo "unclosed'}}},
      "deny", "run_command: незакрытая двойная кавычка")
