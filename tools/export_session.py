@@ -174,6 +174,28 @@ def export(convo_id: str, out_dir: str) -> int:
     digest = hashlib.sha256(open(out_path, "rb").read()).hexdigest()
     stamps = [s.get("created_at") for s in ordered if s.get("created_at")]
 
+    # Счётчики токенов считаются по уникальным шагам: у одного step_index
+    # бывает две записи (например, вызов инструмента и ответ), и обе несут одни
+    # и те же числа. Сложение по строкам удвоило бы сумму.
+    seen_steps, tokens = set(), {"input": 0, "output": 0, "cache_read": 0}
+    counted = 0
+    for s in ordered:
+        idx = s.get("step_index")
+        if idx in seen_steps:
+            continue
+        if s.get("input_tokens") is None:
+            continue
+        seen_steps.add(idx)
+        counted += 1
+        tokens["input"] += s.get("input_tokens") or 0
+        tokens["output"] += s.get("output_tokens") or 0
+        tokens["cache_read"] += s.get("cache_read_tokens") or 0
+
+    tokens["input_plus_output"] = tokens["input"] + tokens["output"]
+    tokens["context_turnover"] = (tokens["input"] + tokens["cache_read"]
+                                  + tokens["output"])
+    tokens["steps_with_counters"] = counted
+
     channels = Counter(r["channel"] for r in rows)
     roles = Counter(r["role"] for r in rows)
 
@@ -204,12 +226,19 @@ def export(convo_id: str, out_dir: str) -> int:
         "convo_id": convo_id,
         "chunks": len(files),
         "damaged_chunks": dict(damage),
-        "steps_read": len(steps),
-        "duplicates_dropped": duplicates,
-        "steps_kept": len(ordered),
+        # Четыре разные величины, которые легко перепутать:
+        #   records_parsed  — записей прочитано из чанков (события)
+        #   records         — из них те, что дали хотя бы один канал текста
+        #   unique_steps    — уникальных step_index
+        #   rows            — строк в файле (каналы: thinking / content / tools)
+        "records_parsed": len(steps),
+        "records": len(ordered),
+        "unique_steps": len({s.get("step_index") for s in ordered}),
         "rows": len(rows),
+        "duplicates_dropped": duplicates,
         "channels": dict(channels),
         "roles": dict(roles),
+        "tokens": tokens,
         "thinking_script": dict(think_lang),
         "content_script": dict(content_lang),
         "first": min(stamps) if stamps else None,
@@ -227,11 +256,20 @@ def export(convo_id: str, out_dir: str) -> int:
     print(f"  чанков:                 {len(files)}")
     for reason, n in sorted(damage.items()):
         print(f"  повреждено ({reason}): {n}")
-    print(f"  шагов прочитано:        {len(steps)}")
+    print(f"  записей прочитано:      {len(steps)}")
+    print(f"  уникальных шагов:       {meta['unique_steps']}")
+    print(f"  шагов с текстом:        {len({r['step_index'] for r in rows})}")
     print(f"  дублей отброшено:       {duplicates}")
     print(f"  строк выгружено:        {len(rows)}")
     print(f"  каналы:                 {dict(channels)}")
     print(f"  роли:                   {dict(roles)}")
+    print(f"  токены (шагов {counted}): input {tokens['input']:,} · "
+          f"output {tokens['output']:,} · cache {tokens['cache_read']:,}"
+          .replace(",", " "))
+    print(f"    input+output:         {tokens['input_plus_output']:,}"
+          .replace(",", " "))
+    print(f"    оборот с кэшем:       {tokens['context_turnover']:,}"
+          .replace(",", " "))
     if think_lang:
         print(f"  рассуждение (письмо):   {dict(think_lang)}")
     if content_lang:
