@@ -204,19 +204,67 @@ def main(argv=None):
 
     # --- 9. Ярус 0 ---------------------------------------------------------
     tier0 = os.path.join(HERE, "check_tier0.py")
-    docs = [os.path.join(root, "NICK_CAMMARATA", "PASS_BY_REFERENCE_PROTOCOL.md"),
+    # Стандарт лежит вне репозитория (C:\1\NICK_CAMMARATA). Его копия теперь
+    # tracked в protocol/, чтобы CI и чистый клон проверяли тот же текст.
+    protocol_md = os.path.join(root, "NICK_CAMMARATA",
+                               "PASS_BY_REFERENCE_PROTOCOL.md")
+    if not os.path.exists(protocol_md):
+        protocol_md = os.path.join(REPO, "protocol",
+                                   "PASS_BY_REFERENCE_PROTOCOL.md")
+    docs = [protocol_md,
             os.path.join(REPO, "VERDICT_JOURNEY.md"),
             os.path.join(REPO, "README.md"),
             os.path.join(root, "ARXIV_PACKAGE", "main.tex")]
     docs = [d for d in docs if os.path.exists(d)]
+    # Документы ссылаются и на исследовательское дерево (Argon_v*, FREEZE.txt,
+    # archive.jsonl), которого в репозитории нет по построению. В чистом клоне
+    # это не провал проверки, а её граница: проверять нечего.
+    research_tree = os.path.exists(os.path.join(root, "CANONICAL_NUMBERS.txt"))
     if os.path.exists(tier0) and docs:
         t0 = subprocess.run([sys.executable, tier0, "--root", root] + docs,
                             capture_output=True, text=True, encoding="utf-8")
         tail = [l for l in t0.stdout.splitlines() if "ИТОГ" in l]
-        mark("9. Ярус 0: ссылки существуют", "ДА" if t0.returncode == 0 else "НЕТ",
-             tail[0].strip() if tail else "проверено %d документов" % len(docs))
+        ok = t0.returncode == 0
+        if ok:
+            mark("9. Ярус 0: ссылки существуют", "ДА",
+                 tail[0].strip() if tail else "проверено %d документов" % len(docs))
+        elif not research_tree:
+            mark("9. Ярус 0: ссылки существуют", "ЧАСТИЧНО",
+                 "в клоне без исследовательского дерева часть ссылок "
+                 "непроверяема: %s" % (tail[0].strip() if tail else "см. вывод"))
+        else:
+            mark("9. Ярус 0: ссылки существуют", "НЕТ",
+                 tail[0].strip() if tail else "проверено %d документов" % len(docs))
     else:
         mark("9. Ярус 0: ссылки существуют", "НЕТ", "check_tier0.py отсутствует")
+
+    # --- 10. Термины против определений (форма 3) --------------------------
+    terms = os.path.join(HERE, "check_terms.py")
+    docs_terms = [os.path.join(REPO, "ARTICLE.md"),
+                  os.path.join(REPO, "ARTICLE_RU.md"),
+                  os.path.join(REPO, "DEGRADATION.md")]
+    docs_terms = [d for d in docs_terms if os.path.exists(d)]
+    if os.path.exists(terms) and docs_terms:
+        t = subprocess.run([sys.executable, terms, "--root", root] + docs_terms,
+                           capture_output=True, text=True, encoding="utf-8")
+        tail = [l for l in t.stdout.splitlines() if "ИТОГ" in l]
+        mark("10. Термины против определений",
+             "ДА" if t.returncode == 0 else "НЕТ",
+             tail[0].strip() if tail else "проверено %d документов" % len(docs_terms))
+    else:
+        mark("10. Термины против определений", "НЕТ",
+             "check_terms.py отсутствует")
+
+    # --- 11. Дубликаты блоков ---------------------------------------------
+    dup = os.path.join(REPO, "tools", "check_duplicate_blocks.py")
+    if os.path.exists(dup):
+        d = subprocess.run([sys.executable, dup, "--selftest"],
+                           capture_output=True, text=True, encoding="utf-8")
+        mark("11. Дубликаты блоков", "ДА" if d.returncode == 0 else "НЕТ",
+             "selftest пройден" if d.returncode == 0 else "selftest не пройден")
+    else:
+        mark("11. Дубликаты блоков", "НЕТ",
+             "tools/check_duplicate_blocks.py отсутствует")
 
     mark("6. Архив неизменяем", "ВРУЧНУЮ",
          "archive.jsonl не под append-only; целостность — по sha256 в каноне")

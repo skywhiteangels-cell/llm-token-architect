@@ -30,7 +30,7 @@ EXT = r"(?:py|md|txt|json|jsonl|tex|bib|jpg|jpeg|png|html|csv|db|zip)"
 # Абсолютный путь Windows может содержать пробелы (C:\Users\Sky Angels\...).
 # Прежний шаблон обрывался на первом пробеле и давал ложное «файла нет».
 ABS_WIN_RE = re.compile(r"[A-Za-z]:\\[^\n:*?\"<>|]+?\." + EXT + r"\b")
-PATH_RE = re.compile(r"[A-Za-z0-9_][\w./\\-]*\." + EXT + r"\b")
+PATH_RE = re.compile(r"\.?[A-Za-z0-9_][\w./\\-]*\." + EXT + r"\b")
 LINE_RE = re.compile(r"(?:стр\.?|строк[аиу]?|line|L)\s*(\d+)(?:\s*[–-]\s*(\d+))?", re.I)
 URL_RE = re.compile(r"https?://\S+")
 # Шаблонные имена вида Argon_vN/VERDICT_vN.md — это описание схемы, а не ссылка.
