@@ -1,0 +1,43 @@
+{
+  "channels": {
+    "content": 3480,
+    "thinking": 675,
+    "tools": 2344
+  },
+  "chunks": 86,
+  "content_script": {
+    "cyrillic": 889,
+    "latin": 2591
+  },
+  "convo_id": "77556605-b3a9-42b8-8624-ff84cb296321",
+  "damaged_chunks": {
+    "lines:1": 1,
+    "lines:2": 69,
+    "utf8": 16
+  },
+  "duplicates_dropped": 0,
+  "first": "2026-10-16T23:53:18Z",
+  "last": "2026-11-07T21:27:53Z",
+  "records": 5840,
+  "records_parsed": 5840,
+  "roles": {
+    "assistant": 3556,
+    "system": 87,
+    "tool": 2343,
+    "user": 513
+  },
+  "rows": 6499,
+  "sha256": "e4ec6c78e57561b02a2f4d323fa3d7f18096105edb911416ebaaf7a5ba0da924",
+  "thinking_script": {
+    "latin": 675
+  },
+  "tokens": {
+    "cache_read": 341143273,
+    "context_turnover": 373194466,
+    "input": 30809158,
+    "input_plus_output": 32051193,
+    "output": 1242035,
+    "steps_with_counters": 2716
+  },
+  "unique_steps": 5223
+}
