@@ -454,6 +454,7 @@ conversation» и читается как факт: это форма 4 в чи�
 | `verify_numbers.py` | пересчёт канонических чисел из `probes.jsonl` | `reproducibility/` |
 | `check_expected.py` | вывод против эталона, строка в строку | `reproducibility/` |
 | `export_session.py` | транскрипт в JSONL: каналы раздельно, счётчик битых чанков, sha256 | `tools/` |
+| `session_artifacts.py` | карта символов по каналу ответа: маркеры, CJK-раны, доминирующее письмо | `tools/` |
 | `check_duplicate_blocks.py` | дословные повторы в документах | `tools/` |
 
 ### Требует решения до прогона
