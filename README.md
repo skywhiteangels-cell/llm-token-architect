@@ -193,6 +193,21 @@ answers at all, not the grammar table.
 
 No pytest, no npm install. Exit code 0 or it is broken.
 
+## Tools
+
+Nine instruments make up the protocol's toolchain — five produce the report in
+its section 7, three close classes the report cannot see, and
+`tools/session_artifacts.py` builds a character map without issuing a verdict.
+They are listed with hashes in
+[protocol/PASS_BY_REFERENCE_PROTOCOL.md](protocol/PASS_BY_REFERENCE_PROTOCOL.md).
+
+`tools/` also holds utilities that are **not** part of that nine: they produce
+data, not verdicts.
+
+- `tools/ds_share.py` — a public DeepSeek share → JSONL with roles
+  (`content` / `thinking` / `request` / `tools`), no authentication required.
+  Added 10.11; it does not change the count of nine.
+
 The twelve antigravity cases, the difference between a self-test and a repository
 scan, and what none of these suites cover: [TESTS.md](TESTS.md).
 
