@@ -78,8 +78,7 @@ When a model generates code in a single unbroken stream, the preceding token `'h
 ### The Breakthrough: Token Mapping Mode ("Token Architect")
 Without formal CS degrees, but equipped with pure algorithmic intuition, I realized: if the model goes blind when writing everything in one pass, **we must forbid it from writing continuous code**. We must force it to act not as a probabilistic storyteller, but as a strict assembly linker.
 
-Thus, the **«Token Architect» (Token Mapping Mode)** prompt was born:
-Objective: Guarantee 100% precision of special characters and eliminate autoregressive loss of brackets, $ signs, and quotes.
+Thus, the **«Token Architect» (Token Mapping Mode)** prompt was born, with a single objective: guarantee 100% precision of special characters and eliminate autoregressive loss of brackets, $ signs, and quotes.
 
 ### Why this worked with near-deterministic reliability:
 1. **Special Symbol Isolation (Block 1):** By forcing each element onto its own line (`[0] = "'"`, `[1] = "https://"`, `[2] = "/?sl="`), we shattered the BPE token glue. Quotation marks, question marks, and operators were isolated into discrete entities.

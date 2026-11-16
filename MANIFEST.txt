@@ -17,15 +17,15 @@ Markdown sources — are not here; see "What is deliberately not here".
 | `parity_check.js` | 13 967 | Node port — same state machine, same heredoc masking, same fixture |
 | `README.md` | 12 490 | Front page (English): what the guard does, published records with DOIs, file map, tests |
 | `README_RU.md` | 16 256 | Same in Russian |
-| `ARTICLE.md` | 22 097 | The essay: parables, BPE subword blindness, the "Token Architect" method |
-| `ARTICLE_RU.md` | 36 506 | Same in Russian |
+| `ARTICLE.md` | 22 111 | The essay: parables, BPE subword blindness, the "Token Architect" method |
+| `ARTICLE_RU.md` | 36 538 | Same in Russian |
 | `MASTER_PROMPT.md` | 8 868 | Full session bootstrap: four gate outcomes, `skip` is not a verdict, hook-vs-CLI precedence, canary contract per hook |
 | `MASTER_PROMPT_LITE.md` | 4 210 | Condensed drop-in version of the same |
 | `TESTS.md` | 6 054 | What each suite covers, the difference between a self-test and a run against the repository, and what these suites do not cover |
 | `REQUESTS.md` | 9 189 | Audit trail: what was requested, what was accepted, which check decided it |
 | `VERDICT_JOURNEY.md` | 8 892 | Eight cases where the first verdict did not survive re-checking (Russian) |
 | `WHY_RU.md` | 25 763 | Decision log: why every file is built the way it is (Russian) |
-| `CHANGELOG.md` | 17 013 | Iterations of the guardrail, newest first |
+| `CHANGELOG.md` | 17 011 | Iterations of the guardrail, newest first |
 | `guard_false_positives.md` | 1 986 | Append-only log of false positives: schema, classification, resolution |
 | `CITATION.cff` | 1 949 | Citation metadata for this repository |
 | `habr_cover.jpg` | 162 914 | Cover image used by the README |
