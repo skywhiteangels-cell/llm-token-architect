@@ -10,7 +10,7 @@
 
 Запуск:
     python check_abstract.py
-    python check_abstract.py --paper ../paper/main.tex --readme ../../ARXIV_PACKAGE/README.md
+    python check_abstract.py --paper ../../Arhiv/paper/main.tex --readme ../../ARXIV_PACKAGE/README.md
     python check_abstract.py --selftest
 
 Коды возврата: 0 — совпадение не ниже порога, 1 — ниже, 2 — входных

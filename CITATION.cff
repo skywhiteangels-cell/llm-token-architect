@@ -31,8 +31,9 @@ preferred-citation:
       given-names: Vladimir V.
       orcid: "https://orcid.org/0009-0005-7773-3581"
       affiliation: Independent Researcher
-  doi: "10.5281/zenodo.23813780"
-  url: "https://doi.org/10.5281/zenodo.23813780"
+  doi: "10.5281/zenodo.24278396"
+  url: "https://doi.org/10.5281/zenodo.24278396"
+  version: "3.0"
   year: 2026
   month: 10
   publisher:
@@ -43,12 +44,12 @@ references:
     authors:
       - family-names: Borovikov
         given-names: Vladimir V.
-    doi: "10.5281/zenodo.24045183"
+    doi: "10.5281/zenodo.24278460"
     year: 2026
   - type: generic
     title: "Deterministic Audit of LLM-Generated Research Claims"
     authors:
       - family-names: Borovikov
         given-names: Vladimir V.
-    doi: "10.5281/zenodo.23817684"
+    doi: "10.5281/zenodo.24278350"
     year: 2026

@@ -1,10 +1,10 @@
 # Quote Guard — a pre-flight check that stops an agent from hanging its own shell
 
-> 📖 **Read the full experimental trilogy (1,416 canonical probes):** [The Ghost in the Context Window (PDF)](trilogy/The_Ghost_in_the_Context_Window_Trilogy_v1.1_en.pdf)
+> 📖 **Read the full experimental trilogy (1,416 canonical probes):** [The Ghost in the Context Window (PDF)](PUBLICATION_PDF/The_Ghost_in_the_Context_Window_Trilogy_v1.2_en.pdf)
 
 **🇬🇧 English** | [ 🇷🇺 Читать на русском ](README_RU.md)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23813780.svg)](https://doi.org/10.5281/zenodo.23813780)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24278396.svg)](https://doi.org/10.5281/zenodo.24278396)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0005--7773--3581-green.svg)](https://orcid.org/0009-0005-7773-3581)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/skywhiteangels-cell/llm-token-architect/actions/workflows/tests.yml/badge.svg)](https://github.com/skywhiteangels-cell/llm-token-architect/actions)
@@ -28,14 +28,18 @@ Two files, no dependencies, one exit code.
 
 | | Work | DOI | Language |
 |---|---|---|---|
-| 1 | [The Ghost in the Context Window](https://doi.org/10.5281/zenodo.24045183) — трилогия, v1.1: three essays, RU + EN, plus the anchor note | `10.5281/zenodo.24045183` | русский · English |
-| 2 | [The Attention Dispersion Law and Dual-Path Decoupling in Autoregressive Transformers](https://doi.org/10.5281/zenodo.23813780) — the preprint | `10.5281/zenodo.23813780` | English · русский |
-| 3 | [Deterministic Audit of LLM-Generated Research Claims](https://doi.org/10.5281/zenodo.23817684) — the audit protocol | `10.5281/zenodo.23817684` | English · русский |
+| 1 | [The Ghost in the Context Window](https://doi.org/10.5281/zenodo.24278460) — трилогия, v1.2: three essays, RU + EN, plus the anchor note | `10.5281/zenodo.24278460` | русский · English |
+| 2 | [The Attention Dispersion Law and Dual-Path Decoupling in Autoregressive Transformers](https://doi.org/10.5281/zenodo.24278396) — the preprint, v3.0 | `10.5281/zenodo.24278396` | English · русский |
+| 3 | [Deterministic Audit of LLM-Generated Research Claims](https://doi.org/10.5281/zenodo.24278350) — the audit protocol, v2.0 | `10.5281/zenodo.24278350` | English · русский |
+| 4 | [Anatomy of Degradation: Five Forms and Line Isolation Breach](https://doi.org/10.5281/zenodo.24266564) — the dossier, RU + EN | `10.5281/zenodo.24266564` | русский · English |
+| 5 | [Notes: five forms of state and the isolation breach](https://doi.org/10.5281/zenodo.24266885) — companion observation log, RU + EN | `10.5281/zenodo.24266885` | русский · English |
 
 Record 3 audits the claims of record 2; record 1 is the popular account written at
-the end of the same session. All are linked on Zenodo in both directions. Version
-1.0 of the trilogy (`10.5281/zenodo.23679671`) is superseded by 1.1 and stays in
-the snapshot, because a superseded record is what most drift happens to.
+the end of the same session. All are linked on Zenodo in both directions. Earlier
+versions stay in the snapshot, because a superseded record is what most drift
+happens to: the trilogy at `10.5281/zenodo.24045183` (v1.1) and
+`10.5281/zenodo.23679671` (v1.0), the preprint at `10.5281/zenodo.23813780`
+(v1.0), the protocol at `10.5281/zenodo.23817684` (revision 1.0).
 
 If you use the code, cite this repository. If you refer to the results, cite
 record 2 — [`CITATION.cff`](CITATION.cff) carries both.
@@ -164,13 +168,11 @@ of hooks. Measured on that build; not claimed for others.
 | [guard_false_positives.md](guard_false_positives.md) | Append-only log of guard false positives: schema, classification, resolution |
 | [ARTICLE.md](ARTICLE.md) · [ARTICLE_RU.md](ARTICLE_RU.md) | The essay: parables, BPE subword blindness, the "Token Architect" method, and why frontier models still break on the first meter |
 | [WHY_RU.md](WHY_RU.md) | Why every file is built the way it is — the decision log (Russian) |
-| [paper/](paper/) | The preprint: LaTeX source, English and Russian PDFs, the arXiv submission archive |
-| [protocol/](protocol/) | The audit protocol: source, both PDFs, its own submission archive |
-| [trilogy/](trilogy/) | The popular trilogy: source markdown and the script that builds its PDF |
+| [PUBLICATION_PDF/](PUBLICATION_PDF/) | The five published works as deposited — preprint v3.0, audit protocol v2.0, the trilogy with its anchor note, the degradation dossier, and the observation log; 11 PDFs, RU + EN |
 | [reproducibility/](reproducibility/) | Verification bundle — 1,416 probes, 13 scripts, canonical output, and the checkers that read it |
-| [zenodo/](zenodo/) | Snapshot of the three published records; `check.py` reports any drift between the repository and what Zenodo actually serves |
 | [archive/](archive/) | Superseded prompts, kept for the record |
-| [CITATION.cff](CITATION.cff) · [.zenodo.json](.zenodo.json) | Citation metadata for this repository and for GitHub-to-Zenodo releases |
+| [MANIFEST.txt](MANIFEST.txt) · [MANIFEST_RU.txt](MANIFEST_RU.txt) | Index of the tree: every file and directory, what is deliberately not here, and how to verify |
+| [CITATION.cff](CITATION.cff) | Citation metadata: the repository as software, the preprint as preferred citation |
 
 ## Tests
 
@@ -198,8 +200,8 @@ No pytest, no npm install. Exit code 0 or it is broken.
 Nine instruments make up the protocol's toolchain — five produce the report in
 its section 7, three close classes the report cannot see, and
 `tools/session_artifacts.py` builds a character map without issuing a verdict.
-They are listed with hashes in
-[protocol/PASS_BY_REFERENCE_PROTOCOL.md](protocol/PASS_BY_REFERENCE_PROTOCOL.md).
+They are listed with hashes in the published protocol record
+([10.5281/zenodo.24278350](https://doi.org/10.5281/zenodo.24278350)).
 
 `tools/` also holds utilities that are **not** part of that nine: they produce
 data, not verdicts.

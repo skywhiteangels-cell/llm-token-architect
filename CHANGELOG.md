@@ -3,6 +3,77 @@
 All notable changes to this repository. Versions here are the internal iterations
 of the guardrail, not semver releases of a package.
 
+## v3.2.0 — 2026-11-16
+
+Structural: the repository is now the guard and its verification bundle; the
+manuscripts live outside it. No guard code changed — all suites still pass at
+the counts below.
+
+### Changed
+- **Publication sources moved out of the repository** to a local archive
+  (`C:\1\Arhiv`): `paper/`, `protocol/`, `trilogy/`, `zenodo/`,
+  `DEGRADATION_RU.md`, `DEGRADATION_EN.md`. The deposited artefacts stayed, as
+  PDFs in `PUBLICATION_PDF/`; a reader who needs sources finds them in the
+  published records.
+- **`PUBLICATION_PDF/` added** — 11 PDFs of the five published works, named
+  `<Name>_v<version>_<language>.pdf`: `PACKAGE_v3.0`, `PROTOCOL_v2.0`,
+  `The_Ghost_in_the_Context_Window_Trilogy_v1.2`, `DEGRADATION_v1.0`,
+  `NOTES_v1.0`, plus `ANCHOR_TRANSLATION_NOTE.pdf`, which has no language
+  suffix because it is one bilingual file, not a pair of translations.
+- **`README.md` / `README_RU.md`**: the four rows for `paper/`, `protocol/`,
+  `trilogy/` and `zenodo/` in the file map are replaced by one row for
+  `PUBLICATION_PDF/`; the trilogy PDF link now points there; the protocol
+  specification is referenced by the DOI of its published record
+  (`10.5281/zenodo.24278350`) instead of a path that no longer exists.
+- **Published-records table** points to the version DOIs of the new versions:
+  preprint v3.0 `24278396`, protocol v2.0 `24278350`, trilogy v1.2 `24278460`.
+  Earlier versions are listed in the paragraph below the table.
+- **`CITATION.cff`**: DOIs updated to the new versions.
+- **`.zenodo.json` removed.** It only takes effect on a GitHub release, and this
+  repository has no tags and no releases — the five records were created by hand.
+  It also duplicated relations that already live in the records themselves, so it
+  was a second source of truth waiting to drift.
+- **`MANIFEST.txt` and `MANIFEST_RU.txt` added** — an index of the tree: every
+  root file with its size, every directory with its file count, what is
+  deliberately not here, and how to verify.
+- **`.gitattributes` prepared but not yet enabled.** The file exists in the
+  working tree and fixes LF for text files, but every text file in the repository
+  is stored with CRLF today — `HEAD` included. Committing the rule would
+  renormalize the whole tree in one commit and change the bytes that
+  `FREEZE.txt` and `MANIFEST_SCRIPTS.sha256` were taken over. That migration is a
+  separate, deliberate change with hash recalculation, not a side effect of a
+  restructure.
+
+### Fixed
+- **`CANONICAL_NUMBERS_AR2.py` found its inputs by a repository-relative path.**
+  With the exports moved out of the repository it silently lost the two derived
+  percentages (88.8 % and 93.5 %), and the dossier check in
+  `check_protocol.py` dropped from ДА to ЧАСТИЧНО without any error — a number
+  loses its source quietly. The script now resolves both files from its own
+  directory, tries `_private_exports/` and then the old path, and exits with a
+  message naming what it could not find.
+- **`exports/` policy was applied to half a pair.** `.gitignore` ignored the
+  directory and then tried to re-include `!exports/*.meta.json` — which cannot
+  work, because git does not descend into an ignored directory. The result: one
+  `.meta.json` sat in the index from an old `git add -f`, its sibling was
+  ignored. Now the contents are ignored (`exports/*`) and one passport is named
+  explicitly — the one whose figures the dossier cites (16/86 damaged chunks,
+  5 840 records). Transcripts are never published, and a future export's passport
+  does not become public by accident.
+- **`reproducibility/check_protocol.py` would have lost its inputs.** Items
+  8c/8d and 10 read the dossier by path under the repository root, so moving it
+  would have dropped them silently — a missing file is filtered out, not
+  reported. Added `find_doc()`, which resolves a document in the repository
+  first, then in `<root>/Arhiv`.
+- **`reproducibility/check_abstract.py`**: the usage example pointed at
+  `../paper/main.tex`; now `../../Arhiv/paper/main.tex`.
+
+### Unchanged
+- Every suite passes as before: 23 selftest cases, 46 checks over 31 grammar
+  cases, 25 hook checks, 12 antigravity hook checks, 5 duplicate-block checks,
+  22 of 22 tier-0 links, protocol checklist at 8 ДА / 1 AMENDED / 1 НЕТ /
+  2 ЧАСТИЧНО / 2 ВРУЧНУЮ.
+
 ## v3.1.3 — 2026-11-07
 
 ### Fixed

@@ -22,6 +22,22 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE) if os.path.basename(HERE) == "reproducibility" else HERE
 
+
+def find_doc(name, root=None):
+    """Ищет документ в репозитории, затем в C:\\1\\Arhiv.
+
+    16.11 публикационные исходники (досье, статьи, paper/, protocol/, trilogy/,
+    zenodo/) вынесены из репозитория в C:\\1\\Arhiv; PDF остались в
+    PUBLICATION_PDF/. Чекер не должен зависеть от того, где лежит текст.
+    """
+    root = root or os.path.dirname(REPO)
+    for base in (REPO, os.path.join(root, "Arhiv")):
+        p = os.path.join(base, name)
+        if os.path.exists(p):
+            return p
+    return os.path.join(REPO, name)
+
+
 results = []
 
 
@@ -143,9 +159,21 @@ def main(argv=None):
     mark("5. Вывод скрипта опубликован", "ДА" if published else "НЕТ",
          "reproducibility/expected_output.txt" if published else "файла нет")
 
-    # --- 8. Числа статьи против вывода ------------------------------------
-    tex = os.path.join(root, "ARXIV_PACKAGE", "main.tex")
-    if not (ok_run and os.path.exists(tex)):
+    # --- 8. Числа статей против вывода ------------------------------------
+    papers = []
+    p1 = os.path.join(root, "ARXIV_PACKAGE", "main.tex")
+    p2 = os.path.join(root, "PREPRINT2_v2", "main.tex")
+    if os.path.exists(p1):
+        papers.append(("8. Числа статьи 1 (Argon I+II)", p1, True))
+    if os.path.exists(p2):
+        papers.append(("8b. Числа статьи 2 (Argon I+II)", p2, True))
+    # Досье — третья публикация того же контура: те же числа, но в markdown.
+    for tag, name in (("8c", "DEGRADATION_EN.md"), ("8d", "DEGRADATION_RU.md")):
+        pm = find_doc(name, root)
+        if os.path.exists(pm):
+            papers.append(("%s. Числа досье (%s)" % (tag, name.split("_")[-1].split(".")[0]), pm, True))
+
+    if not (ok_run and papers):
         mark("8. Числа статьи в выводе", "Н/Д",
              "нет ARXIV_PACKAGE/main.tex рядом с корнем %s" % root)
     else:
@@ -158,49 +186,85 @@ def main(argv=None):
         else:
             mark("8a. Канон доступен", "НЕТ", "файл не найден: CANONICAL_NUMBERS.py")
 
+        # Числа Argon II лежат не в каноне Argon I, а в замороженных вердиктах.
+        # Индекс проверяет каждую строку-источник на месте; если файл исчез,
+        # он сам выходит с кодом 1, и это видно в 8c.
+        sources_ar2 = ""
+        ar2_path = os.path.join(root, "CANONICAL_NUMBERS_AR2.py")
+        if os.path.exists(ar2_path):
+            a2 = subprocess.run([sys.executable, ar2_path], capture_output=True,
+                                text=True, encoding="utf-8")
+            sources_ar2 = a2.stdout
+            if a2.returncode != 0:
+                bad = [l.strip() for l in a2.stdout.splitlines() if "MISSING" in l]
+                mark("8c. Канон Argon II", "НЕТ",
+                     "; ".join(bad[:3]) or "индекс Argon II не сошёлся")
+        else:
+            mark("8c. Канон Argon II", "НЕТ",
+                 "файл не найден: CANONICAL_NUMBERS_AR2.py")
+
         def numbers(text):
             vals = set()
             for m in re.finditer(r"(\d+\.\d+)(?:e([-+]?\d+))?", text):
                 vals.add(float(m.group(1)) * (10 ** int(m.group(2) or 0)))
             return vals
 
-        printed = numbers(sources)
-        text = open(tex, encoding="utf-8").read()
-        miss_p, miss_frac, miss_pct = [], [], []
+        def check_paper(tex_path, src):
+            printed = numbers(src)
+            text = open(tex_path, encoding="utf-8").read()
+            miss_p, miss_frac, miss_pct = [], [], []
 
-        for m in re.finditer(r"p = (\d+\.\d+)(?:[^0-9]{0,14}10\^\{(-?\d+)\})?", text):
-            val = float(m.group(1)) * (10 ** int(m.group(2) or 0))
-            # статья округляет по-разному: 0.001746 -> 0.0017 (2 знач.),
-            # 2.909e-18 -> 2.91e-18 (3 знач.). Сверяем по числу значащих.
-            sig = len(m.group(1).replace(".", "").lstrip("0")) or 1
-            want = "%.*g" % (sig, val)
-            if not any("%.*g" % (sig, v) == want for v in printed):
-                miss_p.append(m.group(0).replace("p = ", ""))
+            for m in re.finditer(r"p = (\d+\.\d+)(?:[^0-9]{0,14}10\^\{(-?\d+)\})?", text):
+                val = float(m.group(1)) * (10 ** int(m.group(2) or 0))
+                # статья округляет по-разному: 0.001746 -> 0.0017 (2 знач.),
+                # 2.909e-18 -> 2.91e-18 (3 знач.). Сверяем по числу значащих.
+                sig = len(m.group(1).replace(".", "").lstrip("0")) or 1
+                want = "%.*g" % (sig, val)
+                if not any("%.*g" % (sig, v) == want for v in printed):
+                    miss_p.append(m.group(0).replace("p = ", ""))
 
-        for m in re.finditer(r"(\d{1,3})\s*/\s*(\d{1,3})", text):
-            a, b = m.group(1), m.group(2)
-            # «28/10» — дата, а не доля: знаменатель ≤ 12, числитель ≤ 31,
-            # и за дробью не идёт скобка или процент.
-            tail = text[m.end():m.end() + 3].lstrip()
-            if int(b) <= 12 and int(a) <= 31 and not tail.startswith(("(", "%")):
-                continue
-            if not re.search(r"\b%s\s*/\s*%s\b" % (a, b), sources):
-                miss_frac.append("%s/%s" % (a, b))
+            # (?<![\d.]) и (?!\.\d) отсекают «3.67 / 5.00»: это список
+            # десятичных, а не дробь 67/5.
+            for m in re.finditer(r"(?<![\d.])(\d{1,3})\s*/\s*(\d{1,3})(?!\.\d)", text):
+                a, b = m.group(1), m.group(2)
+                # 275 / 268 / 265 — перечисление целых, а не доля: числитель
+                # больше знаменателя, и справа ещё один слэш.
+                if int(a) > int(b) or text[m.end():m.end() + 4].lstrip().startswith("/"):
+                    continue
+                # «28/10» — дата, а не доля: знаменатель ≤ 12, числитель ≤ 31,
+                # и за дробью не идёт скобка или процент.
+                tail = text[m.end():m.end() + 3].lstrip()
+                if int(b) <= 12 and int(a) <= 31 and not tail.startswith(("(", "%")):
+                    continue
+                if not re.search(r"\b%s\s*/\s*%s\b" % (a, b), src):
+                    miss_frac.append("%s/%s" % (a, b))
 
-        for pct in set(re.findall(r"(\d+\.\d)\s*\\?%", text)):
-            if pct not in sources:
-                miss_pct.append(pct)
+            for pct in set(re.findall(r"(\d+\.\d)\s*\\?%", text)):
+                if pct not in src:
+                    miss_pct.append(pct)
 
-        st8 = "НЕТ" if (miss_p or miss_frac) else ("ЧАСТИЧНО" if miss_pct else "ДА")
-        notes = []
-        if miss_p:
-            notes.append("p: " + ", ".join(miss_p))
-        if miss_frac:
-            notes.append("дроби: " + ", ".join(miss_frac))
-        if miss_pct:
-            notes.append("проценты без источника: " + ", ".join(sorted(miss_pct)))
-        mark("8. Числа статьи в выводе", st8,
-             "; ".join(notes) if notes else "p, дроби и проценты найдены")
+            st = "НЕТ" if (miss_p or miss_frac) else ("ЧАСТИЧНО" if miss_pct else "ДА")
+            notes = []
+            if miss_p:
+                notes.append("p: " + ", ".join(miss_p))
+            if miss_frac:
+                notes.append("дроби: " + ", ".join(miss_frac))
+            if miss_pct:
+                notes.append("проценты без источника: " + ", ".join(sorted(miss_pct)))
+            return st, notes
+
+        # Один пункт на все статьи: число проверок в чеклисте не меняется,
+        # а расхождение по конкретной статье видно в примечании.
+        rank = {"ДА": 0, "ЧАСТИЧНО": 1, "НЕТ": 2}
+        worst = "ДА"
+        parts = []
+        for label, tex, need_ar2 in papers:
+            st, notes = check_paper(tex, sources + (sources_ar2 if need_ar2 else ""))
+            short = {p1: "ст.1", p2: "ст.2"}.get(tex, os.path.basename(tex))
+            parts.append("%s: %s" % (short, "; ".join(notes) if notes else "чисто"))
+            if rank[st] > rank[worst]:
+                worst = st
+        mark("8. Числа статей в выводе", worst, " | ".join(parts))
 
     # --- 9. Ярус 0 ---------------------------------------------------------
     tier0 = os.path.join(HERE, "check_tier0.py")
@@ -240,9 +304,12 @@ def main(argv=None):
 
     # --- 10. Термины против определений (форма 3) --------------------------
     terms = os.path.join(HERE, "check_terms.py")
-    docs_terms = [os.path.join(REPO, "ARTICLE.md"),
-                  os.path.join(REPO, "ARTICLE_RU.md"),
-                  os.path.join(REPO, "DEGRADATION.md")]
+    # Досье переименовано 16.11: RU — основной, EN — пара. Берём оба имени,
+    # отсутствующее отфильтруется ниже, так что переименование чекер не ломает.
+    docs_terms = [find_doc("ARTICLE.md", root),
+                  find_doc("ARTICLE_RU.md", root),
+                  find_doc("DEGRADATION_RU.md", root),
+                  find_doc("DEGRADATION.md", root)]
     docs_terms = [d for d in docs_terms if os.path.exists(d)]
     if os.path.exists(terms) and docs_terms:
         t = subprocess.run([sys.executable, terms, "--root", root] + docs_terms,

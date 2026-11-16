@@ -1,10 +1,10 @@
 # Quote Guard — предохранитель, который не даёт агенту повесить собственный шелл
 
-> 📖 **Читать полную трилогию экспериментов (1 416 канонических проб):** [The Ghost in the Context Window (PDF)](trilogy/The_Ghost_in_the_Context_Window_Trilogy_v1.1_ru.pdf)
+> 📖 **Читать полную трилогию экспериментов (1 416 канонических проб):** [The Ghost in the Context Window (PDF)](PUBLICATION_PDF/The_Ghost_in_the_Context_Window_Trilogy_v1.2_ru.pdf)
 
 **🇷🇺 Русский** | [ 🇬🇧 Read in English ](README.md)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23813780.svg)](https://doi.org/10.5281/zenodo.23813780)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24278396.svg)](https://doi.org/10.5281/zenodo.24278396)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0005--7773--3581-green.svg)](https://orcid.org/0009-0005-7773-3581)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/skywhiteangels-cell/llm-token-architect/actions/workflows/tests.yml/badge.svg)](https://github.com/skywhiteangels-cell/llm-token-architect/actions)
@@ -29,14 +29,18 @@
 
 | | Работа | DOI | Язык |
 |---|---|---|---|
-| 1 | [The Ghost in the Context Window](https://doi.org/10.5281/zenodo.24045183) — трилогия, v1.1: RU + EN + записка о якоре | `10.5281/zenodo.24045183` | русский · английский |
-| 2 | [The Attention Dispersion Law and Dual-Path Decoupling in Autoregressive Transformers](https://doi.org/10.5281/zenodo.23813780) — препринт | `10.5281/zenodo.23813780` | английский · русский |
-| 3 | [Deterministic Audit of LLM-Generated Research Claims](https://doi.org/10.5281/zenodo.23817684) — протокол аудита | `10.5281/zenodo.23817684` | английский · русский |
+| 1 | [The Ghost in the Context Window](https://doi.org/10.5281/zenodo.24278460) — трилогия, v1.2: RU + EN + записка о якоре | `10.5281/zenodo.24278460` | русский · английский |
+| 2 | [The Attention Dispersion Law and Dual-Path Decoupling in Autoregressive Transformers](https://doi.org/10.5281/zenodo.24278396) — препринт, v3.0 | `10.5281/zenodo.24278396` | английский · русский |
+| 3 | [Deterministic Audit of LLM-Generated Research Claims](https://doi.org/10.5281/zenodo.24278350) — протокол аудита, v2.0 | `10.5281/zenodo.24278350` | английский · русский |
+| 4 | [Anatomy of Degradation: Five Forms and Line Isolation Breach](https://doi.org/10.5281/zenodo.24266564) — досье, RU + EN | `10.5281/zenodo.24266564` | русский · английский |
+| 5 | [Notes: five forms of state and the isolation breach](https://doi.org/10.5281/zenodo.24266885) — спутниковый журнал наблюдений, RU + EN | `10.5281/zenodo.24266885` | русский · английский |
 
 Запись 3 аудирует утверждения записи 2; запись 1 — популярное изложение, написанное
-в конце той же сессии. Все связаны на Zenodo в обе стороны. Версия 1.0 трилогии
-(`10.5281/zenodo.23679671`) заменена версией 1.1 и остаётся в снимке: расхождения
-чаще всего и случаются с заменёнными записями.
+в конце той же сессии. Все связаны на Zenodo в обе стороны. Предыдущие версии
+остаются в снимке: расхождения чаще всего и случаются с заменёнными записями —
+трилогия `10.5281/zenodo.24045183` (v1.1) и `10.5281/zenodo.23679671` (v1.0),
+препринт `10.5281/zenodo.23813780` (v1.0), протокол `10.5281/zenodo.23817684`
+(редакция 1.0).
 
 Если используете код — цитируйте этот репозиторий. Если ссылаетесь на результаты —
 запись 2; оба варианта лежат в [`CITATION.cff`](CITATION.cff).
@@ -159,13 +163,11 @@ CLI, который надо не забыть вызвать, — это та �
 | [guard_false_positives.md](guard_false_positives.md) | Журнал ложных срабатываний предохранителя: схема, классификация, разбор — только дописывается |
 | [ARTICLE_RU.md](ARTICLE_RU.md) · [ARTICLE.md](ARTICLE.md) | Статья: притча, подсловная слепота BPE, метод «Архитектор токенов» и почему флагманы всё ещё ломаются о первый метр |
 | [WHY_RU.md](WHY_RU.md) | Почему каждый файл сделан именно так — журнал решений |
-| [paper/](paper/) | Препринт: исходник LaTeX, английский и русский PDF, архив отправки |
-| [protocol/](protocol/) | Протокол аудита: исходник, оба PDF, свой архив отправки |
-| [trilogy/](trilogy/) | Трилогия: исходный markdown и скрипт сборки PDF |
+| [PUBLICATION_PDF/](PUBLICATION_PDF/) | Пять опубликованных работ в том виде, в каком они выложены — препринт v3.0, протокол аудита v2.0, трилогия с запиской о якоре, досье деградации и журнал наблюдений; 11 PDF, RU + EN |
 | [reproducibility/](reproducibility/) | Проверочный набор — 1 416 проб, 13 скриптов, эталонный вывод и чекеры |
-| [zenodo/](zenodo/) | Снимок трёх опубликованных записей; `check.py` показывает любое расхождение между репозиторием и тем, что отдаёт Zenodo |
 | [archive/](archive/) | Устаревшие промты, оставлены для истории |
-| [CITATION.cff](CITATION.cff) · [.zenodo.json](.zenodo.json) | Метаданные цитирования репозитория и релизов GitHub → Zenodo |
+| [MANIFEST_RU.txt](MANIFEST_RU.txt) · [MANIFEST.txt](MANIFEST.txt) | Опись дерева: каждый файл и каталог, чего здесь намеренно нет и как это проверять |
+| [CITATION.cff](CITATION.cff) | Метаданные цитирования: репозиторий как софт, препринт как предпочтительная ссылка |
 
 ## Тесты
 
