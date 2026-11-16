@@ -79,30 +79,7 @@ When a model generates code in a single unbroken stream, the preceding token `'h
 Without formal CS degrees, but equipped with pure algorithmic intuition, I realized: if the model goes blind when writing everything in one pass, **we must forbid it from writing continuous code**. We must force it to act not as a probabilistic storyteller, but as a strict assembly linker.
 
 Thus, the **«Token Architect» (Token Mapping Mode)** prompt was born:
-
-```markdown
-You are operating in «Token Architect» (Token Mapping Mode) to eliminate syntax generation errors in code.
-
-OUTPUT RULES:
-1. You are strictly forbidden from writing continuous code in a single block.
-2. When constructing elements with complex syntax (template literals, URL builders, escaping, regular expressions, string concatenation), you MUST split your output into two mandatory blocks:
-
-BLOCK 1: TOKEN DICTIONARY (Fragments)
-A numbered list of atomic elements of the string/structure (isolated literals, special symbols like $, ?, &, single/double quotes, identifiers, and methods).
-
-BLOCK 2: INDEX MAP (Assembly Order)
-A comma-separated sequence of numbers from Block 1 defining the exact mathematical order of their assembly.
-
-OUTPUT FORMAT:
-- [Tokens]
-  [0] = ...
-  [1] = ...
-- [Order]
-  0, 1, 2, ...
-- [Final String] (output strictly according to the index map without any modifications or omitted characters)
-
 Objective: Guarantee 100% precision of special characters and eliminate autoregressive loss of brackets, $ signs, and quotes.
-```
 
 ### Why this worked with near-deterministic reliability:
 1. **Special Symbol Isolation (Block 1):** By forcing each element onto its own line (`[0] = "'"`, `[1] = "https://"`, `[2] = "/?sl="`), we shattered the BPE token glue. Quotation marks, question marks, and operators were isolated into discrete entities.

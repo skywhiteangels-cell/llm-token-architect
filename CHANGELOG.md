@@ -10,6 +10,10 @@ manuscripts live outside it. No guard code changed — all suites still pass at
 the counts below.
 
 ### Changed
+- **`ARTICLE.md` / `ARTICLE_RU.md`: the prompt text is no longer reproduced.** The
+  article still describes what the «Token Architect» mode does and why it worked,
+  but the instruction block itself is gone from both language versions (23 lines
+  each). The narrative around it is unchanged.
 - **Publication sources moved out of the repository** to a local archive
   (`C:\1\Arhiv`): `paper/`, `protocol/`, `trilogy/`, `zenodo/`,
   `DEGRADATION_RU.md`, `DEGRADATION_EN.md`. The deposited artefacts stayed, as
