@@ -9,32 +9,36 @@ The repository holds two things: the guard (code and tests) and the deposited
 PDFs of the five published works. The manuscripts themselves — LaTeX and
 Markdown sources — are not here; see "What is deliberately not here".
 
+Sizes are deliberately not listed: a byte count depends on the checkout's line
+endings, so it describes the machine, not the repository. File counts are listed
+because they are stable.
+
 ## Root files (18, plus this index)
 
-| File | Bytes | What it is |
-|---|---|---|
-| `parity_check.py` | 17 345 | Python guard: walks a command string as a shell lexer, refuses if the lexer ends inside a quote, backtick, or line continuation. `analyze()`, `verify_quote_parity()`, CLI, `--json`, `--selftest` |
-| `parity_check.js` | 13 967 | Node port — same state machine, same heredoc masking, same fixture |
-| `README.md` | 12 490 | Front page (English): what the guard does, published records with DOIs, file map, tests |
-| `README_RU.md` | 16 256 | Same in Russian |
-| `ARTICLE.md` | 22 111 | The essay: parables, BPE subword blindness, the "Token Architect" method |
-| `ARTICLE_RU.md` | 36 538 | Same in Russian |
-| `MASTER_PROMPT.md` | 8 868 | Full session bootstrap: four gate outcomes, `skip` is not a verdict, hook-vs-CLI precedence, canary contract per hook |
-| `MASTER_PROMPT_LITE.md` | 4 210 | Condensed drop-in version of the same |
-| `TESTS.md` | 6 054 | What each suite covers, the difference between a self-test and a run against the repository, and what these suites do not cover |
-| `REQUESTS.md` | 9 189 | Audit trail: what was requested, what was accepted, which check decided it |
-| `VERDICT_JOURNEY.md` | 8 892 | Eight cases where the first verdict did not survive re-checking (Russian) |
-| `WHY_RU.md` | 25 763 | Decision log: why every file is built the way it is (Russian) |
-| `CHANGELOG.md` | 17 011 | Iterations of the guardrail, newest first |
-| `guard_false_positives.md` | 1 986 | Append-only log of false positives: schema, classification, resolution |
-| `CITATION.cff` | 1 949 | Citation metadata for this repository |
-| `habr_cover.jpg` | 162 914 | Cover image used by the README |
-| `LICENSE` | 1 065 | MIT |
-| `.gitignore` | 910 | Ignored paths |
+| File | What it is |
+|---|---|
+| `parity_check.py` | Python guard: walks a command string as a shell lexer, refuses if the lexer ends inside a quote, backtick, or line continuation. `analyze()`, `verify_quote_parity()`, CLI, `--json`, `--selftest` |
+| `parity_check.js` | Node port — same state machine, same heredoc masking, same fixture |
+| `README.md` | Front page (English): what the guard does, published records with DOIs, file map, tests |
+| `README_RU.md` | Same in Russian |
+| `ARTICLE.md` | The essay: parables, BPE subword blindness, the "Token Architect" method |
+| `ARTICLE_RU.md` | Same in Russian |
+| `MASTER_PROMPT.md` | Full session bootstrap: four gate outcomes, `skip` is not a verdict, hook-vs-CLI precedence, canary contract per hook |
+| `MASTER_PROMPT_LITE.md` | Condensed drop-in version of the same |
+| `TESTS.md` | What each suite covers, the difference between a self-test and a run against the repository, and what these suites do not cover |
+| `REQUESTS.md` | Audit trail: what was requested, what was accepted, which check decided it |
+| `VERDICT_JOURNEY.md` | Eight cases where the first verdict did not survive re-checking (Russian) |
+| `WHY_RU.md` | Decision log: why every file is built the way it is (Russian) |
+| `CHANGELOG.md` | Iterations of the guardrail, newest first |
+| `guard_false_positives.md` | Append-only log of false positives: schema, classification, resolution |
+| `CITATION.cff` | Citation metadata for this repository |
+| `habr_cover.jpg` | Cover image used by the README |
+| `LICENSE` | MIT |
+| `.gitignore` | Ignored paths |
 
 ## Directories
 
-### `hooks/` — 4 tracked files + a local log, 64 KB
+### `hooks/` — 4 tracked files + a local log
 `pre_tool_use_guard.py` (PreToolUse hook: blocks a hanging command before it
 runs), `antigravity_guard.py` (same gate for the Antigravity harness; deny is
 exit 0 with `{"decision": "deny"}`, so the exit code alone proves nothing),
@@ -42,29 +46,29 @@ exit 0 with `{"decision": "deny"}`, so the exit code alone proves nothing),
 hook's runtime output: it sits next to the hook and is gitignored, so it is not
 part of the tree.
 
-### `tests/` — 5 files, 36 KB
+### `tests/` — 5 files
 `fixtures/cases.jsonl` — the single case table both language suites read.
 `test_parity.py` (46 checks over 31 grammar cases), `test_parity.js` (same
 fixture, Node), `test_hook.py` (25 checks), `test_antigravity_hook.py`
 (12 checks).
 
-### `tools/` — 4 files, 48 KB
+### `tools/` — 4 files
 `check_duplicate_blocks.py`, `session_artifacts.py`, `export_session.py`,
 `ds_share.py`. These produce data, not verdicts.
 
-### `reproducibility/` — 14 files, 380 KB
-Verification bundle: `probes.jsonl` (1 416 canonical probes, 265 KiB),
+### `reproducibility/` — 14 files
+Verification bundle: `probes.jsonl` (1 416 canonical probes),
 `expected_output.txt`, `verify_numbers.py`, and the checkers —
 `check_protocol.py`, `check_tier0.py`, `check_terms.py`,
 `check_duplicate_blocks.py` (via `tools/`), `check_expected.py`,
 `check_abstract.py`. Plus `build_bundle.py`, `make_markers.py`,
 `markers.txt`, `drift_worksheet.py`, `length_vs_accuracy.py`, `README.md`.
 
-### `PUBLICATION_PDF/` — 11 PDFs, 5.5 MB
+### `PUBLICATION_PDF/` — 11 PDFs
 The five works as deposited on Zenodo, named `<Name>_v<version>_<language>.pdf`:
 
 | File | Pages | DOI |
-|---|---|---|
+|---|---|
 | `PACKAGE_v3.0_en.pdf`, `PACKAGE_v3.0_ru.pdf` | 12 / 12 | 10.5281/zenodo.24278396 |
 | `PROTOCOL_v2.0_en.pdf`, `PROTOCOL_v2.0_ru.pdf` | 7 / 7 | 10.5281/zenodo.24278350 |
 | `The_Ghost_in_the_Context_Window_Trilogy_v1.2_en.pdf`, `…_ru.pdf` | 19 / 20 | 10.5281/zenodo.24278460 |
@@ -72,7 +76,7 @@ The five works as deposited on Zenodo, named `<Name>_v<version>_<language>.pdf`:
 | `DEGRADATION_v1.0_en.pdf`, `DEGRADATION_v1.0_ru.pdf` | 23 / 24 | 10.5281/zenodo.24266564 |
 | `NOTES_v1.0_en.pdf`, `NOTES_v1.0_ru.pdf` | 28 / 29 | 10.5281/zenodo.24266885 |
 
-### `archive/` — 3 files, 20 KB
+### `archive/` — 3 files
 Superseded prompts: `MASTER_PROMPT_v2.md`, `MASTER_PROMPT_LITE_v2.md`,
 `WHY_V2.md`. Kept for the record.
 

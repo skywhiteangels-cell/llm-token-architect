@@ -38,8 +38,10 @@ the counts below.
   It also duplicated relations that already live in the records themselves, so it
   was a second source of truth waiting to drift.
 - **`MANIFEST.txt` and `MANIFEST_RU.txt` added** — an index of the tree: every
-  root file with its size, every directory with its file count, what is
-  deliberately not here, and how to verify.
+  root file, every directory with its file count, what is deliberately not here,
+  and how to verify. Byte sizes are deliberately not listed: a byte count depends
+  on the checkout's line endings, so it describes the machine rather than the
+  repository, and it would need resyncing after every edit.
 - **`.gitattributes` prepared but not yet enabled.** The file exists in the
   working tree and fixes LF for text files, but every text file in the repository
   is stored with CRLF today — `HEAD` included. Committing the rule would
